@@ -1,0 +1,57 @@
+/* IMPORTS */
+
+/* STANDARD SETTINGS */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+img {
+    width: 100%;
+}
+
+/* FONTS */
+@font-face {
+    font-family: 'adlam';
+    src: url('../font/ADLaMDisplay-Regular.ttf');
+}
+
+/* FITBALANCE HEADER */
+#header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 2px solid black;
+    height: 10vh;
+    width: 100vw;
+    gap: 5em;
+    font-family: 'adlam';
+}
+
+#fitbalance-logo {
+    background: linear-gradient(305deg, #11161B 12.08%, #2A3845 140.98%);
+    color: #F8F6E7;
+    padding: 1.4em;
+    border-radius: 2em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8em;
+}
+
+#user-stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#user-stats-img {
+    width: 2.5em;
+}
