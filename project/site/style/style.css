@@ -49,7 +49,7 @@ img {
     align-items: center;
     gap: 1em;
     position: absolute;
-    right: 12%;
+    right: 5%;
 }
 
 #user-stats-img {
@@ -60,25 +60,25 @@ img {
 #dashboard-flex {
     display: flex;
     flex-direction: column;
-    width: calc(100% - 4em);
     justify-content: center;
     align-items: center;
     gap: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
-    margin-top: 3em;
+    margin-top: 20px;
+    width: 100vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #dashboard-flex-grid>div {
     background-color: gray;
-    height: 10em;
-    width: 10em;
+    height: 40vw;
+    width: 40vw;
     border-radius: 1em;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 .dashboard-flex-span {
-    width: 100%;
+    width: 90%;
     background-color: gray;
     height: 8em;
     border-radius: 1em;
@@ -90,13 +90,11 @@ img {
     background: linear-gradient(305deg, #11161B 12.08%, #2A3845 140.98%);
 }
 
-
 #dashboard-flex-grid {
-    display: flex;
-    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
     height: 50%;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
     row-gap: 1em;
+    column-gap: 11%;
+    justify-content: center;
 }
