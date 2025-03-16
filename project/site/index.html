@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyFirstFile</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.4.47/css/materialdesignicons.min.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=dashboard" />
     <link rel="stylesheet" href="./style/style.css">
     <script src="./script/script.js" defer></script>
 </head>
@@ -29,7 +32,7 @@
     <div id="dashboard-flex">
         <div class="dashboard-flex-span dashboard-item"></div>
         <div id="dashboard-flex-grid">
-            <div class="dashboard-item"></div> 
+            <div class="dashboard-item"></div>
             <div class="dashboard-item"></div>
             <div class="dashboard-item"></div>
             <div class="dashboard-item"></div>
@@ -37,11 +40,25 @@
         <div class="dashboard-flex-span dashboard-item"></div>
     </div>
     <!-- Dashboard (End) -->
-
+      
     <!-- Navigation (Start) -->
     <div id="navigation">
         <div class="nav-group">
-            <span class="glyphicon glyphicon-th-large"></span>
+            <span class="mdi mdi-view-dashboard"></span>
+            <p class="nav-label">Dashboard</p>
+        </div>
+        <div class="nav-group">
+            <span class="mdi mdi-alpha-f"></span>
+            <p class="nav-label">Fitbalance</p>
+        </div>
+        <div class="nav-group">
+            <span class="mdi mdi-shoe-sneaker"></span>
+            <p class="nav-label">Training</p>
+        </div>
+        <div class="nav-group">
+            <span class="material-symbols-outlined">
+                dashboard
+            </span>
             <p class="nav-label">Dashboard</p>
         </div>
     </div>

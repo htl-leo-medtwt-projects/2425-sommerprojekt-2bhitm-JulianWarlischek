@@ -5,6 +5,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -33,15 +34,15 @@ img {
 #fitbalance-logo {
     background: linear-gradient(305deg, #11161B 12.08%, #2A3845 140.98%);
     color: #F8F6E7;
-    padding: 0.6px 16px;
+    padding: 20px 30px;
     letter-spacing: 0.1em;
     position: absolute;
     left: 3%;
-    height: 60px;
     border-radius: 40px;
+    cursor: pointer;
 }
 
-#fitbalance-logo>h3{
+#fitbalance-logo>h3 {
     font-size: 1.3em;
 }
 
@@ -118,21 +119,27 @@ img {
     background: linear-gradient(305deg, #11161B 12.08%, #2A3845 140.98%);
     display: flex;
     width: 90%;
-    padding: 50px 30px;
+    padding: 1em;
     justify-content: space-between;
     align-items: center;
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
     bottom: 40px;
+    font-family: "Tilt Neon", sans-serif;
 }
 
 .nav-group {
     display: flex;
-    flex-direction: row;
+    padding: 20px 30px;
     justify-content: center;
-    gap: 1em;
     align-items: center;
-    justify-content: space-between;
-    background-color: dodgerblue;
+    gap: 8px;
+    flex-shrink: 0;
+    border-radius: 40px;
+    color: #2581FA;
+    background: rgba(38, 132, 255, 0.472);
+    cursor: pointer;
+    font-weight: bolder;
+    letter-spacing: 0.05em;
 }
