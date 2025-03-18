@@ -125,7 +125,7 @@ img {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 40px;
+    bottom: 30px;
     font-family: "Tilt Neon", sans-serif;
 }
 
@@ -150,4 +150,26 @@ img {
 
 #navigation a{
     text-decoration: none;
+    padding: 0.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* SECTIONS */
+#section-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90vw;
+}
+
+.section-box{
+    width: 100%;
+    background-attachment: fixed;
+    background-size: 400px;
+    background-repeat: no-repeat;
+    height: 10em;
+
 }
