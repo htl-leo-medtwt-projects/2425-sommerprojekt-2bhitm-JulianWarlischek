@@ -13,6 +13,14 @@ body {
     scroll-behavior: smooth;
 }
 
+.align-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
 img {
     width: 100%;
 }
@@ -24,7 +32,6 @@ img {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     border-bottom: 2px solid black;
     height: 10vh;
     width: 100vw;
@@ -36,10 +43,10 @@ img {
     color: #F8F6E7;
     padding: 20px 25px;
     letter-spacing: 0.1em;
-    position: absolute;
-    left: 3%;
     border-radius: 40px;
     cursor: pointer;
+    position: absolute;
+    left: 3%;
 }
 
 #fitbalance-logo>h3 {
@@ -53,7 +60,7 @@ img {
     align-items: center;
     gap: 1em;
     position: absolute;
-    right: 5%;
+    right: 7%;
 }
 
 #user-stats-img {
@@ -66,11 +73,8 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 90vw;
     gap: 1em;
-    margin-top: 20px;
-    width: 100vw;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #dashboard-flex-grid>div {
@@ -79,7 +83,7 @@ img {
 }
 
 .dashboard-flex-span {
-    width: 90%;
+    width: 100%;
     height: 35vw;
 }
 
@@ -126,6 +130,7 @@ img {
     left: 50%;
     transform: translateX(-50%);
     bottom: 30px;
+    z-index: 3;
     font-family: "Tilt Neon", sans-serif;
 }
 
@@ -141,14 +146,14 @@ img {
     color: white;
 }
 
-.active{
+.active {
     color: #2581FA;
     background: rgba(38, 132, 255, 0.218);
     border-radius: 40px;
-    padding: 20px 30px;
+    padding: 20px 15px;
 }
 
-#navigation a{
+#navigation a {
     text-decoration: none;
     padding: 0.8em;
     display: flex;
@@ -157,19 +162,92 @@ img {
 }
 
 /* SECTIONS */
-#section-flex{
+#section-flex {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 90vw;
+    gap: 1em;
+    margin-bottom: 10em;
+    font-family: "Tilt Neon", sans-serif;
 }
 
-.section-box{
+.section-box {
     width: 100%;
     background-attachment: fixed;
     background-size: 400px;
     background-repeat: no-repeat;
     height: 10em;
+    background-color: gray;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    position: relative;
+    overflow: hidden;
+    transition: 500ms ease transform;
+}
 
+.section-overlay {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.white-overlay {
+    background: linear-gradient(90deg, #FFF 41.79%, rgba(153, 153, 153, 0.00) 141.79%);
+}
+
+.darkblue-overlay {
+    background: linear-gradient(-90deg, #11161B 41.79%, rgba(153, 153, 153, 0.00) 141.79%);
+}
+
+.section-box>img {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    z-index: 1;
+}
+
+#section-1>img,
+#section-3>img {
+    right: 0;
+    width: 70%;
+}
+
+#section-2>img,
+#section-4>img {
+    left: 0;
+    width: 85%;
+}
+
+.section-label-box{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-label-box>h3{
+    z-index: 5;
+    width: 50%;
+}
+
+.section-label-left{
+    color: #11161B;
+    justify-content: flex-start;
+    padding-left: 2em;
+}
+
+.section-label-right{
+    color: white;
+    justify-content: flex-end;
+    padding-right: 2em;
+}
+
+.section-box:hover{
+    transform: scale(1.05);
 }
