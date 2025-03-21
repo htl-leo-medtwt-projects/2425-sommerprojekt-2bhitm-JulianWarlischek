@@ -25,5 +25,31 @@ let TRAINING_ELEMENTS = {
         'Start your training',
         'Learn about your muscles',
         'Stay hydrated'
+    ],
+    section_links: [
+        './calendar.html'
     ]
+}
+
+/**
+ * HEADER_ELEMENTS:
+ * 
+ * Elements and values of the header
+ */
+let HEADER_ELEMENTS = {
+    headerBox: document.getElementById('header'),
+    innerBox: document.getElementById('header-inner'),
+    navOffsetTop: 2,
+    prevScrollY: 0,
+    state: 0,
+    timeOut: undefined,
+    logo: `<div id="fitbalance-logo">
+              <h3 id="fitbalance-logo-headline">Fitbalance</h3>
+           </div>`,
+    userProfile: `<div id="user-stats">
+                    <div id="user-stats-img">
+                        <img src="../images/running-profile.png" alt="user-img"> <!-- profile image -->
+                    </div>
+                    <h4 id="user-stats-level-name">Level 1</h4>
+                  </div>`,
 }

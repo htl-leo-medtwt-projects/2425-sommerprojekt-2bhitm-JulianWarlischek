@@ -32,19 +32,34 @@ img {
     --white-overlay: linear-gradient(90deg, #FFF 41.79%, rgba(153, 153, 153, 0.00) 141.79%);
     --dark-overlay: linear-gradient(-90deg, #11161B 41.79%, rgba(153, 153, 153, 0.00) 141.79%);
     --main-color: #11161B;
+    --secondary-color: white;
 }
 
 /* FONTS */
 
 /* FITBALANCE HEADER */
 #header {
+    border-bottom: 2px solid black;
+    height: 14vh;
+    width: 100vw;
+    font-family: "Tilt Neon", sans-serif;
+    position: fixed;
+    transition: all 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header-inner{
     display: flex;
     flex-direction: row;
     align-items: center;
-    border-bottom: 2px solid black;
-    height: 10vh;
-    width: 100vw;
-    font-family: "Tilt Neon", sans-serif;
+    justify-content: center;
+    transition: 0.6s ease all;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    width: 100%;
 }
 
 #fitbalance-logo {
@@ -182,6 +197,12 @@ img {
     font-family: "Tilt Neon", sans-serif;
 }
 
+#section-flex>a{
+    text-decoration: none;
+    width: 100%;
+    
+}
+
 .section-box {
     width: 100%;
     background-attachment: fixed;
@@ -246,13 +267,13 @@ img {
 }
 
 .section-label-left{
-    color: var(--color);
+    color: var(--main-color);
     justify-content: flex-start;
     padding-left: 2em;
 }
 
 .section-label-right{
-    color: white;
+    color: var(--secondary-color);
     justify-content: flex-end;
     padding-right: 2em;
 }
