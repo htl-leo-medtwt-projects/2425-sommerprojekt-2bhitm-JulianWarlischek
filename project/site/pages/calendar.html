@@ -7,13 +7,14 @@
     <title>Calendar</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,700,1,10"
         rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/3a03b4384b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style/style.css">
     <script src="../script/data.js" defer></script>
     <script src="../script/executable_calendar.js" defer></script>
     <script src="../script/script.js" defer></script>
 </head>
 
-<body>
+<body id="body-calendar">
     <!-- Header (Start) -->
     <div id="header">
         <div id="header-inner">
@@ -53,6 +54,16 @@
                     <h4 class="calendar-date-info" id="calendar-time-now"></h4>
                     <h4 class="calendar-date-info" id="calendar-time-dayTime"></h4>
                 </div>
+            </div>
+        </div>
+        <div id="trainings-today">
+            <div id="trainings-today-header">
+                <h3>Todays training sessions</h3>
+                <div id="add-session">
+                    <i class="fa-solid fa-plus"></i>
+                </div>
+            </div>
+            <div id="trainings-today-listed">
             </div>
         </div>
     </div>
