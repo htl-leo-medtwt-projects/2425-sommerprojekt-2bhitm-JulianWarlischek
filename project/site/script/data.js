@@ -1,4 +1,10 @@
 /**
+ * PROJEKT
+ */
+let SETTINGS = {
+}
+
+/**
  * INDEX_ELEMENTS:
  * 
  * Elements and values of the index.html file.
@@ -48,8 +54,19 @@ let HEADER_ELEMENTS = {
            </div>`,
     userProfile: `<div id="user-stats">
                     <div id="user-stats-img">
-                        <img src="../images/running-profile.png" alt="user-img"> <!-- profile image -->
+                        <img src="${document.title === 'Dashboard' ? "" : "."}./images/running-profile.png" alt="user-img"> <!-- profile image -->
                     </div>
                     <h4 id="user-stats-level-name">Level 1</h4>
                   </div>`,
+}
+
+/**
+ * CALENDAR_ELEMENTS:
+ * 
+ * Elements and values of the calendar
+ */
+let CALENDAR_ELEMENTS = {
+    weekday: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    month: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    day_times: dayTimes = ["Morning", "Noon", "Afternoon", "Evening", "Night"],
 }

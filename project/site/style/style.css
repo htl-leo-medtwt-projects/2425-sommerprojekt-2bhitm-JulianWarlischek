@@ -9,7 +9,6 @@
 }
 
 body {
-    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
@@ -33,9 +32,14 @@ img {
     --dark-overlay: linear-gradient(-90deg, #11161B 41.79%, rgba(153, 153, 153, 0.00) 141.79%);
     --main-color: #11161B;
     --secondary-color: white;
+    --margin-c-header: 8em;
 }
 
 /* FONTS */
+@font-face {
+    font-family: 'time-font';
+    src: url('../font/Nippo-Regular.otf');
+}
 
 /* FITBALANCE HEADER */
 #header {
@@ -44,10 +48,13 @@ img {
     width: 100vw;
     font-family: "Tilt Neon", sans-serif;
     position: fixed;
-    transition: all 0.5s ease;
+    transition: transform 0.5s ease;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    top: -2vh;
+    z-index: 10;
+    background-color: white;
 }
 
 #header-inner{
@@ -56,10 +63,9 @@ img {
     align-items: center;
     justify-content: center;
     transition: 0.6s ease all;
-    margin-left: auto;
-    margin-right: auto;
     height: 100%;
-    width: 100%;
+    gap: 30vw;
+    margin: 1em;
 }
 
 #fitbalance-logo {
@@ -69,8 +75,6 @@ img {
     letter-spacing: 0.1em;
     border-radius: 40px;
     cursor: pointer;
-    position: absolute;
-    left: 3%;
 }
 
 #fitbalance-logo>h3 {
@@ -83,8 +87,6 @@ img {
     justify-content: center;
     align-items: center;
     gap: 1em;
-    position: absolute;
-    right: 7%;
 }
 
 #user-stats-img {
@@ -99,6 +101,8 @@ img {
     align-items: center;
     width: 90vw;
     gap: 1em;
+    margin-top: var(--margin-c-header);
+    margin-bottom: 10em;
 }
 
 #dashboard-flex-grid>div {
@@ -194,6 +198,7 @@ img {
     width: 90vw;
     gap: 1em;
     margin-bottom: 10em;
+    margin-top: 8em;
     font-family: "Tilt Neon", sans-serif;
 }
 
@@ -280,4 +285,84 @@ img {
 
 .section-box:hover{
     transform: scale(1.05);
+}
+
+/* PLAN YOUR TRAINING */
+#calendar-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: calc(var(--margin-c-header) + 1em);
+    gap: 2em;
+    font-family: "Tilt Neon", sans-serif;
+}
+
+#calendar-flex-select{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+}
+
+.calendar-select-btn{
+    border: var(--main-color) 2px solid;
+    padding: 1em;
+    border-radius: 2em;
+    transition: 0.5s ease background, 0.4s linear color;
+    letter-spacing: 0.1em;
+}
+
+.calendar-select-btn:hover{
+    background-color: var(--main-color);
+    color: white;
+}
+
+#calendar-date-information{
+    width: 90%;
+}
+
+.span{
+    width: 100%;
+}
+
+#calendar-weekday{
+    text-align: left;
+}
+
+.calendar-date-info{
+    color: var(--main-color);
+}
+
+#calendar-time{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+#calendar-time-msz{
+    font-family: 'time-font';
+    border-right: 1px solid black;
+    padding-right: 3em;
+}
+
+#calendar-time-msz > h4{
+    font-size: 4.6em;
+}
+
+#calendar-time-msz > h4:nth-child(2){
+    text-transform: uppercase;
+}
+
+#calendar-time-now-msz{
+    font-family: 'time-font';
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#calendar-time-now-msz>h4:nth-child(1){
+    font-size: 3em;
 }

@@ -1,7 +1,6 @@
 /**
  * Dynamic content of training.html
  */
-//style="background-image: url('${TRAINING_ELEMENTS.section_backgrounds[i]}');"
 function loadSections() {
     let temp_string = "";
 

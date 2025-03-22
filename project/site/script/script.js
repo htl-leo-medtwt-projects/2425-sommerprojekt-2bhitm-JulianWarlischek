@@ -20,7 +20,7 @@ function animateHeader() {
     }
 
     if (scroll > HEADER_ELEMENTS.prevScrollY && HEADER_ELEMENTS.state != 1) {
-        HEADER_ELEMENTS.headerBox.style.top = '-2vh'
+        HEADER_ELEMENTS.headerBox.style.top = '-4vh'
         HEADER_ELEMENTS.state = 1;
         setHTMLHeader(HEADER_ELEMENTS.logo)
     } else if (scroll < HEADER_ELEMENTS.prevScrollY && HEADER_ELEMENTS.state != -1) {
