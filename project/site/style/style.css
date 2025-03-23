@@ -21,6 +21,11 @@
     box-sizing: border-box;
 }
 
+html,body{
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     scroll-behavior: smooth;
 }
@@ -497,4 +502,87 @@ img {
     padding: 0.8em 1em;
     border-radius: 3em;
     font-size: 1.3em;
+}
+
+#calendar-input-field{
+    display: none;
+    flex-direction: column;
+    gap: 1em;
+    font-family: 'calendar-font';
+}
+
+.calendar-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+.calendar-input-describtion{
+    font-size: 1.4em;
+}
+
+#training-categories{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    overflow-x: auto;
+    max-width: 100%;
+    justify-content: flex-start;
+    align-self: flex-start;
+    padding: 1em;
+    width: 100vw;
+    height: 25vh; 
+    position: relative;
+}
+
+.category{
+    box-shadow: 0 0 0 5px rgba(135, 155, 255, 0.294);
+    width: 4em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4em;
+    gap: 1em;
+    text-transform: capitalize;
+    border-radius: 1em;
+}
+
+#input-category{
+    position: relative;
+}
+
+.scroll-overlay{
+    position: absolute; 
+    top: 0;
+    bottom: 0;
+    width: 25%; 
+    z-index: 10; 
+    height: 100%; 
+    pointer-events: none;
+}
+
+.category-icon{
+    width: 2.5em;
+    height: 2.5em;
+    color: white;
+    padding: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #828dea;
+    border-radius: 50%;
+}
+
+
+.overlay-left{
+    left: 0;
+    background: linear-gradient(to right, white , transparent);
+}
+
+.overlay-right{
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
 }

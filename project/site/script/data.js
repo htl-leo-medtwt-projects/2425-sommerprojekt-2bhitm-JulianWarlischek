@@ -70,4 +70,26 @@ let CALENDAR_ELEMENTS = {
     month: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     day_times: dayTimes = ["Morning", "Noon", "Afternoon", "Evening", "Night"],
     state: 1,
+    types: [
+        {
+            'name': 'strength training',
+            'icon': '<i class="fa-solid fa-dumbbell"></i>'
+        },
+        {
+            'name': 'running',
+            'icon': '<i class="fa-solid fa-person-running"></i>'
+        },
+        {
+            'name': 'cycling',
+            'icon': '<i class="fa-solid fa-person-biking"></i>'
+        },
+        {
+            'name': 'swimming',
+            'icon': '<i class="fa-solid fa-person-swimming"></i>'
+        },
+        {
+            'name': 'yoga',
+            'icon': '<i class="fa-solid fa-heart"></i>'
+        }
+    ]
 }

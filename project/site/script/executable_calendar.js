@@ -39,6 +39,26 @@ function loadEventsOfCalendar() {
 }
 loadEventsOfCalendar()
 
+function loadCategories() {
+    const category_box = document.getElementById('training-categories')
+
+    let temp_string = "";
+
+    for (let i = 0; i < CALENDAR_ELEMENTS.types.length; i++) {
+        temp_string += `
+        <div class="category">
+            <div class="category-icon">
+                ${CALENDAR_ELEMENTS.types[i].icon}
+            </div>
+            <h3>${CALENDAR_ELEMENTS.types[i].name}</h3>
+        </div>
+        `
+    }
+
+    category_box.innerHTML += temp_string;
+}
+loadCategories()
+
 /**
  * Mapping Function
  * 
