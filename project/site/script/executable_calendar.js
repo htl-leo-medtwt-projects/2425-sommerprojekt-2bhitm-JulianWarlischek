@@ -1,13 +1,14 @@
 /**
  * Dynamic content of calendar.html
  */
+
 function loadDate() {
     const date = new Date()
 
     const calendar_weekday_inner = document.getElementById('calendar-weekday');
     const day_of_week = date.getDay()
 
-    calendar_weekday_inner.innerHTML = CALENDAR_ELEMENTS.weekday[day_of_week - 1];
+    calendar_weekday_inner.innerHTML = CALENDAR_ELEMENTS.weekday[(day_of_week + 6) % 7];
 
     const calendar_date_inner = document.getElementById('calendar-date');
     const date_nums = `${date.getDate()}.${date.getMonth() + 1}`
@@ -20,7 +21,7 @@ function loadDate() {
     calendar_dayOfMonth_inner.innerHTML = CALENDAR_ELEMENTS.month[day_of_month];
 
     const calendar_time_inner = document.getElementById('calendar-time-now');
-    const time = `${date.getHours()}:${date.getMinutes()}`;
+    const time = `${date.getHours() < 10 ? "0" + date.getHours() : date.getHours()}:${date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()}`;
 
     calendar_time_inner.innerHTML = time;
 
@@ -32,6 +33,11 @@ function loadDate() {
 loadDate()
 setInterval(loadDate, 1500)
 
+
+function loadEventsOfCalendar() {
+    document.getElementById('add-session').addEventListener('click', changeCalendarUI)
+}
+loadEventsOfCalendar()
 
 /**
  * Mapping Function
@@ -54,4 +60,30 @@ function mapTime(hour) {
     }
 
     return CALENDAR_ELEMENTS.day_times[value];
+}
+
+/**
+ * Changes the UI of the calendar sessions
+ */
+function changeCalendarUI() {
+    CALENDAR_ELEMENTS.state = CALENDAR_ELEMENTS.state === 1 ? -1 : 1;
+
+    const state = CALENDAR_ELEMENTS.state;
+
+    const headline = document.getElementById('trainings-today-header-headline');
+    const close_or_open = document.getElementById('add-session');
+    const listed_items = document.getElementById('trainings-today-listed')
+    const input_field = document.getElementById('calendar-input-field')
+
+    if (state === 1) {
+        headline.innerHTML = 'Todays training sessions';
+        close_or_open.style.transform = 'rotate(0deg)'
+        listed_items.style.display = 'flex'
+        input_field.style.display = 'none';
+    } else {
+        headline.innerHTML = 'Add training session';
+        close_or_open.style.transform = 'rotate(45deg)'
+        listed_items.style.display = 'none'
+        input_field.style.display = 'flex';
+    }
 }

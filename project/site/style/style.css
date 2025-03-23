@@ -47,6 +47,20 @@ img {
     src: url('../font/Nippo-Regular.otf');
 }
 
+@font-face {
+    font-family: 'calendar-font';
+    src: url('../font/Satoshi-Regular.otf');
+}
+
+@font-face {
+    font-family: 'calendar-font-bold';
+    src: url('../font/Satoshi-Bold.otf');
+}
+
+@font-face {
+    font-family: 'calendar-font-black';
+    src: url('../font/Satoshi-Black.otf');
+}
 /* FITBALANCE HEADER */
 #header {
     border-bottom: 2px solid black;
@@ -345,7 +359,7 @@ img {
 #calendar-time {
     display: flex;
     flex-direction: row;
-    gap: 1em;
+    gap: 2em;
 }
 
 #calendar-time-msz {
@@ -383,6 +397,7 @@ img {
     padding: 1.4em 0 0 0;
     justify-content: flex-start;
     align-items: center;
+    gap: 3em;
 }
 
 #trainings-today-header {
@@ -398,4 +413,88 @@ img {
     color: white;
     padding: 0.6em 0.8em;
     border-radius: 50%;
+    transition: transform 500ms ease;
+}
+
+#trainings-today-listed {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1em;
+}
+
+#calendar-input-field {
+    display: none;
+}
+
+.training-session {
+    width: 97%;
+    border-radius: 1em;
+    padding: 1.4em;
+    color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+.session-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.session-header>h2{
+    font-size: 2em;
+    width: 70%;
+    text-transform: capitalize;
+    font-family: 'calendar-font-black';
+    font-weight: lighter;
+}
+
+.training-session:nth-child(1){
+    background: #bec4ff;
+}
+
+.training-session:nth-child(2){
+    background: #4fe0fe;
+}
+
+.unit-icon {
+    font-size: 1.5em;
+    border: var(--main-color) 1px solid;
+    color: var(--main-color);
+    padding: 0.5em 0.7em;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-settings{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'calendar-font';
+}
+
+.time-start-and-end{
+    font-size: 1.7em;
+}
+
+.duration{
+    background-color: gray;
+    padding: 0.8em 1em;
+    border-radius: 3em;
+    font-size: 1.3em;
 }

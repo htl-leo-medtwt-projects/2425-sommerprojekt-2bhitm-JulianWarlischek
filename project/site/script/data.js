@@ -69,4 +69,5 @@ let CALENDAR_ELEMENTS = {
     weekday: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     month: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     day_times: dayTimes = ["Morning", "Noon", "Afternoon", "Evening", "Night"],
+    state: 1,
 }
