@@ -47,6 +47,7 @@ loadInputValuesCalendar()
 
 function loadEventsOfCalendar() {
     document.getElementById('add-session').addEventListener('click', changeCalendarUI)
+    document.getElementById('next-input-step').addEventListener('click', nextInputStep)
 }
 loadEventsOfCalendar()
 
@@ -204,10 +205,14 @@ function minusTime(mod) {
  */
 function nextInputStep() {
     checkState();
-    fadeOut(`calendar-input-${CALENDAR_ELEMENTS.currentInput}`, 500)
+    fadeOut(`calendar-input-${Math.min(CALENDAR_ELEMENTS.currentInput, 1)}`, 500)
     CALENDAR_ELEMENTS.currentInput++;
+    if (CALENDAR_ELEMENTS.currentInput === 3) {
+        showInputSummary();
+        return
+    }
     setTimeout(() => {
-        fadeIn(`calendar-input-${CALENDAR_ELEMENTS.currentInput}`, 'flex')
+        fadeIn(`calendar-input-${Math.min(CALENDAR_ELEMENTS.currentInput, 1)}`, 'flex')
     }, 500)
 }
 
@@ -217,6 +222,53 @@ function nextInputStep() {
 function checkState() {
     switch (CALENDAR_ELEMENTS.currentInput) {
         case 0:
-            
+            CALENDAR_ELEMENTS.newSession.type = CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.currentCategory];
+            break
+        case 1:
+            CALENDAR_ELEMENTS.newSession.startTime = `${document.getElementById('hours-input').innerHTML}:${document.getElementById('minutes-input').innerHTML} ${parseInt(document.getElementById('hours-input').innerHTML) > 12 ? 'pm' : 'am'}`;
+            document.getElementById('time-headline').innerHTML = 'Select your end time: ';
+            break;
+        case 2:
+            CALENDAR_ELEMENTS.newSession.endTime = `${document.getElementById('hours-input').innerHTML}:${document.getElementById('minutes-input').innerHTML} ${parseInt(document.getElementById('hours-input').innerHTML) > 12 ? 'pm' : 'am'}`;
+            break
     }
+
+    console.log(CALENDAR_ELEMENTS);
+}
+
+/**
+ * Shows the input values in a summary
+ */
+function showInputSummary() {
+    document.getElementById('next-input-step').removeEventListener('click', nextInputStep)
+    document.getElementById('next-text-value').innerHTML = 'Finish'
+
+    fadeIn('calendar-input-3', 'flex')
+    document.getElementById('summary').innerHTML = `
+                <div class="training-session">
+                    <div class="session-header">
+                        <h2>${CALENDAR_ELEMENTS.newSession.type.name}</h2>
+                        <div class="unit-icon">
+                           ${CALENDAR_ELEMENTS.newSession.type.icon}
+                        </div>
+                    </div>
+                    <div class="time-settings">
+                        <div class="start period">
+                            <h3 class="time-start-and-end">
+                                ${CALENDAR_ELEMENTS.newSession.startTime}
+                            </h3>
+                            <h4>Start</h4>
+                        </div>
+                        <div class="duration">
+                            <h5 class="this-duration">${CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2)}</h5>
+                        </div>
+                        <div class="end period">
+                            <h3 class="time-start-and-end">
+                                ${CALENDAR_ELEMENTS.newSession.endTime}
+                            </h3>
+                            <h4>End</h4>
+                        </div>
+                    </div>
+                </div>
+                `
 }

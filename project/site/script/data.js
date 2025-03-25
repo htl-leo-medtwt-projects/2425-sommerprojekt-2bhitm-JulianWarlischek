@@ -73,23 +73,28 @@ let CALENDAR_ELEMENTS = {
     types: [
         {
             'name': 'strength training',
-            'icon': '<i class="fa-solid fa-dumbbell"></i>'
+            'icon': '<i class="fa-solid fa-dumbbell"></i>',
+            'color': 0
         },
         {
             'name': 'running',
-            'icon': '<i class="fa-solid fa-person-running"></i>'
+            'icon': '<i class="fa-solid fa-person-running"></i>',
+            'color': 1
         },
         {
             'name': 'cycling',
-            'icon': '<i class="fa-solid fa-person-biking"></i>'
+            'icon': '<i class="fa-solid fa-person-biking"></i>',
+            'color': 2
         },
         {
             'name': 'swimming',
-            'icon': '<i class="fa-solid fa-person-swimming"></i>'
+            'icon': '<i class="fa-solid fa-person-swimming"></i>',
+            'color': 3
         },
         {
             'name': 'yoga',
-            'icon': '<i class="fa-solid fa-heart"></i>'
+            'icon': '<i class="fa-solid fa-heart"></i>',
+            'color': 4
         }
     ],
     currentCategory: 0,
@@ -101,5 +106,27 @@ let CALENDAR_ELEMENTS = {
         startTime: undefined,
         endTime: undefined,
         date: undefined
-    }
+    },
+    colorCodes: [
+        {
+            "main": "#A7C7E7",
+            "darkMain": "#6D91B1"
+        },
+        {
+            "main": "#BFD8E6",
+            "darkMain": "#7E9FB8"
+        },
+        {
+            "main": "#8ABAD3",
+            "darkMain": "#5B8CA8"
+        },
+        {
+            "main": "#C3DCE3",
+            "darkMain": "#829DA8"
+        },
+        {
+            "main": "#D4E6F1",
+            "darkMain": "#96AEC1"
+        }
+    ]
 }
