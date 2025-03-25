@@ -95,5 +95,11 @@ let CALENDAR_ELEMENTS = {
     currentCategory: 0,
     currentInput: 0,
     swipeLeft: document.getElementById('swipe-category-left'),
-    swipeRight: document.getElementById('swipe-category-right')
+    swipeRight: document.getElementById('swipe-category-right'),
+    newSession: {
+        type: undefined,
+        startTime: undefined,
+        endTime: undefined,
+        date: undefined
+    }
 }

@@ -203,9 +203,20 @@ function minusTime(mod) {
  * Load next input step
  */
 function nextInputStep() {
+    checkState();
     fadeOut(`calendar-input-${CALENDAR_ELEMENTS.currentInput}`, 500)
     CALENDAR_ELEMENTS.currentInput++;
     setTimeout(() => {
         fadeIn(`calendar-input-${CALENDAR_ELEMENTS.currentInput}`, 'flex')
     }, 500)
+}
+
+/**
+ * Check current input state
+ */
+function checkState() {
+    switch (CALENDAR_ELEMENTS.currentInput) {
+        case 0:
+            
+    }
 }
