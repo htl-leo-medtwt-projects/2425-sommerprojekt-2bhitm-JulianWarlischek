@@ -10,6 +10,8 @@
     <script src="../script/data.js" defer></script>
     <script src="../script/executable_calendar.js" defer></script>
     <script src="../script/script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,700,1,10"
+    rel="stylesheet" />
 </head>
 
 <body id="body-calendar">
@@ -72,7 +74,7 @@
                     <div class="time-settings">
                         <div class="start period">
                             <h3 class="time-start-and-end">
-                                3:00 pm 
+                                3:00 pm
                             </h3>
                             <h4>Start</h4>
                         </div>
@@ -97,7 +99,7 @@
                     <div class="time-settings">
                         <div class="start period">
                             <h3 class="time-start-and-end">
-                                3:00 pm 
+                                3:00 pm
                             </h3>
                             <h4>Start</h4>
                         </div>
@@ -115,17 +117,59 @@
             </div>
             <div id="calendar-input-field">
                 <div class='calendar-input'>
-                    <h4 class="calendar-input-describtion">Training Categories:</h4>
-                    <div id="input-category">
-                        <div class="scroll-overlay overlay-left">
-                        </div>
-                        <div id="training-categories">
-
-                        </div>
-                        <div class="scroll-overlay overlay-right">
+                    <div id="calendar-input-0" class="calendar-input-element">
+                        <h4 class="calendar-input-describtion">Training Categories:</h4>
+                        <div id="input-category">
+                            <div class="swipe-category" id="swipe-category-left" onclick="swipeCategory(-1)">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </div>
+                            <div id="training-categories">
+                            </div>
+                            <div class="swipe-category valid-button" id="swipe-category-right"
+                                onclick="swipeCategory(1)">
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
                         </div>
                     </div>
-
+                    <div id="calendar-input-1" class="calendar-input-element">
+                        <h4 class="calendar-input-describtion">Select your start time: </h4>
+                        <div id="time-select-flex">
+                            <div class="time-flex-col">
+                                <div class="upper change-time-module" onclick="plusTime(24)">
+                                    <span class="material-symbols-outlined">
+                                        arrow_drop_up
+                                        </span>
+                                </div>
+                                <div id="hours">
+                                    <p id="hours-input"></p>
+                                </div>
+                                <div class="lower change-time-module" onclick="minusTime(24)">
+                                    <span class="material-symbols-outlined">
+                                        arrow_drop_down
+                                        </span>
+                                </div>
+                            </div>
+                            <p id="time-seperation">:</p>
+                            <div class="time-flex-col">
+                                <div class="upper change-time-module" onclick="plusTime(60)">
+                                    <span class="material-symbols-outlined">
+                                        arrow_drop_up
+                                        </span>
+                                </div>
+                                <div id="minutes">
+                                    <p id="minutes-input"></p>
+                                </div>
+                                <div class="lower change-time-module" onclick="minusTime(60)">
+                                    <span class="material-symbols-outlined">
+                                        arrow_drop_down
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="next-input-step" onclick="nextInputStep()">
+                        <p>Next</p>
+                    </div>
                 </div>
             </div>
         </div>

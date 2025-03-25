@@ -91,5 +91,9 @@ let CALENDAR_ELEMENTS = {
             'name': 'yoga',
             'icon': '<i class="fa-solid fa-heart"></i>'
         }
-    ]
+    ],
+    currentCategory: 0,
+    currentInput: 0,
+    swipeLeft: document.getElementById('swipe-category-left'),
+    swipeRight: document.getElementById('swipe-category-right')
 }

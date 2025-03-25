@@ -40,3 +40,21 @@ function setHTMLHeader(content) {
         HEADER_ELEMENTS.timeOut = undefined
     }, 600)
 }
+
+function fadeOut(elementId, millis) {
+    let element = document.getElementById(elementId)
+    element.style.opacity = "0";
+
+    setTimeout(() => {
+        element.style.display = "none";
+    }, millis)
+}
+
+function fadeIn(elementId, display) {
+    let element = document.getElementById(elementId)
+    element.style.display = display || "block";
+
+    setTimeout(() => {
+        element.style.opacity = "1";
+    }, 20)
+}

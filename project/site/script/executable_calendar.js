@@ -33,6 +33,17 @@ function loadDate() {
 loadDate()
 setInterval(loadDate, 1500)
 
+function loadInputValuesCalendar() {
+    const time = new Date();
+
+    const hours = document.getElementById('hours-input');
+    const minutes = document.getElementById('minutes-input');
+
+    hours.innerHTML = time.getHours();
+    minutes.innerHTML = time.getMinutes();
+
+}
+loadInputValuesCalendar()
 
 function loadEventsOfCalendar() {
     document.getElementById('add-session').addEventListener('click', changeCalendarUI)
@@ -44,18 +55,16 @@ function loadCategories() {
 
     let temp_string = "";
 
-    for (let i = 0; i < CALENDAR_ELEMENTS.types.length; i++) {
-        temp_string += `
+    temp_string = `
         <div class="category">
             <div class="category-icon">
-                ${CALENDAR_ELEMENTS.types[i].icon}
+                ${CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.currentCategory].icon}
             </div>
-            <h3>${CALENDAR_ELEMENTS.types[i].name}</h3>
+            <h3>${CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.currentCategory].name}</h3>
         </div>
         `
-    }
 
-    category_box.innerHTML += temp_string;
+    category_box.innerHTML = temp_string;
 }
 loadCategories()
 
@@ -90,6 +99,7 @@ function changeCalendarUI() {
 
     const state = CALENDAR_ELEMENTS.state;
 
+    const calendar_section = document.getElementById('trainings-today')
     const headline = document.getElementById('trainings-today-header-headline');
     const close_or_open = document.getElementById('add-session');
     const listed_items = document.getElementById('trainings-today-listed')
@@ -100,10 +110,102 @@ function changeCalendarUI() {
         close_or_open.style.transform = 'rotate(0deg)'
         listed_items.style.display = 'flex'
         input_field.style.display = 'none';
+        calendar_section.style.height = "auto";
+        calendar_section.style.transform = "translateY(0)";
+        calendar_section.style.backgroundColor = "#fff"
+        calendar_section.style.color = "#11161B"
     } else {
         headline.innerHTML = 'Add training session';
         close_or_open.style.transform = 'rotate(45deg)'
         listed_items.style.display = 'none'
         input_field.style.display = 'flex';
+        calendar_section.style.height = "90vh";
+        calendar_section.style.transform = "translateY(-20vh)";
+        calendar_section.style.backgroundColor = "#11161B"
+        calendar_section.style.color = "#fff"
     }
+}
+
+/**
+ * Category input slider
+ */
+function swipeCategory(dir) {
+    if ((dir < 0 && CALENDAR_ELEMENTS.currentCategory <= 0) || (dir > 0 && CALENDAR_ELEMENTS.currentCategory >= CALENDAR_ELEMENTS.types.length - 1)) {
+        return
+    }
+    CALENDAR_ELEMENTS.currentCategory += dir;
+    console.log(CALENDAR_ELEMENTS.currentCategory);
+
+    styleSwipeCatButtons()
+    loadCategories()
+}
+
+/**
+ * Styling the swipe buttons if a border has been reached
+ */
+function styleSwipeCatButtons() {
+    CALENDAR_ELEMENTS.swipeLeft.classList.add('valid-button')
+    CALENDAR_ELEMENTS.swipeRight.classList.add('valid-button')
+    CALENDAR_ELEMENTS.swipeLeft.style.opacity = "1"
+    CALENDAR_ELEMENTS.swipeRight.style.opacity = "1"
+    if ((CALENDAR_ELEMENTS.currentCategory <= 0)) {
+        CALENDAR_ELEMENTS.swipeLeft.style.opacity = "0.5"
+        CALENDAR_ELEMENTS.swipeLeft.classList.remove('valid-button')
+    } else if ((CALENDAR_ELEMENTS.currentCategory >= CALENDAR_ELEMENTS.types.length - 1)) {
+        CALENDAR_ELEMENTS.swipeRight.style.opacity = "0.5";
+        CALENDAR_ELEMENTS.swipeRight.classList.remove('valid-button')
+
+    }
+}
+
+/**
+ * Plus time
+ */
+function plusTime(mod) {
+    let hours = parseInt(document.getElementById('hours-input').innerHTML)
+    let minutes = parseInt(document.getElementById('minutes-input').innerHTML)
+
+    if (mod === 24) {
+        hours += 1;
+        hours %= mod + 1;
+    } else {
+        minutes += 1;
+        minutes %= mod + 1;
+    }
+
+    document.getElementById('hours-input').innerHTML = hours
+    document.getElementById('minutes-input').innerHTML = minutes;
+}
+/**
+ * Minus time
+ */
+function minusTime(mod) {
+    let hours = parseInt(document.getElementById('hours-input').innerHTML)
+    let minutes = parseInt(document.getElementById('minutes-input').innerHTML)
+
+    if (mod === 24) {
+        hours -= 1;
+    } else {
+        minutes -= 1;
+    }
+
+    if (hours < 0) {
+        hours = mod;
+    } else if (minutes < 0) {
+        minutes = mod;
+    }
+
+    document.getElementById('hours-input').innerHTML = hours
+    document.getElementById('minutes-input').innerHTML = minutes;
+}
+
+/**
+ * Load next input step
+ */
+function nextInputStep() {
+    fadeOut(`calendar-input-${CALENDAR_ELEMENTS.currentInput}`, 500)
+    CALENDAR_ELEMENTS.currentInput++;
+    setTimeout(() => {
+        fadeIn(`calendar-input-${CALENDAR_ELEMENTS.currentInput}`, 'flex')
+    }, 500)
 }

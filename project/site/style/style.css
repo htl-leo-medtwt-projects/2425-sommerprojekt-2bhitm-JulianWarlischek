@@ -21,7 +21,8 @@
     box-sizing: border-box;
 }
 
-html,body{
+html,
+body {
     overflow-x: hidden;
     width: 100%;
 }
@@ -29,6 +30,8 @@ html,body{
 body {
     scroll-behavior: smooth;
 }
+
+
 
 #body-calendar {
     background-color: var(--light-blue);
@@ -66,6 +69,7 @@ img {
     font-family: 'calendar-font-black';
     src: url('../font/Satoshi-Black.otf');
 }
+
 /* FITBALANCE HEADER */
 #header {
     border-bottom: 2px solid black;
@@ -403,6 +407,7 @@ img {
     justify-content: flex-start;
     align-items: center;
     gap: 3em;
+    transition: all 0.5s ease;
 }
 
 #trainings-today-header {
@@ -455,7 +460,7 @@ img {
     width: 100%;
 }
 
-.session-header>h2{
+.session-header>h2 {
     font-size: 2em;
     width: 70%;
     text-transform: capitalize;
@@ -463,11 +468,11 @@ img {
     font-weight: lighter;
 }
 
-.training-session:nth-child(1){
+.training-session:nth-child(1) {
     background: #bec4ff;
 }
 
-.training-session:nth-child(2){
+.training-session:nth-child(2) {
     background: #4fe0fe;
 }
 
@@ -484,7 +489,7 @@ img {
     align-items: center;
 }
 
-.time-settings{
+.time-settings {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -493,51 +498,76 @@ img {
     font-family: 'calendar-font';
 }
 
-.time-start-and-end{
+.time-start-and-end {
     font-size: 1.7em;
 }
 
-.duration{
+.duration {
     background-color: gray;
     padding: 0.8em 1em;
     border-radius: 3em;
     font-size: 1.3em;
 }
 
-#calendar-input-field{
+#calendar-input-field {
     display: none;
     flex-direction: column;
     gap: 1em;
     font-family: 'calendar-font';
+    padding-bottom: 2em;
+    width: 90%;
 }
 
-.calendar-input{
+.calendar-input {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 2em;
 }
 
-.calendar-input-describtion{
-    font-size: 1.4em;
-}
-
-#training-categories{
+.swipe-category {
     display: flex;
-    flex-direction: row;
-    gap: 2em;
-    overflow-x: auto;
-    max-width: 100%;
-    justify-content: flex-start;
-    align-self: flex-start;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
     padding: 1em;
-    width: 100vw;
-    height: 25vh; 
-    position: relative;
+    height: 1em;
+    width: 1em;
+    border: 3px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s linear, opacity 0.3s ease, box-shadow 0.6s ease-out;
 }
 
-.category{
+#swipe-category-left {
+    opacity: 0.5;
+}
+
+.valid-button:hover {
+    box-shadow: 0 0 0 5px #828dea;
+}
+
+#swipe-category-left.valid-button:hover {
+    transform: translateX(-10px);
+}
+
+#swipe-category-right.valid-button:hover {
+    transform: translateX(10px);
+}
+
+.calendar-input-describtion {
+    font-size: 1.4em;
+    align-self: flex-start;
+}
+
+#training-categories {
+    display: flex;
+    overflow: hidden;
+    padding: 1em;
+}
+
+.category {
     box-shadow: 0 0 0 5px rgba(135, 155, 255, 0.294);
     width: 4em;
     display: flex;
@@ -548,23 +578,18 @@ img {
     gap: 1em;
     text-transform: capitalize;
     border-radius: 1em;
+    height: 23vh;
 }
 
-#input-category{
+#input-category {
     position: relative;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
 }
 
-.scroll-overlay{
-    position: absolute; 
-    top: 0;
-    bottom: 0;
-    width: 25%; 
-    z-index: 10; 
-    height: 100%; 
-    pointer-events: none;
-}
-
-.category-icon{
+.category-icon {
     width: 2.5em;
     height: 2.5em;
     color: white;
@@ -576,13 +601,47 @@ img {
     border-radius: 50%;
 }
 
-
-.overlay-left{
-    left: 0;
-    background: linear-gradient(to right, white , transparent);
+.calendar-input-element{
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
 }
 
-.overlay-right{
-    right: 0;
-    background: linear-gradient(to left, white, transparent);
+.change-time-module {
+    background-color:gray;
+    box-shadow: 4px 2px 100px rgba(128, 128, 128, 0.13);
+    padding: 0 1em;
+    border-radius: 0.2em;
+}
+
+#calendar-input-1{
+    display: none;
+    opacity: 0;
+}
+
+#time-select-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+}
+
+.time-flex-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#next-input-step{
+    background-color: rgb(28, 66, 136);
+    padding: 0.4em 1em;
+    font-family: "Tilt Neon", sans-serif;
+    letter-spacing: 1px;
+    border-radius: 0.5em;
+    font-size: 1.3em;
 }
