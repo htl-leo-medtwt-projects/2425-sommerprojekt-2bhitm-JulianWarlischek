@@ -1,7 +1,6 @@
 /**
  * Dynamic content of calendar.html
  */
-
 function loadDate() {
     const date = new Date()
 
@@ -220,16 +219,19 @@ function nextInputStep() {
  * Check current input state
  */
 function checkState() {
+    const hours = parseInt(document.getElementById('hours-input').innerHTML);
+    const minutes = parseInt(document.getElementById('minutes-input').innerHTML);
+
     switch (CALENDAR_ELEMENTS.currentInput) {
         case 0:
             CALENDAR_ELEMENTS.newSession.type = CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.currentCategory];
             break
         case 1:
-            CALENDAR_ELEMENTS.newSession.startTime = `${document.getElementById('hours-input').innerHTML}:${document.getElementById('minutes-input').innerHTML} ${parseInt(document.getElementById('hours-input').innerHTML) > 12 ? 'pm' : 'am'}`;
+            CALENDAR_ELEMENTS.newSession.startTime = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes} ${hours > 12 ? 'pm' : 'am'}`;
             document.getElementById('time-headline').innerHTML = 'Select your end time: ';
             break;
         case 2:
-            CALENDAR_ELEMENTS.newSession.endTime = `${document.getElementById('hours-input').innerHTML}:${document.getElementById('minutes-input').innerHTML} ${parseInt(document.getElementById('hours-input').innerHTML) > 12 ? 'pm' : 'am'}`;
+            CALENDAR_ELEMENTS.newSession.endTime = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes} ${hours > 12 ? 'pm' : 'am'}`;
             break
     }
 
@@ -243,12 +245,18 @@ function showInputSummary() {
     document.getElementById('next-input-step').removeEventListener('click', nextInputStep)
     document.getElementById('next-text-value').innerHTML = 'Finish'
 
-    fadeIn('calendar-input-3', 'flex')
+    let start_hours = parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2));
+    let start_minutes = parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(3, 5))
+
+    let end_hours = parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(0, 2));
+    let end_minutes = parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(3, 5));
+
+
     document.getElementById('summary').innerHTML = `
-                <div class="training-session">
+                <div class="training-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].main}; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].darkMain};">
                     <div class="session-header">
                         <h2>${CALENDAR_ELEMENTS.newSession.type.name}</h2>
-                        <div class="unit-icon">
+                        <div class="unit-icon" style="border:${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].darkMain} 1px solid; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].darkMain};">
                            ${CALENDAR_ELEMENTS.newSession.type.icon}
                         </div>
                     </div>
@@ -259,8 +267,8 @@ function showInputSummary() {
                             </h3>
                             <h4>Start</h4>
                         </div>
-                        <div class="duration">
-                            <h5 class="this-duration">${CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2)}</h5>
+                        <div class="duration" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].darkMain}; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].main};">
+                            <h5 class="this-duration">${start_hours - end_hours === 0 ? "" : Math.abs(start_hours - end_hours) + " h"} ${start_minutes - end_minutes === 0 ? "" : Math.abs(start_minutes - end_minutes) + " min"}</h5>
                         </div>
                         <div class="end period">
                             <h3 class="time-start-and-end">
@@ -271,4 +279,8 @@ function showInputSummary() {
                     </div>
                 </div>
                 `
+
+    setTimeout(() => {
+        fadeIn('calendar-input-3', 'flex')
+    }, 500)
 }
