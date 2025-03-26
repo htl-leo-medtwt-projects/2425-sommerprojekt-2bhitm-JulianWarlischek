@@ -120,7 +120,7 @@ function changeCalendarUI() {
         listed_items.style.display = 'none'
         input_field.style.display = 'flex';
         calendar_section.style.height = "90vh";
-        calendar_section.style.transform = "translateY(-20vh)";
+        calendar_section.style.transform = "translateY(-10vh)";
         calendar_section.style.backgroundColor = "#11161B"
         calendar_section.style.color = "#fff"
     }
@@ -154,7 +154,6 @@ function styleSwipeCatButtons() {
     } else if ((CALENDAR_ELEMENTS.currentCategory >= CALENDAR_ELEMENTS.types.length - 1)) {
         CALENDAR_ELEMENTS.swipeRight.style.opacity = "0.5";
         CALENDAR_ELEMENTS.swipeRight.classList.remove('valid-button')
-
     }
 }
 
@@ -167,10 +166,10 @@ function plusTime(mod) {
 
     if (mod === 24) {
         hours += 1;
-        hours %= mod + 1;
+        hours %= mod;
     } else {
         minutes += 1;
-        minutes %= mod + 1;
+        minutes %= mod;
     }
 
     document.getElementById('hours-input').innerHTML = hours
@@ -210,6 +209,9 @@ function nextInputStep() {
         showInputSummary();
         return
     }
+    if (CALENDAR_ELEMENTS.currentInput === 4) {
+        closeCatInput()
+    }
     setTimeout(() => {
         fadeIn(`calendar-input-${Math.min(CALENDAR_ELEMENTS.currentInput, 1)}`, 'flex')
     }, 500)
@@ -242,7 +244,6 @@ function checkState() {
  * Shows the input values in a summary
  */
 function showInputSummary() {
-    document.getElementById('next-input-step').removeEventListener('click', nextInputStep)
     document.getElementById('next-text-value').innerHTML = 'Finish'
 
     let start_hours = parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2));
@@ -284,3 +285,45 @@ function showInputSummary() {
         fadeIn('calendar-input-3', 'flex')
     }, 500)
 }
+
+/**
+ * Closes the input menu
+ */
+function closeCatInput() {
+    document.getElementById('next-input-step').removeEventListener('click', nextInputStep)
+    changeCalendarUI()
+    document.getElementById('trainings-today-listed').innerHTML += document.getElementById('summary').innerHTML;
+    resetCatVariables()
+}
+
+/**
+ * Resets the variables of the calendar input section
+ */
+function resetCatVariables() {
+    CALENDAR_ELEMENTS.currentCategory = 0;
+    CALENDAR_ELEMENTS.currentInput = 0;
+    document.getElementById('next-text-value').innerHTML = 'Next'
+
+    let sections = document.getElementsByClassName('calendar-input-element');
+
+    fadeOut(`calendar-input-${sections.length}`)
+    CALENDAR_ELEMENTS.sessionsToday.push(document.getElementById('summary').innerHTML);
+    saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
+    loadInputValuesCalendar()
+    fadeIn('calendar-input-0')
+    document.getElementById('next-input-step').addEventListener('click', nextInputStep)
+
+}
+
+/**
+ * Load sessions from LS
+ */
+function loadSessionsFromLS(){
+    let items = JSON.parse(localStorage["calendar-items-today"])
+console.log(items);
+
+    for(let i = 0; i < items.length; i++){
+        document.getElementById('trainings-today-listed').innerHTML += items[i];
+    }
+}
+loadSessionsFromLS()

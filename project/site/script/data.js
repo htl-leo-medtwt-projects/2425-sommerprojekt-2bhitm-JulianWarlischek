@@ -109,24 +109,50 @@ let CALENDAR_ELEMENTS = {
     },
     colorCodes: [
         {
-            "main": "#A7C7E7",
-            "darkMain": "#6D91B1"
+            "main": "#B0D9F1",
+            "darkMain": "#4A7DA8"
         },
         {
-            "main": "#BFD8E6",
-            "darkMain": "#7E9FB8"
+            "main": "#86B6D2",
+            "darkMain": "#2D5E85"
         },
         {
-            "main": "#8ABAD3",
-            "darkMain": "#5B8CA8"
+            "main": "#6096BA",
+            "darkMain": "#1E4968"
         },
         {
-            "main": "#C3DCE3",
-            "darkMain": "#829DA8"
+            "main": "#3B7EA1",
+            "darkMain": "#103A54"
         },
         {
-            "main": "#D4E6F1",
-            "darkMain": "#96AEC1"
+            "main": "#1F5F8B",
+            "darkMain": "#0A2F47"
         }
-    ]
+    ],
+    sessionsToday: []
+}
+
+
+/**
+ * Setup for LS (Local Storage)
+ */
+function setupLS() {
+    if (!localStorage["calendar-items-today"]) {
+        localStorage["calendar-items-today"] = JSON.parse([])
+    }
+}
+setupLS()
+
+/**
+ * Loads data into JSONs
+ */
+function loadFromLS() {
+    CALENDAR_ELEMENTS.sessionsToday = JSON.parse(localStorage["calendar-items-today"]);
+}
+
+/**
+ * Safes data
+ */
+function saveDataOnLS(ID, array_or_json) {
+    localStorage[ID] = JSON.stringify(array_or_json);
 }

@@ -606,6 +606,7 @@ img {
     display: flex;
     flex-direction: column;
     gap: 3em;
+    height: 35vh;
 }
 
 .change-time-module {
