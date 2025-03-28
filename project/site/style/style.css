@@ -110,6 +110,10 @@ img {
     font-size: 1.1em;
 }
 
+#header a {
+    text-decoration: none;
+}
+
 #user-stats {
     display: flex;
     flex-direction: row;

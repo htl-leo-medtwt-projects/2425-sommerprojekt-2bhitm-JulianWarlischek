@@ -2,6 +2,7 @@
  * PROJEKT
  */
 let SETTINGS = {
+    path: ""
 }
 
 /**
@@ -18,6 +19,7 @@ let INDEX_ELEMENTS = {
  * Elements and values of the training.html file.
  */
 let TRAINING_ELEMENTS = {
+    upperSite: "./index.html",
     sections_output: document.getElementById('section-flex'),
     number_of_sections: 4,
     section_backgrounds: [
@@ -38,34 +40,12 @@ let TRAINING_ELEMENTS = {
 }
 
 /**
- * HEADER_ELEMENTS:
- * 
- * Elements and values of the header
- */
-let HEADER_ELEMENTS = {
-    headerBox: document.getElementById('header'),
-    innerBox: document.getElementById('header-inner'),
-    navOffsetTop: 2,
-    prevScrollY: 0,
-    state: 0,
-    timeOut: undefined,
-    logo: `<div id="fitbalance-logo">
-              <h3 id="fitbalance-logo-headline">Fitbalance</h3>
-           </div>`,
-    userProfile: `<div id="user-stats">
-                    <div id="user-stats-img">
-                        <img src="${document.title === 'Dashboard' ? "" : "."}./images/running-profile.png" alt="user-img"> <!-- profile image -->
-                    </div>
-                    <h4 id="user-stats-level-name">Level 1</h4>
-                  </div>`,
-}
-
-/**
  * CALENDAR_ELEMENTS:
  * 
  * Elements and values of the calendar
  */
 let CALENDAR_ELEMENTS = {
+    upperSite: "/training.html",
     weekday: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     month: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     day_times: dayTimes = ["Morning", "Noon", "Afternoon", "Evening", "Night"],

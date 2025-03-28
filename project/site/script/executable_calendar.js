@@ -40,13 +40,13 @@ function loadInputValuesCalendar() {
 
     hours.innerHTML = time.getHours();
     minutes.innerHTML = time.getMinutes();
-
 }
 loadInputValuesCalendar()
 
 function loadEventsOfCalendar() {
     document.getElementById('add-session').addEventListener('click', changeCalendarUI)
     document.getElementById('next-input-step').addEventListener('click', nextInputStep)
+    SETTINGS.path = CALENDAR_ELEMENTS.upperSite;
 }
 loadEventsOfCalendar()
 

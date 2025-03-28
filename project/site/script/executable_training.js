@@ -3,7 +3,7 @@
  */
 function loadSections() {
     let temp_string = "";
-
+    SETTINGS.path = TRAINING_ELEMENTS.upperSite
     for (let i = 0; i < TRAINING_ELEMENTS.number_of_sections; i++) {
         temp_string += `
         <a href="${TRAINING_ELEMENTS.section_links}"><div class="section-box" id="section-${i + 1}">
