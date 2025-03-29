@@ -35,6 +35,7 @@ body {
 
 #body-calendar {
     background-color: var(--light-blue);
+    overflow-y: hidden;
 }
 
 .align-body {
@@ -344,13 +345,19 @@ img {
     border: var(--main-color) 2px solid;
     padding: 1em;
     border-radius: 2em;
-    transition: 0.5s ease background, 0.4s linear color;
+    transition: all 0.5s ease;
+    cursor: pointer;
     letter-spacing: 0.1em;
 }
 
 .calendar-select-btn:hover {
-    background-color: var(--main-color);
+    background: var(--darkblue-small-gradient-lighter);
     color: white;
+}
+
+.calendar-select-btn-active{
+    background: var(--darkblue-small-gradient-lighter);
+    color: var(--secondary-color);
 }
 
 #calendar-date-information {
@@ -403,6 +410,7 @@ img {
 #trainings-today {
     width: 100%;
     min-height: 50vh;
+
     background-color: var(--secondary-color);
     border-radius: 3em 3em 0 0;
     display: flex;
@@ -412,6 +420,8 @@ img {
     align-items: center;
     gap: 3em;
     transition: all 0.5s ease;
+    position: absolute;
+    bottom: 0;
 }
 
 #trainings-today-header {
@@ -435,9 +445,17 @@ img {
     display: flex;
     flex-direction: column;
     gap: 1em;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     padding-bottom: 1em;
+    overflow-y: scroll;
+    height: 40vh;
+    position: absolute;
+    top: 15%;
+}
+
+#trainings-today-listed::-webkit-scrollbar{
+    display: none;
 }
 
 #calendar-input-field {
@@ -618,6 +636,7 @@ img {
     box-shadow: 4px 2px 100px rgba(128, 128, 128, 0.13);
     padding: 0 1em;
     border-radius: 0.2em;
+    cursor: pointer;
 }
 
 #calendar-input-1{
@@ -655,6 +674,7 @@ img {
     letter-spacing: 1px;
     border-radius: 0.5em;
     font-size: 1.3em;
+    cursor: pointer;
 }
 
 #summary>.training-session{

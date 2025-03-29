@@ -116,9 +116,9 @@ let CALENDAR_ELEMENTS = {
 /**
  * Setup for LS (Local Storage)
  */
-function setupLS() {
+function setupLS() {    
     if (!localStorage["calendar-items-today"]) {
-        localStorage["calendar-items-today"] = JSON.parse([])
+        localStorage["calendar-items-today"] = '[]'
     }
 }
 setupLS()

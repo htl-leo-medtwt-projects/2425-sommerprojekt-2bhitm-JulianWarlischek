@@ -119,8 +119,7 @@ function changeCalendarUI() {
         close_or_open.style.transform = 'rotate(45deg)'
         listed_items.style.display = 'none'
         input_field.style.display = 'flex';
-        calendar_section.style.height = "90vh";
-        calendar_section.style.transform = "translateY(-10vh)";
+        calendar_section.style.height = "70vh";
         calendar_section.style.backgroundColor = "#11161B"
         calendar_section.style.color = "#fff"
     }
@@ -134,7 +133,6 @@ function swipeCategory(dir) {
         return
     }
     CALENDAR_ELEMENTS.currentCategory += dir;
-    console.log(CALENDAR_ELEMENTS.currentCategory);
 
     styleSwipeCatButtons()
     loadCategories()
@@ -307,23 +305,39 @@ function resetCatVariables() {
     let sections = document.getElementsByClassName('calendar-input-element');
 
     fadeOut(`calendar-input-${sections.length}`)
+    fadeOut(`calendar-input-${sections.length - 2}`)
     CALENDAR_ELEMENTS.sessionsToday.push(document.getElementById('summary').innerHTML);
     saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
     loadInputValuesCalendar()
     fadeIn('calendar-input-0')
     document.getElementById('next-input-step').addEventListener('click', nextInputStep)
+    swipeCategory(0);
 
 }
 
 /**
  * Load sessions from LS
  */
-function loadSessionsFromLS(){
+function loadSessionsFromLS() {
     let items = JSON.parse(localStorage["calendar-items-today"])
-console.log(items);
+    console.log(items);
 
-    for(let i = 0; i < items.length; i++){
+    for (let i = 0; i < items.length; i++) {
         document.getElementById('trainings-today-listed').innerHTML += items[i];
     }
 }
 loadSessionsFromLS()
+
+/**
+ * Selects the calendar button and changes the UI
+ */
+function selectThisCalendar(element) {
+    let buttons = document.getElementsByClassName('calendar-select-btn');
+    console.log("Function call");
+    
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('calendar-select-btn-active');
+    }
+
+    element.classList.add('calendar-select-btn-active');
+}
