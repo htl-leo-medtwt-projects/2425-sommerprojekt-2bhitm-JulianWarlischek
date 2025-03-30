@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="calendar-html">
 
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,8 @@
     <script src="https://kit.fontawesome.com/3a03b4384b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../style/style.css">
     <script src="../script/data.js" defer></script>
-    <script src="../script/executable_calendar.js" defer></script>
     <script src="../script/script.js" defer></script>
+    <script src="../script/executable_calendar.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,700,1,10"
         rel="stylesheet" />
 </head>
@@ -34,7 +34,8 @@
     <!-- Calendar (Start) -->
     <div id="calendar-flex">
         <div id="calendar-flex-select">
-            <div class="calendar-select-btn calendar-select-btn-active" id="calendar-select-today" onclick="selectThisCalendar(this)">
+            <div class="calendar-select-btn calendar-select-btn-active" id="calendar-select-today"
+                onclick="selectThisCalendar(this)">
                 <h3 class="calendar-btn-desc">Today</h3>
             </div>
             <div class="calendar-select-btn" id="calendar-select-calendar" onclick="selectThisCalendar(this)">
@@ -47,7 +48,7 @@
             </div>
             <div id="calendar-time" class="span">
                 <div id="calendar-time-msz">
-                    <h4 class="calendar-date-info" id="calendar-date">12.05</h4>
+                    <h4 class="calendar-date-info" id="calendar-date"></h4>
                     <h4 class="calendar-date-info" id="calendar-dayOfMonth">May</h4>
                 </div>
                 <div id="calendar-time-now-msz">
@@ -56,76 +57,98 @@
                 </div>
             </div>
         </div>
-        <div id="trainings-today">
+        <div id="training-sessions-flex">
             <div id="trainings-today-header">
                 <h3 id="trainings-today-header-headline">Todays training sessions</h3>
                 <div id="add-session">
                     <i class="fa-solid fa-plus"></i>
                 </div>
             </div>
-            <div id="trainings-today-listed">
+            <div id="trainings-today">
+                <div id="trainings-today-listed">
 
+                </div>
+                <div id="calendar-input-field">
+                    <div class='calendar-input'>
+                        <div id="calendar-input-0" class="calendar-input-element">
+                            <h4 class="calendar-input-describtion">Training Categories:</h4>
+                            <div id="input-category">
+                                <div class="swipe-category" id="swipe-category-left" onclick="swipeCategory(-1)">
+                                    <i class="fa-solid fa-arrow-left"></i>
+                                </div>
+                                <div id="training-categories">
+                                </div>
+                                <div class="swipe-category valid-button" id="swipe-category-right"
+                                    onclick="swipeCategory(1)">
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="calendar-input-1" class="calendar-input-element">
+                            <h4 id="time-headline" class="calendar-input-describtion">Select your start time: </h4>
+                            <div id="time-select-flex">
+                                <div class="time-flex-col">
+                                    <div class="upper change-time-module" onclick="plusTime(24)">
+                                        <span class="material-symbols-outlined">
+                                            arrow_drop_up
+                                        </span>
+                                    </div>
+                                    <div id="hours">
+                                        <p id="hours-input"></p>
+                                    </div>
+                                    <div class="lower change-time-module" onclick="minusTime(24)">
+                                        <span class="material-symbols-outlined">
+                                            arrow_drop_down
+                                        </span>
+                                    </div>
+                                </div>
+                                <p id="time-seperation">:</p>
+                                <div class="time-flex-col">
+                                    <div class="upper change-time-module" onclick="plusTime(60)">
+                                        <span class="material-symbols-outlined">
+                                            arrow_drop_up
+                                        </span>
+                                    </div>
+                                    <div id="minutes">
+                                        <p id="minutes-input"></p>
+                                    </div>
+                                    <div class="lower change-time-module" onclick="minusTime(60)">
+                                        <span class="material-symbols-outlined">
+                                            arrow_drop_down
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="calendar-input-3" class="calendar-input-element">
+                            <h4 id="time-headline" class="calendar-input-describtion">Summary: </h4>
+                            <div id="summary">
+
+                            </div>
+                        </div>
+                        <div id="next-input-step">
+                            <p id="next-text-value">Next</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div id="calendar-input-field">
-                <div class='calendar-input'>
-                    <div id="calendar-input-0" class="calendar-input-element">
-                        <h4 class="calendar-input-describtion">Training Categories:</h4>
-                        <div id="input-category">
-                            <div class="swipe-category" id="swipe-category-left" onclick="swipeCategory(-1)">
-                                <i class="fa-solid fa-arrow-left"></i>
-                            </div>
-                            <div id="training-categories">
-                            </div>
-                            <div class="swipe-category valid-button" id="swipe-category-right"
-                                onclick="swipeCategory(1)">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
-                        </div>
+            <div id="trainings-calendar">
+                <div id="month-switch">
+                    <div id="month-before">
+                        <div class="month-overlay"><span onclick="swipeMonth(-1)" class="material-symbols-outlined">
+                                chevron_left
+                            </span></div>
+                        <h3 id="month-before-label" class="month-label"></h3>
                     </div>
-                    <div id="calendar-input-1" class="calendar-input-element">
-                        <h4 id="time-headline" class="calendar-input-describtion">Select your start time: </h4>
-                        <div id="time-select-flex">
-                            <div class="time-flex-col">
-                                <div class="upper change-time-module" onclick="plusTime(24)">
-                                    <span class="material-symbols-outlined">
-                                        arrow_drop_up
-                                    </span>
-                                </div>
-                                <div id="hours">
-                                    <p id="hours-input"></p>
-                                </div>
-                                <div class="lower change-time-module" onclick="minusTime(24)">
-                                    <span class="material-symbols-outlined">
-                                        arrow_drop_down
-                                    </span>
-                                </div>
-                            </div>
-                            <p id="time-seperation">:</p>
-                            <div class="time-flex-col">
-                                <div class="upper change-time-module" onclick="plusTime(60)">
-                                    <span class="material-symbols-outlined">
-                                        arrow_drop_up
-                                    </span>
-                                </div>
-                                <div id="minutes">
-                                    <p id="minutes-input"></p>
-                                </div>
-                                <div class="lower change-time-module" onclick="minusTime(60)">
-                                    <span class="material-symbols-outlined">
-                                        arrow_drop_down
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="month-now">
+                        <h3 id="month-now-label" class="month-label"></h3>
                     </div>
-                    <div id="calendar-input-3" class="calendar-input-element">
-                        <h4 id="time-headline" class="calendar-input-describtion">Summary: </h4>
-                        <div id="summary">
+                    <div id="month-after">
+                        <div class="month-overlay"><span onclick="swipeMonth(1)" class="material-symbols-outlined">
+                                chevron_right
+                            </span></div>
+                        <h3 id="month-after-label" class="month-label"></h3>
 
-                        </div>
-                    </div>
-                    <div id="next-input-step">
-                        <p id="next-text-value">Next</p>
                     </div>
                 </div>
             </div>

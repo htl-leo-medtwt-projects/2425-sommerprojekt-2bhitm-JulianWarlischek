@@ -50,6 +50,7 @@ let CALENDAR_ELEMENTS = {
     month: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     day_times: dayTimes = ["Morning", "Noon", "Afternoon", "Evening", "Night"],
     state: 1,
+    prevState: 1,
     types: [
         {
             'name': 'strength training',
@@ -109,7 +110,8 @@ let CALENDAR_ELEMENTS = {
             "darkMain": "#0A2F47"
         }
     ],
-    sessionsToday: []
+    sessionsToday: [],
+    currentMonth: new Date().getMonth(),
 }
 
 
