@@ -47,7 +47,7 @@ function animateHeader() {
     }
 
     if (scroll > HEADER_ELEMENTS.prevScrollY && HEADER_ELEMENTS.state != 1) {
-        HEADER_ELEMENTS.headerBox.style.top = '-4vh'
+        HEADER_ELEMENTS.headerBox.style.top = '-1vh'
         HEADER_ELEMENTS.state = 1;
         setHTMLHeader(HEADER_ELEMENTS.logo)
     } else if (scroll < HEADER_ELEMENTS.prevScrollY && HEADER_ELEMENTS.state != -1) {
@@ -65,7 +65,10 @@ function setHTMLHeader(content) {
         HEADER_ELEMENTS.innerBox.innerHTML = content
         HEADER_ELEMENTS.innerBox.style.opacity = "1"
         HEADER_ELEMENTS.timeOut = undefined
+    HEADER_ELEMENTS.state === 1 ? HEADER_ELEMENTS.innerBox.style.justifyContent = "center" : HEADER_ELEMENTS.innerBox.style.justifyContent = "space-between";
+
     }, 600)
+
 }
 
 function fadeOut(elementId, millis) {
