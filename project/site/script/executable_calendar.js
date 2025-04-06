@@ -61,7 +61,7 @@ function loadMonths() {
 loadMonths()
 
 function loadInputValuesCalendar() {
-    const time = new Date();    const hours = document.getElementById('hours-input');
+    const time = new Date(); const hours = document.getElementById('hours-input');
     const minutes = document.getElementById('minutes-input');
 
     hours.innerHTML = time.getHours();
@@ -139,21 +139,19 @@ function changeCalendarUI() {
     const calendar_section = document.getElementById('training-sessions-flex')
     const headline = document.getElementById('trainings-today-header-headline');
     const close_or_open = document.getElementById('add-session');
-    const listed_items = document.getElementById('training-sessions')
+    const listed_items = document.getElementById('trainings-today')
     const input_field = document.getElementById('calendar-input-field')
     const calendar_flex = document.getElementById('trainings-calendar');
 
-    console.log(state);
-    
     if (state === 1 || state === 0) {
         changeCalendarContentUI(state);
         resetCalInput();
-        
+        resetCatVariables()
     } else {
         headline.innerHTML = 'Add training session';
         listed_items.style.display = 'none'
         input_field.style.display = 'flex';
-        calendar_section.style.backgroundColor = "#11161B"
+        calendar_section.style.backgroundColor = ""
         calendar_section.style.color = "#fff"
         close_or_open.style.position = "static"
         calendar_flex.style.display = "none";
@@ -181,7 +179,7 @@ function resetCalInput() {
 function changeCalendarContentUI(state) {
     const headline = document.getElementById('trainings-today-header-headline');
     const close_or_open = document.getElementById('add-session');
-    const listed_items = document.getElementById('training-sessions')
+    const listed_items = document.getElementById('trainings-today')
     const calendar_flex = document.getElementById('trainings-calendar');
 
     if (state == 1) {
@@ -194,6 +192,7 @@ function changeCalendarContentUI(state) {
         listed_items.style.display = "none";
         close_or_open.style.position = 'absolute';
         close_or_open.style.left = "50%";
+        close_or_open.style.top = "2%";
         close_or_open.style.transform = "translateX(-50%)"
         headline.innerHTML = '';
         calendar_flex.style.display = "flex";
@@ -303,7 +302,9 @@ function checkState() {
             break;
         case 1:
             CALENDAR_ELEMENTS.newSession.startTime = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes} ${hours > 12 ? 'pm' : 'am'}`;
-            document.getElementById('time-headline').innerHTML = 'Select your end time: ';
+            setTimeout(() => {
+                document.getElementById('time-headline').innerHTML = 'Select your end time: ';
+            },500)
             break;
         case 2:
             CALENDAR_ELEMENTS.newSession.endTime = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes} ${hours > 12 ? 'pm' : 'am'}`;
@@ -363,6 +364,8 @@ function showInputSummary() {
  */
 function closeCatInput() {
     document.getElementById('next-input-step').removeEventListener('click', nextInputStep)
+    CALENDAR_ELEMENTS.sessionsToday.push(document.getElementById('summary').innerHTML);
+    saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
     changeCalendarUI()
     document.getElementById('trainings-today-listed').innerHTML += document.getElementById('summary').innerHTML;
     resetCatVariables()
@@ -381,10 +384,8 @@ function resetCatVariables() {
 
     fadeOut(`calendar-input-${sections.length}`)
     fadeOut(`calendar-input-${sections.length - 2}`)
-    CALENDAR_ELEMENTS.sessionsToday.push(document.getElementById('summary').innerHTML);
-    saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
     loadInputValuesCalendar()
-    fadeIn('calendar-input-0')
+    fadeIn('calendar-input-0', 'flex')
     document.getElementById('next-input-step').addEventListener('click', nextInputStep)
     swipeCategory(0);
 }
@@ -398,6 +399,32 @@ function loadSessionsFromLS() {
     for (let i = 0; i < items.length; i++) {
         document.getElementById('trainings-today-listed').innerHTML += items[i];
     }
+
+    document.getElementById('training-sessions').innerHTML += `
+                    <div class="training-session" style="opacity: 0;">
+                        <div class="session-header">
+                            <h2>Placeholder</h2>
+                            <div class="unit-icon">
+                               
+                            </div>
+                        </div>
+                        <div class="time-settings">
+                            <div class="start period">
+                                <h3 class="time-start-and-end">
+                                </h3>
+                                <h4>Start</h4>
+                            </div>
+                            <div class="duration">
+                                <h5 class="this-duration">Placeholder</h5>
+                            </div>
+                            <div class="end period">
+                                <h3 class="time-start-and-end">
+                                </h3>
+                                <h4>End</h4>
+                            </div>
+                        </div>
+                    </div>
+    `
 }
 loadSessionsFromLS()
 
@@ -432,9 +459,6 @@ function switchCalendarContent(index) {
         CALENDAR_ELEMENTS.state = 0;
         slideUp();
     }
-
-    console.log(CALENDAR_ELEMENTS.state);
-    
     changeCalendarContentUI(CALENDAR_ELEMENTS.state)
 }
 
@@ -445,7 +469,6 @@ function slideUp() {
     const slider = document.getElementById('training-sessions-flex');
     const close_or_open = document.getElementById('add-session');
     close_or_open.style.transform = 'rotate(45deg)'
-    slider.style.height = "100vh";
     slider.style.transform = "translateY(-27%)"
 }
 
@@ -455,7 +478,6 @@ function slideUp() {
 function slideDown() {
     const slider = document.getElementById('training-sessions-flex');
     const close_or_open = document.getElementById('add-session');
-    slider.style.height = "0";
     close_or_open.style.transform = 'rotate(0deg)'
 
     slider.style.transform = "translateY(0)"

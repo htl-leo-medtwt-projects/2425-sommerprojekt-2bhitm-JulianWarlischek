@@ -13,6 +13,7 @@
     --margin-c-header: 13vh;
     --light-blue: #c5e5ff;
     --secondary-blue: #3617FF;
+    --calendar-input-bg: rgb(183, 219, 255);
 }
 
 * {
@@ -32,12 +33,12 @@ body {
     scroll-behavior: smooth;
 }
 
-/* #calendar-html {
+#calendar-html {
     overflow-y: hidden;
-} */
+}
 
 #body-calendar {
-    background-color: var(--light-blue);
+    background-color: #e2e2e6;
     overflow-y: hidden;
 }
 
@@ -356,13 +357,24 @@ img {
 .calendar-select-btn {
     border: var(--main-color) 2px solid;
     padding: 0.9rem;
-    border-radius: 1em;
+    border-radius: 0.5em;
     transition: all 0.5s ease;
     cursor: pointer;
     letter-spacing: 0.1em;
     font-size: 0.9em;
 }
 
+.calendar-text-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-text-flex>i{
+    font-size: 1.1rem;
+}
 .calendar-select-btn:hover {
     background: var(--darkblue-small-gradient-lighter);
     color: white;
@@ -429,7 +441,7 @@ img {
 
 #training-sessions-flex {
     width: 100%;
-    min-height: 20vh;
+    min-height: 100vh;
     background-color: var(--secondary-color);
     border-radius: 3em 3em 0 0;
     display: flex;
@@ -443,9 +455,12 @@ img {
 }
 
 #training-sessions {
-    height: 100%;
     overflow: scroll;
     width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
 }
 
 #trainings-today-header {
@@ -458,9 +473,10 @@ img {
     top: 1%;
 }
 
-#trainings-today{
+#trainings-today {
     width: 100%;
     overflow: scroll;
+    height: 40vh;
 }
 
 #trainings-today-header-headline {
@@ -482,9 +498,7 @@ img {
     flex-direction: column;
     gap: 1em;
     align-items: center;
-    position: relative;
-    top: 0;
-    height: 100%;
+    height: auto;
 }
 
 #trainings-today-listed::-webkit-scrollbar {
@@ -556,7 +570,7 @@ img {
 }
 
 .time-start-and-end {
-    font-size: 1.7em;
+    font-size: 1.6rem;
 }
 
 .duration {
@@ -581,7 +595,8 @@ img {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    gap: 2em;
+    gap: 5em;
+    width: 100%;
 }
 
 .swipe-category {
@@ -616,35 +631,39 @@ img {
 
 .calendar-input-describtion {
     font-size: 1.4em;
-    align-self: flex-start;
 }
 
 #training-categories {
     display: flex;
     overflow: hidden;
-    padding: 1em;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    width: 40vw;
+    height: 25vh;
 }
 
 .category {
     box-shadow: 0 0 0 5px rgba(135, 155, 255, 0.294);
-    width: 4em;
+    text-align: center;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    padding: 4em;
-    gap: 1em;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 1rem;
+    width: 90%;
+    height: 100%;
+    gap: 1rem;
     text-transform: capitalize;
     border-radius: 1em;
-    height: 23vh;
 }
 
 #input-category {
-    position: relative;
     display: flex;
     flex-direction: row;
     gap: 1em;
     align-items: center;
+    justify-content: center;
 }
 
 .category-icon {
@@ -661,10 +680,14 @@ img {
 
 .calendar-input-element {
     transition: opacity 0.5s ease;
+    margin-top: 3rem;
+    height: 30vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 3em;
-    height: 35vh;
+    gap: 4em;
+    justify-content: center;
+    align-items: center;
 }
 
 .change-time-module {
@@ -711,6 +734,10 @@ img {
     border-radius: 0.5em;
     font-size: 1.3em;
     cursor: pointer;
+}
+
+#summary {
+    width: 100%;
 }
 
 #summary>.training-session {

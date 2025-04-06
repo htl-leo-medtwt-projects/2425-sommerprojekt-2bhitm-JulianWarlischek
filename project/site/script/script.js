@@ -35,7 +35,6 @@ function loadIndex() {
 document.addEventListener('scroll', animateHeader)
 function animateHeader() {
     const scroll = window.scrollY;
-    console.log("Scroll");
     
     if (scroll === 0 && HEADER_ELEMENTS.headerBox.style.top != '') {
         HEADER_ELEMENTS.headerBox.style.top = "-2vh"

@@ -36,10 +36,16 @@
         <div id="calendar-flex-select">
             <div class="calendar-select-btn calendar-select-btn-active" id="calendar-select-today"
                 onclick="selectThisCalendar(this)">
-                <h3 class="calendar-btn-desc">Today</h3>
+                <div class="calendar-text-flex">
+                    <h3 class="calendar-btn-desc">Today</h3>
+                    <i class="fa-solid fa-clock"></i>
+                </div>
             </div>
             <div class="calendar-select-btn" id="calendar-select-calendar" onclick="selectThisCalendar(this)">
-                <h3 class="calendar-btn-desc">Calendar</h3>
+                <div class="calendar-text-flex">
+                    <h3 class="calendar-btn-desc">Calendar</h3>
+                    <i class="fa-solid fa-calendar-days"></i>
+                </div>
             </div>
         </div>
         <div id="calendar-date-information">
@@ -72,7 +78,6 @@
             <div id="calendar-input-field">
                 <div class='calendar-input'>
                     <div id="calendar-input-0" class="calendar-input-element">
-                        <h4 class="calendar-input-describtion">Training Categories:</h4>
                         <div id="input-category">
                             <div class="swipe-category" id="swipe-category-left" onclick="swipeCategory(-1)">
                                 <i class="fa-solid fa-arrow-left"></i>
@@ -153,25 +158,10 @@
                 </div>
                 <div id="trainings-month-listed">
                     <div class="month-session">
-                        <div class="session-header">
-                            <h2></h2>
-                            <div class="unit-icon">
-                            </div>
-                        </div>
-                        <div class="time-settings">
-                            <div class="start period">
-                                <h3 class="time-start-and-end">
-                                </h3>
-                                <h4>Start</h4>
-                            </div>
-                            <div class="duration">
-                                <h5 class="this-duration"></h5>
-                            </div>
-                            <div class="end period">
-                                <h3 class="time-start-and-end">
-                                </h3>
-                                <h4>End</h4>
-                            </div>
+                        <div class="month-session-date">
+                            <h3 class="month-session-weekday">Monday</h3>
+                            <h3 class="month-session-day-of-month">06</h3>
+                            <h3 class="month-session-month">APR</h3>
                         </div>
                     </div>
                 </div>
