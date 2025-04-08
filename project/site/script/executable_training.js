@@ -18,3 +18,10 @@ function loadSections() {
     TRAINING_ELEMENTS.sections_output.innerHTML = temp_string;
 }
 loadSections()
+
+/**
+ * Settings loading
+ */
+function loadTrainingPage() {
+    SETTINGS.path = TRAINING_ELEMENTS.upperSite;
+}

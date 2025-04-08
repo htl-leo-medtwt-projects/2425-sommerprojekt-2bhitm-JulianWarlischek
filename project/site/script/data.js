@@ -138,6 +138,7 @@ setupLS()
  */
 function loadFromLS() {
     CALENDAR_ELEMENTS.sessionsToday = JSON.parse(localStorage["calendar-items-today"]);
+    CALENDAR_ELEMENTS.allSessions = JSON.parse(localStorage['calendar-items-all'])
 }
 loadFromLS()
 

@@ -10,7 +10,7 @@ function loadDate() {
     calendar_weekday_inner.innerHTML = CALENDAR_ELEMENTS.weekday[(day_of_week + 6) % 7];
 
     const calendar_date_inner = document.getElementById('calendar-date');
-    const date_nums = `${date.getDate()}.${date.getMonth() + 1}`
+    const date_nums = `${date.getDate() < 10 ? "0" + date.getDate() : date.getDate()}.${(date.getMonth() + 1) < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1}`
 
     calendar_date_inner.innerHTML = date_nums;
 
@@ -125,7 +125,7 @@ function changeCalendarUI() {
         CALENDAR_ELEMENTS.prevState = CALENDAR_ELEMENTS.state;
     }
 
-    resetCalInput()
+    changeCalendarSliderUI()
     /*
     State switch:
 
@@ -142,11 +142,11 @@ function changeCalendarUI() {
     const listed_items = document.getElementById('trainings-today')
     const input_field = document.getElementById('calendar-input-field')
     const calendar_flex = document.getElementById('trainings-calendar');
+    resetCalendarVariables()
 
     if (state === 1 || state === 0) {
         changeCalendarContentUI(state);
-        resetCalInput();
-        resetCatVariables()
+        changeCalendarSliderUI();
     } else {
         headline.innerHTML = 'Add training session';
         listed_items.style.display = 'none'
@@ -162,7 +162,7 @@ function changeCalendarUI() {
 /**
  * Resets the input field to the default
  */
-function resetCalInput() {
+function changeCalendarSliderUI() {
     const calendar_section = document.getElementById('training-sessions-flex')
     const listed_items = document.getElementById('training-sessions')
     const input_field = document.getElementById('calendar-input-field')
@@ -187,6 +187,7 @@ function changeCalendarContentUI(state) {
         close_or_open.style.position = 'static';
         listed_items.style.display = "flex";
         calendar_flex.style.display = "none";
+        selectDate("today")
         slideDown();
     } else {
         listed_items.style.display = "none";
@@ -196,6 +197,7 @@ function changeCalendarContentUI(state) {
         close_or_open.style.transform = "translateX(-50%)"
         headline.innerHTML = '';
         calendar_flex.style.display = "flex";
+        selectDate("custom")
     }
 }
 
@@ -276,11 +278,9 @@ function minusTime(mod) {
 function nextInputStep() {
     checkState();
     fadeOut(`calendar-input-${CALENDAR_ELEMENTS.currentInput < 3 ? Math.min(CALENDAR_ELEMENTS.currentInput, 1) : CALENDAR_ELEMENTS.currentInput}`, 500)
-    console.log("Fade out: " + (`calendar-input-${CALENDAR_ELEMENTS.currentInput < 3 ? Math.min(CALENDAR_ELEMENTS.currentInput, 1) : CALENDAR_ELEMENTS.currentInput}`));
 
     CALENDAR_ELEMENTS.currentInput++;
     if (CALENDAR_ELEMENTS.currentInput === 4) {
-        safeVariables()
         showInputSummary();
         return
     }
@@ -300,10 +300,12 @@ function nextInputStep() {
 function checkState() {
     const hours = parseInt(document.getElementById('hours-input').innerHTML);
     const minutes = parseInt(document.getElementById('minutes-input').innerHTML);
+    const month = document.getElementById('month-num').value;
+    const numOfMonth = document.getElementById('num-of-month').value;
 
     switch (CALENDAR_ELEMENTS.currentInput) {
         case 0:
-            CALENDAR_ELEMENTS.newSession.type = CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.currentCategory];
+            CALENDAR_ELEMENTS.newSession.type = CALENDAR_ELEMENTS.currentCategory;
             break;
         case 1:
             CALENDAR_ELEMENTS.newSession.startTime = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes} ${hours > 12 ? 'pm' : 'am'}`;
@@ -313,7 +315,12 @@ function checkState() {
             break;
         case 2:
             CALENDAR_ELEMENTS.newSession.endTime = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes} ${hours > 12 ? 'pm' : 'am'}`;
+            CALENDAR_ELEMENTS.newSession.duration = calcDuration(parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(3, 5)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(3, 5)));
             break;
+        case 3:
+            CALENDAR_ELEMENTS.newSession.date.month = month;
+            CALENDAR_ELEMENTS.newSession.date.dayOfMonth = numOfMonth;
+            break
     }
 
 }
@@ -323,13 +330,6 @@ function checkState() {
  */
 function showInputSummary() {
     document.getElementById('next-text-value').innerHTML = 'Finish'
-
-    let start_hours = parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2));
-    let start_minutes = parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(3, 5))
-
-    let end_hours = parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(0, 2));
-    let end_minutes = parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(3, 5));
-
 
     document.getElementById('summary').innerHTML = `
                 <div class="training-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].main}; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].darkMain};">
@@ -347,7 +347,7 @@ function showInputSummary() {
                             <h4>Start</h4>
                         </div>
                         <div class="duration" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].darkMain}; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].main};">
-                            <h5 class="this-duration">${CALENDAR_ELEMENTS.newSession.duration / 60 + " h " + CALENDAR_ELEMENTS.newSession.duration % 60 + " min"}</h5>
+                            <h5 class="this-duration">${(Math.floor((CALENDAR_ELEMENTS.newSession.duration / 60)) <= 0 ? "" : Math.floor((CALENDAR_ELEMENTS.newSession.duration / 60)) + " h ") + ((CALENDAR_ELEMENTS.newSession.duration % 60) <= 0 ? "" : (CALENDAR_ELEMENTS.newSession.duration % 60) + " min")}</h5>
                         </div>
                         <div class="end period">
                             <h3 class="time-start-and-end">
@@ -362,18 +362,18 @@ function showInputSummary() {
     setTimeout(() => {
         fadeIn('calendar-input-4', 'flex')
     }, 500)
+
 }
 
 /**
  * Closes the input menu
  */
 function closeCatInput() {
+    safeVariables();
     document.getElementById('next-input-step').removeEventListener('click', nextInputStep)
-    console.log(CALENDAR_ELEMENTS.newSession);
     changeCalendarUI()
-    document.getElementById('trainings-today-listed').innerHTML += document.getElementById('summary').innerHTML;
-    resetCatVariables()
-    resetCalInput()
+    resetCalendarVariables()
+    changeCalendarSliderUI()
 }
 
 /**
@@ -387,16 +387,17 @@ function safeVariables() {
     CALENDAR_ELEMENTS.newSession.date.dayOfMonth = parseInt(document.getElementById('num-of-month').value);
     CALENDAR_ELEMENTS.newSession.duration = calcDuration(parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(3, 5)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(3, 5)));
 
-
     //Safe the new session in the "todays" list
-    if (CALENDAR_ELEMENTS.newSession.date.month === date.getMonth() + 1 && CALENDAR_ELEMENTS.newSession.date.dayOfMonth === date.getDate()) {
-        CALENDAR_ELEMENTS.sessionsToday.push(CALENDAR_ELEMENTS.newSession);
+    if (CALENDAR_ELEMENTS.newSession.date.month === (date.getMonth() + 1) && CALENDAR_ELEMENTS.newSession.date.dayOfMonth === date.getDate()) {
+        CALENDAR_ELEMENTS.sessionsToday.push(getCopyOf(CALENDAR_ELEMENTS.newSession));
         saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
+        printAllSessions(CALENDAR_ELEMENTS.allSessions)
     }
 
     //Safe the new session in the "all" list
-    CALENDAR_ELEMENTS.allSessions.push(CALENDAR_ELEMENTS.newSession);
+    CALENDAR_ELEMENTS.allSessions.push(getCopyOf(CALENDAR_ELEMENTS.newSession));
     saveDataOnLS("calendar-items-all", CALENDAR_ELEMENTS.allSessions)
+    printTodaysSessions(CALENDAR_ELEMENTS.sessionsToday)
 }
 
 /**
@@ -418,8 +419,7 @@ function calcDuration(startH, endH, startM, endM) {
 /**
  * Resets the variables of the calendar input section
  */
-function resetCatVariables() {
-    
+function resetCalendarVariables() {
     CALENDAR_ELEMENTS.currentCategory = 0;
     CALENDAR_ELEMENTS.currentInput = 0;
     document.getElementById('next-text-value').innerHTML = 'Next'
@@ -427,12 +427,15 @@ function resetCatVariables() {
     let sections = document.getElementsByClassName('calendar-input-element');
 
     fadeOut(`calendar-input-${sections.length}`)
-    fadeOut(`calendar-input-${sections.length - 2}`)
+    fadeOut(`calendar-input-${sections.length - 1}`)
+    fadeOut(`calendar-input-${sections.length - 3}`)
+
     loadInputValuesCalendar()
     fadeIn('calendar-input-0', 'flex')
     document.getElementById('next-input-step').addEventListener('click', nextInputStep)
     swipeCategory(0);
     selectDate('today');
+
     //Reset all variables
     CALENDAR_ELEMENTS.newSession.type = undefined;
     CALENDAR_ELEMENTS.newSession.date.dayOfMonth = undefined
@@ -443,14 +446,82 @@ function resetCatVariables() {
 }
 
 /**
+ * Function to print a single or more sessions on the slider (TODAY)
+ */
+function printTodaysSessions(items) {
+    let temp_string = "";
+    for (let i = 0; i < items.length; i++) {
+        temp_string += `
+                    <div class="training-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}; color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain};">
+                    <div class="session-header">
+                        <h2>${CALENDAR_ELEMENTS.types[items[i].type].name}</h2>
+                        <div class="unit-icon" style="border:${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain} 1px solid; color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain};">
+                           ${CALENDAR_ELEMENTS.types[items[i].type].icon}
+                        </div>
+                    </div>
+                    <div class="time-settings">
+                        <div class="start period">
+                            <h3 class="time-start-and-end">
+                                ${items[i].startTime}
+                            </h3>
+                            <h4>Start</h4>
+                        </div>
+                        <div class="duration" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}; color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main};">
+                            <h5 class="this-duration">${(Math.floor((items[i].duration / 60)) <= 0 ? "" : Math.floor((items[i].duration / 60)) + " h ") + ((items[i].duration % 60) <= 0 ? "" : (items[i].duration % 60) + " min")}</h5>
+                        </div>
+                        <div class="end period">
+                            <h3 class="time-start-and-end">
+                                ${items[i].endTime}
+                            </h3>
+                            <h4>End</h4>
+                        </div>
+                    </div>
+                </div>
+        `;
+    }
+    document.getElementById('trainings-today-listed').innerHTML = temp_string;
+}
+
+/**
+ * Function to print a single or more sessions on the slider (CALENDAR)
+ */
+function printAllSessions(items) {
+
+
+    let temp_string = "";
+
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].date.month === CALENDAR_ELEMENTS.currentMonth + 1) {
+            temp_string += `
+                    <div class="month-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}">
+                        <div class="month-session-date">
+                            <h3 class="month-session-weekday" style="color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}">${CALENDAR_ELEMENTS.weekday[(new Date(new Date().getFullYear() + "-" + (CALENDAR_ELEMENTS.currentMonth + 1) + '-' + items[i].date.dayOfMonth).getDay() + 6) % 7]}</h3>
+                            <div class="month-session-date-information" style="color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}">
+                                <h3 class="month-session-day-of-month">${items[i].date.dayOfMonth < 10 ? "0" + items[i].date.dayOfMonth : items[i].date.dayOfMonth}</h3>
+                                <h3 class="month-session-month">${CALENDAR_ELEMENTS.month[items[i].date.month - 1]}</h3>
+                            </div>
+                        </div>
+                        <div class="month-session-category" style="color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}">
+                            <h3 class="month-session-category-name">${CALENDAR_ELEMENTS.types[items[i].type].name}</h3>
+                            <h3 class="month-session-category-icon unit-icon" style="color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}; border-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}">${CALENDAR_ELEMENTS.types[items[i].type].icon}
+                            </h3>
+                        </div>
+                    </div>
+            `
+        }
+    }
+    document.getElementById('trainings-month-listed').innerHTML = temp_string;
+}
+
+/**
  * Load sessions from LS
  */
 function loadSessionsFromLS() {
     let items = JSON.parse(localStorage["calendar-items-today"])
+    let allSessions = JSON.parse(localStorage['calendar-items-all']);
 
-    for (let i = 0; i < items.length; i++) {
-        document.getElementById('trainings-today-listed').innerHTML += items[i];
-    }
+    printTodaysSessions(items);
+    printAllSessions(allSessions);
 
     document.getElementById('training-sessions').innerHTML += `
                     <div class="training-session" style="opacity: 0;">
@@ -474,6 +545,23 @@ function loadSessionsFromLS() {
                                 </h3>
                                 <h4>End</h4>
                             </div>
+                        </div>
+                    </div>
+    `
+
+    document.getElementById('trainings-month-listed-outside').innerHTML += `
+                    <div class="month-session" style="opacity: 0">
+                        <div class="month-session-date">
+                            <h3 class="month-session-weekday">MON</h3>
+                            <div class="month-session-date-information">
+                                <h3 class="month-session-day-of-month">00</h3>
+                                <h3 class="month-session-month">UN</h3>
+                            </div>
+                        </div>
+                        <div class="month-session-category">
+                            <h3 class="month-session-category-name">Placeholder</h3>
+                            <h3 class="month-session-category-icon unit-icon">
+                            </h3>
                         </div>
                     </div>
     `
@@ -503,7 +591,7 @@ function selectThisCalendar(element) {
  * TODAY / CALENDAR
  */
 function switchCalendarContent(index) {
-    resetCalInput()
+    changeCalendarSliderUI()
     if (index === 0) {
         CALENDAR_ELEMENTS.state = 1;
         slideUp();
@@ -547,13 +635,15 @@ function swipeMonth(dir) {
         CALENDAR_ELEMENTS.currentMonth = 0;
     }
     loadMonths()
-}
 
-/**
- * Load events for the selected month
- */
-function showSessionsMonth() {
-    const box = document.getElementById('trainings-month-listed');
+    if (document.getElementById('trainings-month').style.display != 'none') {
+        fadeOut('trainings-month', 400);
+
+        setTimeout(() => {
+            printAllSessions(CALENDAR_ELEMENTS.allSessions);
+            fadeIn('trainings-month', 'block')
+        }, 400)
+    }
 }
 
 /**
@@ -562,6 +652,9 @@ function showSessionsMonth() {
 function selectDate(type) {
     const month = document.getElementById('month-num');
     const month_num = document.getElementById('num-of-month');
+
+    const radio1 = document.getElementById('value-1');
+    const radio2 = document.getElementById('value-2');
 
     let disabled = false;
 
@@ -579,9 +672,13 @@ function selectDate(type) {
     if (disabled) {
         month.style.color = "grey";
         month_num.style.color = "grey";
+        radio1.checked = true;
+
     } else {
         month.style.color = "white";
         month_num.style.color = "white";
+        radio2.checked = true;
+
     }
 }
 selectDate("today");

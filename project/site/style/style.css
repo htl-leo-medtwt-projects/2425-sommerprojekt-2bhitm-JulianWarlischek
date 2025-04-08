@@ -463,6 +463,7 @@ img {
     align-items: center;
     flex-direction: column;
 }
+/** ==================================================================================**/
 
 #trainings-today-header {
     width: 80%;
@@ -865,6 +866,10 @@ img {
     align-items: flex-start;
 }
 
+.month-session-category-name {
+    text-transform: capitalize;
+}
+
 .month-session-category {
     display: flex;
     flex-direction: column;
@@ -872,6 +877,24 @@ img {
     align-items: center;
     gap: 1em;
 }
+
+#trainings-month-listed-outside{
+    overflow: scroll;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+#trainings-month{
+    width: 100%;
+    overflow: scroll;
+    height: 70vh;
+    transition: all 400ms ease;
+}
+
+/* ===================================================================================*/
 
 /* UI VERSE Code */
 .radio-input {

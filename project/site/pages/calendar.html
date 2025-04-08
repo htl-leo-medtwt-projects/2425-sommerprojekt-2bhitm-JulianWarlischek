@@ -10,6 +10,7 @@
     <script src="../script/data.js" defer></script>
     <script src="../script/script.js" defer></script>
     <script src="../script/executable_calendar.js" defer></script>
+    <script src="../script/path_system.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,700,1,10"
         rel="stylesheet" />
 </head>
@@ -130,7 +131,7 @@
                         <h4 class="calendar-input-describtion">Select a date:</h4>
                         <div class="radio-input">
                             <label class="label" onclick="selectDate('today')">
-                                <input type="radio" id="value-1" checked="" name="value-radio" value="value-1"/>
+                                <input type="radio" id="value-1" checked="" name="value-radio" value="value-1" />
                                 <p class="text">Today</p>
                             </label>
                             <label class="label" onclick="selectDate('custom')">
@@ -174,19 +175,9 @@
 
                     </div>
                 </div>
-                <div id="trainings-month-listed">
-                    <div class="month-session">
-                        <div class="month-session-date">
-                            <h3 class="month-session-weekday">Monday</h3>
-                            <div class="month-session-date-information">
-                                <h3 class="month-session-day-of-month">06</h3>
-                                <h3 class="month-session-month">APR</h3>
-                            </div>
-                        </div>
-                        <div class="month-session-category">
-                            <h3 class="month-session-category-name">Running</h3>
-                            <h3 class="month-session-category-icon unit-icon"><i class="fa-solid fa-person-running"></i>
-                            </h3>
+                <div id="trainings-month">
+                    <div id="trainings-month-listed-outside">
+                        <div id="trainings-month-listed">
                         </div>
                     </div>
                 </div>
