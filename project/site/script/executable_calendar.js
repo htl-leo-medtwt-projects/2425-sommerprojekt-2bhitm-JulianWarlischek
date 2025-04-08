@@ -151,7 +151,7 @@ function changeCalendarUI() {
         headline.innerHTML = 'Add training session';
         listed_items.style.display = 'none'
         input_field.style.display = 'flex';
-        calendar_section.style.backgroundColor = ""
+        calendar_section.style.background = getComputedStyle(document.documentElement).getPropertyValue('--calendar-input-bg');
         calendar_section.style.color = "#fff"
         close_or_open.style.position = "static"
         calendar_flex.style.display = "none";
@@ -167,7 +167,7 @@ function resetCalInput() {
     const listed_items = document.getElementById('training-sessions')
     const input_field = document.getElementById('calendar-input-field')
 
-    calendar_section.style.backgroundColor = "#fff"
+    calendar_section.style.background = "#fff"
     listed_items.style.display = 'flex'
     input_field.style.display = 'none';
     calendar_section.style.color = "#11161B"
@@ -254,7 +254,7 @@ function minusTime(mod) {
     let hours = parseInt(document.getElementById('hours-input').innerHTML)
     let minutes = parseInt(document.getElementById('minutes-input').innerHTML)
 
-    if (mod === 24) {
+    if (mod === 23) {
         hours -= 1;
     } else {
         minutes -= 1;
@@ -275,17 +275,22 @@ function minusTime(mod) {
  */
 function nextInputStep() {
     checkState();
-    fadeOut(`calendar-input-${Math.min(CALENDAR_ELEMENTS.currentInput, 1)}`, 500)
+    fadeOut(`calendar-input-${CALENDAR_ELEMENTS.currentInput < 3 ? Math.min(CALENDAR_ELEMENTS.currentInput, 1) : CALENDAR_ELEMENTS.currentInput}`, 500)
+    console.log("Fade out: " + (`calendar-input-${CALENDAR_ELEMENTS.currentInput < 3 ? Math.min(CALENDAR_ELEMENTS.currentInput, 1) : CALENDAR_ELEMENTS.currentInput}`));
+
     CALENDAR_ELEMENTS.currentInput++;
-    if (CALENDAR_ELEMENTS.currentInput === 3) {
+    if (CALENDAR_ELEMENTS.currentInput === 4) {
+        safeVariables()
         showInputSummary();
         return
     }
-    if (CALENDAR_ELEMENTS.currentInput === 4) {
+    if (CALENDAR_ELEMENTS.currentInput === 5) {
         closeCatInput()
+        return
     }
+
     setTimeout(() => {
-        fadeIn(`calendar-input-${Math.min(CALENDAR_ELEMENTS.currentInput, 1)}`, 'flex')
+        fadeIn(`calendar-input-${CALENDAR_ELEMENTS.currentInput < 3 ? Math.min(CALENDAR_ELEMENTS.currentInput, 1) : CALENDAR_ELEMENTS.currentInput}`, 'flex')
     }, 500)
 }
 
@@ -304,7 +309,7 @@ function checkState() {
             CALENDAR_ELEMENTS.newSession.startTime = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes} ${hours > 12 ? 'pm' : 'am'}`;
             setTimeout(() => {
                 document.getElementById('time-headline').innerHTML = 'Select your end time: ';
-            },500)
+            }, 500)
             break;
         case 2:
             CALENDAR_ELEMENTS.newSession.endTime = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes} ${hours > 12 ? 'pm' : 'am'}`;
@@ -327,11 +332,11 @@ function showInputSummary() {
 
 
     document.getElementById('summary').innerHTML = `
-                <div class="training-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].main}; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].darkMain};">
+                <div class="training-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].main}; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].darkMain};">
                     <div class="session-header">
-                        <h2>${CALENDAR_ELEMENTS.newSession.type.name}</h2>
-                        <div class="unit-icon" style="border:${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].darkMain} 1px solid; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].darkMain};">
-                           ${CALENDAR_ELEMENTS.newSession.type.icon}
+                        <h2>${CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.newSession.type].name}</h2>
+                        <div class="unit-icon" style="border:${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].darkMain} 1px solid; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].darkMain};">
+                           ${CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.newSession.type].icon}
                         </div>
                     </div>
                     <div class="time-settings">
@@ -341,8 +346,8 @@ function showInputSummary() {
                             </h3>
                             <h4>Start</h4>
                         </div>
-                        <div class="duration" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].darkMain}; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type.color].main};">
-                            <h5 class="this-duration">${start_hours - end_hours === 0 ? "" : Math.abs(start_hours - end_hours) + " h"} ${start_minutes - end_minutes === 0 ? "" : Math.abs(start_minutes - end_minutes) + " min"}</h5>
+                        <div class="duration" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].darkMain}; color: ${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.newSession.type].main};">
+                            <h5 class="this-duration">${CALENDAR_ELEMENTS.newSession.duration / 60 + " h " + CALENDAR_ELEMENTS.newSession.duration % 60 + " min"}</h5>
                         </div>
                         <div class="end period">
                             <h3 class="time-start-and-end">
@@ -355,7 +360,7 @@ function showInputSummary() {
                 `
 
     setTimeout(() => {
-        fadeIn('calendar-input-3', 'flex')
+        fadeIn('calendar-input-4', 'flex')
     }, 500)
 }
 
@@ -364,8 +369,7 @@ function showInputSummary() {
  */
 function closeCatInput() {
     document.getElementById('next-input-step').removeEventListener('click', nextInputStep)
-    CALENDAR_ELEMENTS.sessionsToday.push(document.getElementById('summary').innerHTML);
-    saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
+    console.log(CALENDAR_ELEMENTS.newSession);
     changeCalendarUI()
     document.getElementById('trainings-today-listed').innerHTML += document.getElementById('summary').innerHTML;
     resetCatVariables()
@@ -373,9 +377,49 @@ function closeCatInput() {
 }
 
 /**
+ * Safes Variables
+ */
+function safeVariables() {
+    const date = new Date();
+    //Initialize newSession
+    CALENDAR_ELEMENTS.newSession.type = CALENDAR_ELEMENTS.currentCategory;
+    CALENDAR_ELEMENTS.newSession.date.month = parseInt(document.getElementById('month-num').value);
+    CALENDAR_ELEMENTS.newSession.date.dayOfMonth = parseInt(document.getElementById('num-of-month').value);
+    CALENDAR_ELEMENTS.newSession.duration = calcDuration(parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(3, 5)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(3, 5)));
+
+
+    //Safe the new session in the "todays" list
+    if (CALENDAR_ELEMENTS.newSession.date.month === date.getMonth() + 1 && CALENDAR_ELEMENTS.newSession.date.dayOfMonth === date.getDate()) {
+        CALENDAR_ELEMENTS.sessionsToday.push(CALENDAR_ELEMENTS.newSession);
+        saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
+    }
+
+    //Safe the new session in the "all" list
+    CALENDAR_ELEMENTS.allSessions.push(CALENDAR_ELEMENTS.newSession);
+    saveDataOnLS("calendar-items-all", CALENDAR_ELEMENTS.allSessions)
+}
+
+/**
+ * Calculates the duration of a training session
+ */
+function calcDuration(startH, endH, startM, endM) {
+    const startTotal = startH * 60 + startM;
+    const endTotal = endH * 60 + endM;
+
+    let duration = endTotal - startTotal;
+
+    if (duration < 0) {
+        duration += 24 * 60;
+    }
+
+    return duration;
+}
+
+/**
  * Resets the variables of the calendar input section
  */
 function resetCatVariables() {
+    
     CALENDAR_ELEMENTS.currentCategory = 0;
     CALENDAR_ELEMENTS.currentInput = 0;
     document.getElementById('next-text-value').innerHTML = 'Next'
@@ -388,6 +432,14 @@ function resetCatVariables() {
     fadeIn('calendar-input-0', 'flex')
     document.getElementById('next-input-step').addEventListener('click', nextInputStep)
     swipeCategory(0);
+    selectDate('today');
+    //Reset all variables
+    CALENDAR_ELEMENTS.newSession.type = undefined;
+    CALENDAR_ELEMENTS.newSession.date.dayOfMonth = undefined
+    CALENDAR_ELEMENTS.newSession.date.month = undefined;
+    CALENDAR_ELEMENTS.newSession.duration = undefined;
+    CALENDAR_ELEMENTS.newSession.startTime = undefined;
+    CALENDAR_ELEMENTS.newSession.endTime = undefined;
 }
 
 /**
@@ -503,3 +555,33 @@ function swipeMonth(dir) {
 function showSessionsMonth() {
     const box = document.getElementById('trainings-month-listed');
 }
+
+/**
+ * Date selector
+ */
+function selectDate(type) {
+    const month = document.getElementById('month-num');
+    const month_num = document.getElementById('num-of-month');
+
+    let disabled = false;
+
+    month.disabled = false;
+    month_num.disabled = false;
+    const date = new Date();
+    if (type === "today") {
+        month.disabled = true;
+        month_num.disabled = true;
+        disabled = true;
+        month.value = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+        month_num.value = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+    }
+
+    if (disabled) {
+        month.style.color = "grey";
+        month_num.style.color = "grey";
+    } else {
+        month.style.color = "white";
+        month_num.style.color = "white";
+    }
+}
+selectDate("today");

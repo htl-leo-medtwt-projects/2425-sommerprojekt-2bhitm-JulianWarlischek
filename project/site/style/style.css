@@ -13,7 +13,7 @@
     --margin-c-header: 13vh;
     --light-blue: #c5e5ff;
     --secondary-blue: #3617FF;
-    --calendar-input-bg: rgb(183, 219, 255);
+    --calendar-input-bg: linear-gradient(200deg, #11161B 12.08%, #2A3845 140.98%);
 }
 
 * {
@@ -95,7 +95,7 @@ img {
 #header-inner {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     transition: 0.6s ease all;
     margin: 0 5%;
@@ -372,9 +372,10 @@ img {
     align-items: center;
 }
 
-.calendar-text-flex>i{
+.calendar-text-flex>i {
     font-size: 1.1rem;
 }
+
 .calendar-select-btn:hover {
     background: var(--darkblue-small-gradient-lighter);
     color: white;
@@ -706,6 +707,11 @@ img {
 #calendar-input-3 {
     display: none;
     opacity: 0;
+}
+
+#calendar-input-4 {
+    display: none;
+    opacity: 0;
     width: 100%;
 }
 
@@ -806,4 +812,176 @@ img {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#trainings-month-listed {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 2em;
+}
+
+.month-session {
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2581FA;
+    border-radius: 1em;
+    padding: 1em 4em;
+}
+
+.month-session-weekday {
+    font-family: "Tilt Neon", sans-serif;
+
+}
+
+.month-session-month,
+.month-session-day-of-month {
+    font-family: 'calendar-font-bold';
+    font-weight: lighter;
+    font-size: 3rem;
+}
+
+.month-session-month {
+    margin-top: -0.3em;
+}
+
+.month-session-date {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+}
+
+.month-session-date-information {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.month-session-category {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+/* UI VERSE Code */
+.radio-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 50%;
+}
+
+
+.radio-input label {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+.radio-input label::before {
+    position: absolute;
+    content: "";
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 45px;
+    z-index: -1;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+
+.radio-input label:hover::before {
+    transition: all 0.2s ease;
+    background-color: #2a2e3c;
+}
+
+.radio-input .label:has(input:checked)::before {
+    background-color: #2d3750;
+    border-color: #435dd8;
+    height: 50px;
+}
+
+.radio-input .label .text {
+    color: #fff;
+}
+
+.radio-input .label input[type="radio"] {
+    background-color: #202030;
+    appearance: none;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radio-input .label input[type="radio"]:checked {
+    background-color: #435dd8;
+    -webkit-animation: puls 0.7s forwards;
+    animation: pulse 0.7s forwards;
+}
+
+.radio-input .label input[type="radio"]:before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    transition: all 0.1s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background-color: #fff;
+    transform: scale(0);
+}
+
+.radio-input .label input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+/* UI VERSE Code end */
+#input-date {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
+.date-input {
+    background-color: transparent;
+    outline: none;
+    border: 2px solid #435dd8;
+    border-radius: 10px;
+    padding: 0.5em;
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: 'calendar-font';
 }

@@ -86,31 +86,36 @@ let CALENDAR_ELEMENTS = {
         type: undefined,
         startTime: undefined,
         endTime: undefined,
-        date: undefined
+        date: {
+            month: undefined,
+            dayOfMonth: undefined,
+        },
+        duration: undefined,
     },
     colorCodes: [
         {
-            "main": "#B0D9F1",
-            "darkMain": "#4A7DA8"
+            "main": "#A8D8F0",     // helles Eisblau
+            "darkMain": "#5CB0D6"
         },
         {
-            "main": "#86B6D2",
-            "darkMain": "#2D5E85"
+            "main": "#7DB8DE",     // leicht kräftigeres Himmelblau
+            "darkMain": "#3F8FBA"
         },
         {
-            "main": "#6096BA",
-            "darkMain": "#1E4968"
+            "main": "#559ACB",     // klassisches Mittelblau
+            "darkMain": "#2D6B97"
         },
         {
-            "main": "#3B7EA1",
-            "darkMain": "#103A54"
+            "main": "#397EB2",     // tieferes Blau
+            "darkMain": "#215C84"
         },
         {
-            "main": "#1F5F8B",
-            "darkMain": "#0A2F47"
+            "main": "#266393",     // sattes Ozeanblau
+            "darkMain": "#18456A"
         }
-    ],
+    ],    
     sessionsToday: [],
+    allSessions: [],
     currentMonth: new Date().getMonth(),
 }
 
@@ -121,6 +126,9 @@ let CALENDAR_ELEMENTS = {
 function setupLS() {    
     if (!localStorage["calendar-items-today"]) {
         localStorage["calendar-items-today"] = '[]'
+    }
+    if(!localStorage["calendar-items-all"]){
+        localStorage["calendar-items-all"] = '[]';
     }
 }
 setupLS()

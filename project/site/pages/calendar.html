@@ -102,7 +102,7 @@
                                 <div id="hours">
                                     <p id="hours-input"></p>
                                 </div>
-                                <div class="lower change-time-module" onclick="minusTime(24)">
+                                <div class="lower change-time-module" onclick="minusTime(23)">
                                     <span class="material-symbols-outlined">
                                         arrow_drop_down
                                     </span>
@@ -118,7 +118,7 @@
                                 <div id="minutes">
                                     <p id="minutes-input"></p>
                                 </div>
-                                <div class="lower change-time-module" onclick="minusTime(60)">
+                                <div class="lower change-time-module" onclick="minusTime(59)">
                                     <span class="material-symbols-outlined">
                                         arrow_drop_down
                                     </span>
@@ -127,6 +127,24 @@
                         </div>
                     </div>
                     <div id="calendar-input-3" class="calendar-input-element">
+                        <h4 class="calendar-input-describtion">Select a date:</h4>
+                        <div class="radio-input">
+                            <label class="label" onclick="selectDate('today')">
+                                <input type="radio" id="value-1" checked="" name="value-radio" value="value-1"/>
+                                <p class="text">Today</p>
+                            </label>
+                            <label class="label" onclick="selectDate('custom')">
+                                <input type="radio" id="value-2" name="value-radio" value="value-2" />
+                                <p class="text">Custom</p>
+                            </label>
+                        </div>
+                        <div id="input-date">
+                            <input id="month-num" class="date-input" type="number" min="1" max="12">
+                            <h3 class="seperate-dot">.</h3>
+                            <input id="num-of-month" class="date-input" type="number" min="1" max="31">
+                        </div>
+                    </div>
+                    <div id="calendar-input-4" class="calendar-input-element">
                         <h4 id="time-headline" class="calendar-input-describtion">Summary: </h4>
                         <div id="summary">
 
@@ -160,8 +178,15 @@
                     <div class="month-session">
                         <div class="month-session-date">
                             <h3 class="month-session-weekday">Monday</h3>
-                            <h3 class="month-session-day-of-month">06</h3>
-                            <h3 class="month-session-month">APR</h3>
+                            <div class="month-session-date-information">
+                                <h3 class="month-session-day-of-month">06</h3>
+                                <h3 class="month-session-month">APR</h3>
+                            </div>
+                        </div>
+                        <div class="month-session-category">
+                            <h3 class="month-session-category-name">Running</h3>
+                            <h3 class="month-session-category-icon unit-icon"><i class="fa-solid fa-person-running"></i>
+                            </h3>
                         </div>
                     </div>
                 </div>

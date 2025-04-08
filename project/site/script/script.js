@@ -27,7 +27,7 @@ let HEADER_ELEMENTS = {
  */
 function loadIndex() {
     SETTINGS.path = "";
- }
+}
 
 /**
  * Header animation
