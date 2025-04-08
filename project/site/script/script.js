@@ -1,9 +1,11 @@
 /**
- * Dynamic content of index.html
+ * Settings of index.html
  */
 function loadIndex() {
-    SETTINGS.path = "";
+    SETTINGS.path = INDEX_ELEMENTS.path;
+    SETTINGS.userImgPath = INDEX_ELEMENTS.userImgPath;
 }
+loadIndex()
 
 /**
  * 

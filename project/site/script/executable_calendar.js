@@ -1,4 +1,8 @@
 /**
+ * Settings of calendar.html
+ */
+
+/**
  * Dynamic content of calendar.html
  */
 function loadDate() {
@@ -72,7 +76,6 @@ loadInputValuesCalendar()
 function loadEventsOfCalendar() {
     document.getElementById('add-session').addEventListener('click', changeCalendarUI)
     document.getElementById('next-input-step').addEventListener('click', nextInputStep)
-    SETTINGS.path = CALENDAR_ELEMENTS.upperSite;
 }
 loadEventsOfCalendar()
 
@@ -391,13 +394,13 @@ function safeVariables() {
     if (CALENDAR_ELEMENTS.newSession.date.month === (date.getMonth() + 1) && CALENDAR_ELEMENTS.newSession.date.dayOfMonth === date.getDate()) {
         CALENDAR_ELEMENTS.sessionsToday.push(getCopyOf(CALENDAR_ELEMENTS.newSession));
         saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
-        printAllSessions(CALENDAR_ELEMENTS.allSessions)
+        printTodaysSessions(CALENDAR_ELEMENTS.sessionsToday)
     }
 
     //Safe the new session in the "all" list
     CALENDAR_ELEMENTS.allSessions.push(getCopyOf(CALENDAR_ELEMENTS.newSession));
     saveDataOnLS("calendar-items-all", CALENDAR_ELEMENTS.allSessions)
-    printTodaysSessions(CALENDAR_ELEMENTS.sessionsToday)
+    printAllSessions(CALENDAR_ELEMENTS.allSessions)
 }
 
 /**

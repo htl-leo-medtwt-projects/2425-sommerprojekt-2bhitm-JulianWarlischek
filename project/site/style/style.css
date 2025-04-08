@@ -463,7 +463,6 @@ img {
     align-items: center;
     flex-direction: column;
 }
-/** ==================================================================================**/
 
 #trainings-today-header {
     width: 80%;
@@ -894,7 +893,6 @@ img {
     transition: all 400ms ease;
 }
 
-/* ===================================================================================*/
 
 /* UI VERSE Code */
 .radio-input {

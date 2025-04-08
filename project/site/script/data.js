@@ -2,7 +2,8 @@
  * PROJEKT
  */
 let SETTINGS = {
-    path: ""
+    path: "",
+    userImgPath: ""
 }
 
 /**
@@ -11,6 +12,8 @@ let SETTINGS = {
  * Elements and values of the index.html file.
  */
 let INDEX_ELEMENTS = {
+    path: './index.html',
+    userImgPath: './images/running-profile.png'
 }
 
 /**
@@ -20,6 +23,7 @@ let INDEX_ELEMENTS = {
  */
 let TRAINING_ELEMENTS = {
     upperSite: "./index.html",
+    userImgPath: './images/running-profile.png',
     sections_output: document.getElementById('section-flex'),
     number_of_sections: 4,
     section_backgrounds: [
@@ -35,7 +39,8 @@ let TRAINING_ELEMENTS = {
         'Stay hydrated'
     ],
     section_links: [
-        './calendar.html'
+        './pages_training/calendar.html',
+        './pages_training/live-session.html'
     ]
 }
 
@@ -45,7 +50,8 @@ let TRAINING_ELEMENTS = {
  * Elements and values of the calendar
  */
 let CALENDAR_ELEMENTS = {
-    upperSite: "/training.html",
+    upperSite: "./training.html",
+    userImgPath: "./../images/running-profile.png",
     weekday: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     month: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     day_times: dayTimes = ["Morning", "Noon", "Afternoon", "Evening", "Night"],
@@ -113,21 +119,31 @@ let CALENDAR_ELEMENTS = {
             "main": "#266393",     // sattes Ozeanblau
             "darkMain": "#18456A"
         }
-    ],    
+    ],
     sessionsToday: [],
     allSessions: [],
     currentMonth: new Date().getMonth(),
+}
+
+/**
+ * LIVE_SESSION_ELEMENTS
+ * 
+ * Elements and values of a live session
+ */
+let LIVE_SESSION_ELEMENTS = {
+    upperSite: './training.html',
+    userImgPath: './../images/running-profile.png'
 }
 
 
 /**
  * Setup for LS (Local Storage)
  */
-function setupLS() {    
+function setupLS() {
     if (!localStorage["calendar-items-today"]) {
         localStorage["calendar-items-today"] = '[]'
     }
-    if(!localStorage["calendar-items-all"]){
+    if (!localStorage["calendar-items-all"]) {
         localStorage["calendar-items-all"] = '[]';
     }
 }
