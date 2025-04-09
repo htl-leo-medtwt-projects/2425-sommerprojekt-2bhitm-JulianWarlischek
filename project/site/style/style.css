@@ -877,7 +877,7 @@ img {
     gap: 1em;
 }
 
-#trainings-month-listed-outside{
+#trainings-month-listed-outside {
     overflow: scroll;
     width: 100%;
     display: flex;
@@ -886,7 +886,7 @@ img {
     flex-direction: column;
 }
 
-#trainings-month{
+#trainings-month {
     width: 100%;
     overflow: scroll;
     height: 70vh;
@@ -1005,4 +1005,178 @@ img {
     text-align: center;
     font-size: 1.5rem;
     font-family: 'calendar-font';
+}
+
+/* TRACK YOUR TRAINING */
+#selection-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    justify-content: center;
+    align-items: center;
+    margin-top: calc(var(--margin-c-header) + 2em);
+    font-family: "Tilt Neon", sans-serif;
+    font-size: 0.7rem;
+    width: 100%;
+}
+
+#selection-flex-inner {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+
+}
+
+.span-blue {
+    color: #3617FF;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+#possible-sessions{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.possible-session{
+    width: 90%;
+    border-radius: 1em;
+    padding: 1rem 1.5rem;
+    color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    position: relative;
+    border: var(--main-color) 2px solid;
+    overflow: hidden;
+}
+
+.possible-session>.session-header{
+    width: auto;
+}
+
+.possible-session>.time-settings{
+    width: auto;
+    display: none;
+}
+
+.possible-overlay{
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    transition: left 0.5s ease, right 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.possible-overlay-right{
+    right: -100%;
+}
+
+.possible-overlay-left{
+    left: -100%;
+}
+
+.seperation-line{
+    border: 2px solid var(--main-color);
+    width: 90%;
+    margin: 1em 0;
+    border-radius: 1em;
+}
+
+.possible-session:hover .possible-overlay-left{
+    left: 0;
+}
+
+.possible-session:hover .possible-overlay-right{
+    right: 0;
+}
+
+.possible-session-name{
+    font-size: 1.4em;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.click-hint{
+    font-size: 0.7em;
+}
+
+#session-selected{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: transform 0.5s ease;
+    transform: translateX(100%);
+    background: url();
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 101;
+}
+
+#session-selected-overlay{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,rgba(0, 0, 0, 0.144) 20%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.9));
+}
+
+#session-selected-information{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    bottom:10vh;
+    gap: 1em;
+    left: 0;
+    z-index: 5;
+    color: white;
+    padding: 2em;
+    font-family: 'calendar-font';
+}
+
+#session-selected-name{
+    text-transform: capitalize;
+    font-size: 3rem;
+}
+
+#session-selected-duration{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    border-radius: 30px;
+    gap: 0.5em;
+    background-color: rgba(131, 131, 131, 0.208);
+    padding: 1em 1.5em;
+    backdrop-filter: blur(100px);
+    font-size: 0.8em;
+}
+
+#session-selected-start{
+    background-color: #3617FF;
+    width: 100%;
+    padding: 0.7em;
+    text-align: center;
+    border-radius: 30px;
+    font-family: "Tilt Neon", sans-serif;
+    font-size: 1.3em;
+}
+
+#session-selected-close{
+    position: absolute;
+    top: 3%;
+    left: 9%;
+    color: white;
+    font-size: 2em;
 }

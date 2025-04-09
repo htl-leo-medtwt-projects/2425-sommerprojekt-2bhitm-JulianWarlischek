@@ -1,6 +1,11 @@
 /**
  * Settings of calendar.html
  */
+function loadCalendarSettings() {
+    SETTINGS.path = CALENDAR_ELEMENTS.upperSite;
+    SETTINGS.userImgPath = CALENDAR_ELEMENTS.userImgPath;
+}
+loadCalendarSettings()
 
 /**
  * Dynamic content of calendar.html
@@ -40,9 +45,6 @@ setInterval(loadDate, 1500)
  * Loads months
  */
 function loadMonths() {
-
-    const date = new Date();
-
     const monthBefore = document.getElementById('month-before-label');
     const monthNow = document.getElementById('month-now-label');
     const monthAfter = document.getElementById('month-after-label');
@@ -453,6 +455,7 @@ function resetCalendarVariables() {
  */
 function printTodaysSessions(items) {
     let temp_string = "";
+
     for (let i = 0; i < items.length; i++) {
         temp_string += `
                     <div class="training-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}; color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain};">

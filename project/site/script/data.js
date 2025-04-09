@@ -61,27 +61,32 @@ let CALENDAR_ELEMENTS = {
         {
             'name': 'strength training',
             'icon': '<i class="fa-solid fa-dumbbell"></i>',
-            'color': 0
+            'color': 0,
+            'previewImg': './images/preview-img-strength-training.jpg'
         },
         {
             'name': 'running',
             'icon': '<i class="fa-solid fa-person-running"></i>',
-            'color': 1
+            'color': 1,
+            'previewImg': './images/preview-img-running.jpg'
         },
         {
             'name': 'cycling',
             'icon': '<i class="fa-solid fa-person-biking"></i>',
-            'color': 2
+            'color': 2,
+            'previewImg': './images/preview-img-cycling.jpg'
         },
         {
             'name': 'swimming',
             'icon': '<i class="fa-solid fa-person-swimming"></i>',
-            'color': 3
+            'color': 3,
+            'previewImg': './images/preview-img-swimming.jpg'
         },
         {
             'name': 'yoga',
             'icon': '<i class="fa-solid fa-heart"></i>',
-            'color': 4
+            'color': 4,
+            'previewImg': './images/preview-img-yoga.jpg'
         }
     ],
     currentCategory: 0,
@@ -100,30 +105,31 @@ let CALENDAR_ELEMENTS = {
     },
     colorCodes: [
         {
-            "main": "#A8D8F0",     // helles Eisblau
-            "darkMain": "#5CB0D6"
+            "main": "#355B70",     // bläulicher Dunkelton
+            "darkMain": "#B8DEE4"  // heller als main
         },
         {
-            "main": "#7DB8DE",     // leicht kräftigeres Himmelblau
-            "darkMain": "#3F8FBA"
+            "main": "#B1D4E8",
+            "darkMain": "#3F6476"  // kräftig dunkler als main
         },
         {
-            "main": "#559ACB",     // klassisches Mittelblau
-            "darkMain": "#2D6B97"
+            "main": "#8A9CBF",
+            "darkMain": "#354E68"  // kräftig dunkler als main
         },
         {
-            "main": "#397EB2",     // tieferes Blau
-            "darkMain": "#215C84"
+            "main": "#7F9FAF",
+            "darkMain": "#2C4557"  // kräftig dunkler als main
         },
         {
-            "main": "#266393",     // sattes Ozeanblau
-            "darkMain": "#18456A"
+            "main": "#6B8CA3",
+            "darkMain": "#41586E"  // dunkler als main
         }
     ],
     sessionsToday: [],
     allSessions: [],
     currentMonth: new Date().getMonth(),
 }
+
 
 /**
  * LIVE_SESSION_ELEMENTS
@@ -132,7 +138,8 @@ let CALENDAR_ELEMENTS = {
  */
 let LIVE_SESSION_ELEMENTS = {
     upperSite: './training.html',
-    userImgPath: './../images/running-profile.png'
+    userImgPath: './../images/running-profile.png',
+    currentSessionIDSelected: ""
 }
 
 

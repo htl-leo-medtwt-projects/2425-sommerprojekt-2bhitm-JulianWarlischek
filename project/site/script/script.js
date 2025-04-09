@@ -43,3 +43,12 @@ function fadeIn(elementId, display) {
 function getCopyOf(o) {
     return JSON.parse(JSON.stringify(o));
 }
+
+/**
+ * Function to filter a number out of a string
+ */
+function getInteger(int_string) {
+    const nums = int_string.match(/\d+/);
+
+    return nums[0];
+}   
