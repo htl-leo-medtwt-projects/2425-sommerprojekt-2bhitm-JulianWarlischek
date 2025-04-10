@@ -164,6 +164,7 @@ img {
 .dashboard-item {
     border-radius: 10px;
     box-shadow: var(--box-shadow);
+    padding: 1.5em 1.5em;
 }
 
 .dashboard-flex-span:nth-child(1) {
@@ -188,6 +189,64 @@ img {
 #dashboard-flex-grid>div:nth-child(2),
 #dashboard-flex-grid>div:nth-child(3) {
     background: var(--darkblue-small-gradient-lighter);
+}
+#completed-sessions-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2em;
+}
+
+#completed-sessions {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-family: "Tilt Neon", sans-serif;
+    
+}
+
+#completed-sessions>a{
+    color: white;
+}
+
+#completed-sessions-diagramm-info{
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+}
+
+#completed-sessions-diagramm{
+    border: #4e33ff 2px solid;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 2vh;
+    border-radius: 2em;
+
+}
+
+#diagramm-content{
+    height: 100%;
+    width: 100%;
+    transform: translateX(-28.57%);
+    background-color: #3617FF;
+}
+
+#completed-sessions-diagramm-info{
+    color: white;
+    font-family: "Tilt Neon", sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+#completed-sessions-diagramm-info>h5{
+    align-self: flex-end;
 }
 
 
@@ -1034,7 +1093,7 @@ img {
     font-style: italic;
 }
 
-#possible-sessions{
+#possible-sessions {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -1043,7 +1102,7 @@ img {
     width: 100%;
 }
 
-.possible-session{
+.possible-session {
     width: 90%;
     border-radius: 1em;
     padding: 1rem 1.5rem;
@@ -1056,16 +1115,16 @@ img {
     overflow: hidden;
 }
 
-.possible-session>.session-header{
+.possible-session>.session-header {
     width: auto;
 }
 
-.possible-session>.time-settings{
+.possible-session>.time-settings {
     width: auto;
     display: none;
 }
 
-.possible-overlay{
+.possible-overlay {
     background-color: white;
     position: absolute;
     width: 100%;
@@ -1077,40 +1136,40 @@ img {
     justify-content: center;
 }
 
-.possible-overlay-right{
+.possible-overlay-right {
     right: -100%;
 }
 
-.possible-overlay-left{
+.possible-overlay-left {
     left: -100%;
 }
 
-.seperation-line{
+.seperation-line {
     border: 2px solid var(--main-color);
     width: 90%;
     margin: 1em 0;
     border-radius: 1em;
 }
 
-.possible-session:hover .possible-overlay-left{
+.possible-session:hover .possible-overlay-left {
     left: 0;
 }
 
-.possible-session:hover .possible-overlay-right{
+.possible-session:hover .possible-overlay-right {
     right: 0;
 }
 
-.possible-session-name{
+.possible-session-name {
     font-size: 1.4em;
     text-transform: capitalize;
     text-align: center;
 }
 
-.click-hint{
+.click-hint {
     font-size: 0.7em;
 }
 
-#session-selected{
+#session-selected {
     position: fixed;
     top: 0;
     width: 100vw;
@@ -1124,19 +1183,19 @@ img {
     z-index: 101;
 }
 
-#session-selected-overlay{
+#session-selected-overlay {
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom,rgba(0, 0, 0, 0.144) 20%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.9));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.144) 20%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.9));
 }
 
-#session-selected-information{
+#session-selected-information {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     position: absolute;
-    bottom:10vh;
+    bottom: 10vh;
     gap: 1em;
     left: 0;
     z-index: 5;
@@ -1145,12 +1204,12 @@ img {
     font-family: 'calendar-font';
 }
 
-#session-selected-name{
+#session-selected-name {
     text-transform: capitalize;
     font-size: 3rem;
 }
 
-#session-selected-duration{
+#session-selected-duration {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1163,7 +1222,7 @@ img {
     font-size: 0.8em;
 }
 
-#session-selected-start{
+#session-selected-start {
     background-color: #3617FF;
     width: 100%;
     padding: 0.7em;
@@ -1173,7 +1232,7 @@ img {
     font-size: 1.3em;
 }
 
-#session-selected-close{
+#session-selected-close {
     position: absolute;
     top: 3%;
     left: 9%;

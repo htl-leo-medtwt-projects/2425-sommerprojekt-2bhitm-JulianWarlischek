@@ -55,9 +55,9 @@ function loadMonths() {
 
 
     setTimeout(() => {
-        monthBefore.innerHTML = `${CALENDAR_ELEMENTS.month[(CALENDAR_ELEMENTS.currentMonth - 1 + CALENDAR_ELEMENTS.month.length) % CALENDAR_ELEMENTS.month.length]}`;
-        monthNow.innerHTML = `${CALENDAR_ELEMENTS.month[CALENDAR_ELEMENTS.currentMonth]}`;
-        monthAfter.innerHTML = `${CALENDAR_ELEMENTS.month[(CALENDAR_ELEMENTS.currentMonth + 1) % CALENDAR_ELEMENTS.month.length]}`;
+        monthBefore.innerHTML = `${CALENDAR_ELEMENTS.currentMonthStartZero === 0 ? "" : CALENDAR_ELEMENTS.weekdayShort[((CALENDAR_ELEMENTS.currentMonth + 5 + CALENDAR_ELEMENTS.currentMonthStartZero) % 7)]}`;
+        monthNow.innerHTML = `${CALENDAR_ELEMENTS.weekdayShort[((CALENDAR_ELEMENTS.currentMonth + 6 + CALENDAR_ELEMENTS.currentMonthStartZero) % 7)]}`;
+        monthAfter.innerHTML = CALENDAR_ELEMENTS.currentMonthStartZero === CALENDAR_ELEMENTS.weekday.length - 1 ? "":  `${CALENDAR_ELEMENTS.weekdayShort[(CALENDAR_ELEMENTS.currentMonth + 7 + CALENDAR_ELEMENTS.currentMonthStartZero) % 7]}`;
 
         fadeIn('month-before-label');
         fadeIn('month-now-label');
@@ -323,8 +323,12 @@ function checkState() {
             CALENDAR_ELEMENTS.newSession.duration = calcDuration(parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(3, 5)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(3, 5)));
             break;
         case 3:
-            CALENDAR_ELEMENTS.newSession.date.month = month;
-            CALENDAR_ELEMENTS.newSession.date.dayOfMonth = numOfMonth;
+            const date = new Date();
+
+            date.setDate(numOfMonth);
+            CALENDAR_ELEMENTS.newSession.date.month = date.getMonth();
+            CALENDAR_ELEMENTS.newSession.date.dayOfMonth = date.getDate();
+            CALENDAR_ELEMENTS.newSession.date.year = new Date().getFullYear();
             break
     }
 
@@ -397,6 +401,7 @@ function safeVariables() {
         CALENDAR_ELEMENTS.sessionsToday.push(getCopyOf(CALENDAR_ELEMENTS.newSession));
         saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
         printTodaysSessions(CALENDAR_ELEMENTS.sessionsToday)
+        console.log("SAFE");
     }
 
     //Safe the new session in the "all" list
@@ -491,13 +496,14 @@ function printTodaysSessions(items) {
 /**
  * Function to print a single or more sessions on the slider (CALENDAR)
  */
-function printAllSessions(items) {
-
-
+function printAllSessions(items) {    
     let temp_string = "";
+    const currentCheckDate = new Date();
+    currentCheckDate.setDate(currentCheckDate.getDate() + CALENDAR_ELEMENTS.currentMonthStartZero);
 
     for (let i = 0; i < items.length; i++) {
-        if (items[i].date.month === CALENDAR_ELEMENTS.currentMonth + 1) {
+    
+        if (items[i].date.dayOfMonth === currentCheckDate.getDate() && items[i].date.month === (currentCheckDate.getMonth() + 1) && items[i].date.year === currentCheckDate.getFullYear()) {
             temp_string += `
                     <div class="month-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}">
                         <div class="month-session-date">
@@ -516,6 +522,7 @@ function printAllSessions(items) {
             `
         }
     }
+    
     document.getElementById('trainings-month-listed').innerHTML = temp_string;
 }
 
@@ -523,10 +530,19 @@ function printAllSessions(items) {
  * Load sessions from LS
  */
 function loadSessionsFromLS() {
-    let items = JSON.parse(localStorage["calendar-items-today"])
     let allSessions = JSON.parse(localStorage['calendar-items-all']);
+    CALENDAR_ELEMENTS.sessionsToday = []
+    for(let i = 0; i < allSessions.length; i++){
+        if(allSessions[i].date.dayOfMonth == new Date().getDate()){
+            CALENDAR_ELEMENTS.sessionsToday.push(allSessions[i]);
+        }
+    }
 
-    printTodaysSessions(items);
+    
+
+    saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday)
+    
+    printTodaysSessions(CALENDAR_ELEMENTS.sessionsToday);
     printAllSessions(allSessions);
 
     document.getElementById('training-sessions').innerHTML += `
@@ -633,23 +649,20 @@ function slideDown() {
  * Changes the month
  */
 function swipeMonth(dir) {
-    CALENDAR_ELEMENTS.currentMonth += dir;
 
-    if (CALENDAR_ELEMENTS.currentMonth < 0) {
-        CALENDAR_ELEMENTS.currentMonth = CALENDAR_ELEMENTS.month.length - 1;
-    } else if (CALENDAR_ELEMENTS.currentMonth > CALENDAR_ELEMENTS.month.length - 1) {
-        CALENDAR_ELEMENTS.currentMonth = 0;
-    }
-    loadMonths()
+    if (!(CALENDAR_ELEMENTS.currentMonthStartZero === 0 && dir < 0) && !(CALENDAR_ELEMENTS.currentMonthStartZero === CALENDAR_ELEMENTS.weekday.length - 1 && dir > 0)) {
+        CALENDAR_ELEMENTS.currentMonthStartZero += dir;
 
-    if (document.getElementById('trainings-month').style.display != 'none') {
-        fadeOut('trainings-month', 400);
-
-        setTimeout(() => {
-            printAllSessions(CALENDAR_ELEMENTS.allSessions);
-            fadeIn('trainings-month', 'block')
-        }, 400)
-    }
+        if (document.getElementById('trainings-month').style.display != 'none') {
+            fadeOut('trainings-month', 400);
+    
+            setTimeout(() => {
+                printAllSessions(CALENDAR_ELEMENTS.allSessions);
+                fadeIn('trainings-month', 'block')
+            }, 400)
+        }
+        loadMonths()
+    } 
 }
 
 /**

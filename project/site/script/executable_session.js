@@ -19,6 +19,9 @@ function printPossibleSessions() {
 
     let items = CALENDAR_ELEMENTS.sessionsToday;
 
+    console.log(items);
+    
+
     for (let i = 0; i < items.length; i++) {
         temp_string += `
                 <div class="training-session possible-session ${i % 2 == 0 ? 'possible-session-left' : 'possible-session-right'}" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}; color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain};" onclick="selectThisSessionToStart('${i + 1}-today')">

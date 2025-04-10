@@ -53,6 +53,7 @@ let CALENDAR_ELEMENTS = {
     upperSite: "./training.html",
     userImgPath: "./../images/running-profile.png",
     weekday: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    weekdayShort: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     month: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     day_times: dayTimes = ["Morning", "Noon", "Afternoon", "Evening", "Night"],
     state: 1,
@@ -100,6 +101,7 @@ let CALENDAR_ELEMENTS = {
         date: {
             month: undefined,
             dayOfMonth: undefined,
+            year: undefined
         },
         duration: undefined,
     },
@@ -127,7 +129,8 @@ let CALENDAR_ELEMENTS = {
     ],
     sessionsToday: [],
     allSessions: [],
-    currentMonth: new Date().getMonth(),
+    currentMonth: new Date().getDay(),
+    currentMonthStartZero: 0,
 }
 
 
@@ -160,8 +163,8 @@ setupLS()
  * Loads data into JSONs
  */
 function loadFromLS() {
-    CALENDAR_ELEMENTS.sessionsToday = JSON.parse(localStorage["calendar-items-today"]);
     CALENDAR_ELEMENTS.allSessions = JSON.parse(localStorage['calendar-items-all'])
+    CALENDAR_ELEMENTS.sessionsToday = JSON.parse(localStorage['calendar-items-today'])
 }
 loadFromLS()
 
