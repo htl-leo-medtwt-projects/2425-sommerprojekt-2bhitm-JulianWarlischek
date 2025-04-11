@@ -1,4 +1,9 @@
 /**
+ * Sortable.js library
+ */
+
+
+/**
  * Settings of calendar.html
  */
 function loadCalendarSettings() {
@@ -401,7 +406,8 @@ function safeVariables() {
         CALENDAR_ELEMENTS.sessionsToday.push(getCopyOf(CALENDAR_ELEMENTS.newSession));
         saveDataOnLS("calendar-items-today", CALENDAR_ELEMENTS.sessionsToday)
         printTodaysSessions(CALENDAR_ELEMENTS.sessionsToday)
-        console.log("SAFE");
+        CALENDAR_ELEMENTS.sessionsToComplete++;
+        saveDataOnLS('sessions-to-complete', CALENDAR_ELEMENTS.sessionsToComplete)
     }
 
     //Safe the new session in the "all" list

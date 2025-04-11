@@ -128,6 +128,8 @@ let CALENDAR_ELEMENTS = {
         }
     ],
     sessionsToday: [],
+    sessionsCompleted: 0,
+    sessionsToComplete: 0,
     allSessions: [],
     currentMonth: new Date().getDay(),
     currentMonthStartZero: 0,
@@ -142,7 +144,7 @@ let CALENDAR_ELEMENTS = {
 let LIVE_SESSION_ELEMENTS = {
     upperSite: './training.html',
     userImgPath: './../images/running-profile.png',
-    currentSessionIDSelected: ""
+    currentSessionIDSelected: -1
 }
 
 
@@ -156,6 +158,12 @@ function setupLS() {
     if (!localStorage["calendar-items-all"]) {
         localStorage["calendar-items-all"] = '[]';
     }
+    if (!localStorage["completed-sessions"]) {
+        localStorage['completed-sessions'] = 0;
+    }
+    if(!localStorage["sessions-to-complete"]){
+        localStorage['sessions-to-complete'] = 0;
+    }
 }
 setupLS()
 
@@ -163,8 +171,10 @@ setupLS()
  * Loads data into JSONs
  */
 function loadFromLS() {
-    CALENDAR_ELEMENTS.allSessions = JSON.parse(localStorage['calendar-items-all'])
-    CALENDAR_ELEMENTS.sessionsToday = JSON.parse(localStorage['calendar-items-today'])
+    CALENDAR_ELEMENTS.allSessions = JSON.parse(localStorage['calendar-items-all']);
+    CALENDAR_ELEMENTS.sessionsToday = JSON.parse(localStorage['calendar-items-today']);
+    CALENDAR_ELEMENTS.sessionsCompleted = JSON.parse(localStorage['completed-sessions']);
+    CALENDAR_ELEMENTS.sessionsToComplete = JSON.parse(localStorage['sessions-to-complete']);
 }
 loadFromLS()
 

@@ -1,4 +1,16 @@
 /**
+ * Sortable.js
+ */
+new Sortable(document.getElementById('possible-sessions'), {
+    animation: 150,
+    swap: true,
+    filter: ".seperation-line",
+    onMove: function (evt) {
+        return !evt.related.classList.contains('seperation-line');
+    }
+})
+
+/**
  * Settings of live-session.html
  */
 function loadLiveSessionSettings() {
@@ -19,12 +31,9 @@ function printPossibleSessions() {
 
     let items = CALENDAR_ELEMENTS.sessionsToday;
 
-    console.log(items);
-    
-
     for (let i = 0; i < items.length; i++) {
         temp_string += `
-                <div class="training-session possible-session ${i % 2 == 0 ? 'possible-session-left' : 'possible-session-right'}" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}; color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain};" onclick="selectThisSessionToStart('${i + 1}-today')">
+                <div class="training-session possible-session ${i % 2 == 0 ? 'possible-session-left' : 'possible-session-right'}" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}; color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain};" onclick="selectThisSessionToStart(${i})">
                     <div style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}; color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}" class="possible-overlay ${i % 2 == 0 ? 'possible-overlay-right' : 'possible-overlay-left'}"><h4 class="possible-session-name">${CALENDAR_ELEMENTS.types[items[i].type].name} <br> <span class="click-hint">Click again to start!</span><h4></div>
                     <div class="session-header">
                         <div class="unit-icon" style="border:${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain} 1px solid; color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain};">
@@ -50,8 +59,7 @@ printPossibleSessions()
  */
 function selectThisSessionToStart(sessionID) {
     if (sessionID === LIVE_SESSION_ELEMENTS.currentSessionIDSelected) {
-        setStarterMenu(getInteger(sessionID));
-
+        setStarterMenu(sessionID);
     } else {
         LIVE_SESSION_ELEMENTS.currentSessionIDSelected = sessionID;
     }
@@ -61,12 +69,8 @@ function selectThisSessionToStart(sessionID) {
  * This function sets the preview of the Session to start
  */
 function setStarterMenu(id) {
-    LIVE_SESSION_ELEMENTS.currentSessionIDSelected = ""
     const slider = document.getElementById('session-selected');
-    id = parseInt(id) - 1;
 
-    console.log(id);
-    
     slider.style.backgroundImage = "url('../." + CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.sessionsToday[id].type].previewImg + "')";
     slider.style.backgroundSize = "cover";
     slider.style.backgroundPosition = "center";
@@ -93,4 +97,37 @@ function openStarterMenu() {
 function closeStarterMenu() {
     const slider = document.getElementById('session-selected');
     slider.style.transform = "translateX(100%)";
+}
+
+/**
+ * Function to handle a completed session
+ */
+function sessionCompleted() {
+    CALENDAR_ELEMENTS.sessionsCompleted++;
+    
+    for(let i = 0; i < CALENDAR_ELEMENTS.allSessions.length; i++){
+        if(areSessionsEqual(CALENDAR_ELEMENTS.allSessions[i], CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected])){
+            CALENDAR_ELEMENTS.allSessions.splice(i, 1);
+            console.log("Deleted");
+        }
+    }
+    CALENDAR_ELEMENTS.sessionsToday.splice(LIVE_SESSION_ELEMENTS.currentSessionIDSelected, 1);
+    saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday);
+    saveDataOnLS('calendar-items-all', CALENDAR_ELEMENTS.allSessions);
+    saveDataOnLS('completed-sessions', CALENDAR_ELEMENTS.sessionsCompleted)
+    printPossibleSessions()
+    closeStarterMenu();
+}
+
+/** 
+ * Checks if two sessions are equal
+*/
+function areSessionsEqual(sessionA, sessionB) {
+    return sessionA.type === sessionB.type &&
+           sessionA.startTime === sessionB.startTime &&
+           sessionA.endTime === sessionB.endTime &&
+           sessionA.duration === sessionB.duration &&
+           sessionA.date.month === sessionB.date.month &&
+           sessionA.date.dayOfMonth === sessionB.date.dayOfMonth &&
+           sessionA.date.year === sessionB.date.year;
 }

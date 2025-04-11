@@ -515,7 +515,6 @@ img {
 }
 
 #training-sessions {
-    overflow: scroll;
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -581,6 +580,7 @@ img {
     justify-content: center;
     align-items: center;
     gap: 1em;
+    cursor: pointer;
 }
 
 .session-header {
@@ -1239,3 +1239,4 @@ img {
     color: white;
     font-size: 2em;
 }
+

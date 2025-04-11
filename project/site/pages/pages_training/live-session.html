@@ -7,6 +7,7 @@
     <title>Live Session</title>
     <script src="https://kit.fontawesome.com/3a03b4384b.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../style/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="../../script/data.js" defer></script>
     <script src="../../script/script.js" defer></script>
     <script src="../../script/executable_session.js" defer></script>
@@ -58,7 +59,7 @@
                     <h3 id="session-selected-duration-num"></h3>
                 </div>
             </div>
-            <div id="session-selected-start">Start</div>
+            <div id="session-selected-start" onclick="sessionCompleted()">Start</div>
         </div>
     </div>
     <!-- Session selected (End) -->
