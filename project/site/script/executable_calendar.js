@@ -1,14 +1,10 @@
 /**
- * Sortable.js library
- */
-
-
-/**
  * Settings of calendar.html
  */
 function loadCalendarSettings() {
     SETTINGS.path = CALENDAR_ELEMENTS.upperSite;
     SETTINGS.userImgPath = CALENDAR_ELEMENTS.userImgPath;
+    loadChartData()
 }
 loadCalendarSettings()
 
@@ -62,7 +58,7 @@ function loadMonths() {
     setTimeout(() => {
         monthBefore.innerHTML = `${CALENDAR_ELEMENTS.currentMonthStartZero === 0 ? "" : CALENDAR_ELEMENTS.weekdayShort[((CALENDAR_ELEMENTS.currentMonth + 5 + CALENDAR_ELEMENTS.currentMonthStartZero) % 7)]}`;
         monthNow.innerHTML = `${CALENDAR_ELEMENTS.weekdayShort[((CALENDAR_ELEMENTS.currentMonth + 6 + CALENDAR_ELEMENTS.currentMonthStartZero) % 7)]}`;
-        monthAfter.innerHTML = CALENDAR_ELEMENTS.currentMonthStartZero === CALENDAR_ELEMENTS.weekday.length - 1 ? "":  `${CALENDAR_ELEMENTS.weekdayShort[(CALENDAR_ELEMENTS.currentMonth + 7 + CALENDAR_ELEMENTS.currentMonthStartZero) % 7]}`;
+        monthAfter.innerHTML = CALENDAR_ELEMENTS.currentMonthStartZero === CALENDAR_ELEMENTS.weekday.length - 1 ? "" : `${CALENDAR_ELEMENTS.weekdayShort[(CALENDAR_ELEMENTS.currentMonth + 7 + CALENDAR_ELEMENTS.currentMonthStartZero) % 7]}`;
 
         fadeIn('month-before-label');
         fadeIn('month-now-label');
@@ -72,7 +68,8 @@ function loadMonths() {
 loadMonths()
 
 function loadInputValuesCalendar() {
-    const time = new Date(); const hours = document.getElementById('hours-input');
+    const time = new Date();
+    const hours = document.getElementById('hours-input');
     const minutes = document.getElementById('minutes-input');
 
     hours.innerHTML = time.getHours();
@@ -502,13 +499,13 @@ function printTodaysSessions(items) {
 /**
  * Function to print a single or more sessions on the slider (CALENDAR)
  */
-function printAllSessions(items) {    
+function printAllSessions(items) {
     let temp_string = "";
     const currentCheckDate = new Date();
     currentCheckDate.setDate(currentCheckDate.getDate() + CALENDAR_ELEMENTS.currentMonthStartZero);
 
     for (let i = 0; i < items.length; i++) {
-    
+
         if (items[i].date.dayOfMonth === currentCheckDate.getDate() && items[i].date.month === (currentCheckDate.getMonth() + 1) && items[i].date.year === currentCheckDate.getFullYear()) {
             temp_string += `
                     <div class="month-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}">
@@ -528,7 +525,7 @@ function printAllSessions(items) {
             `
         }
     }
-    
+
     document.getElementById('trainings-month-listed').innerHTML = temp_string;
 }
 
@@ -538,16 +535,16 @@ function printAllSessions(items) {
 function loadSessionsFromLS() {
     let allSessions = JSON.parse(localStorage['calendar-items-all']);
     CALENDAR_ELEMENTS.sessionsToday = []
-    for(let i = 0; i < allSessions.length; i++){
-        if(allSessions[i].date.dayOfMonth == new Date().getDate()){
+    for (let i = 0; i < allSessions.length; i++) {
+        if (allSessions[i].date.dayOfMonth == new Date().getDate()) {
             CALENDAR_ELEMENTS.sessionsToday.push(allSessions[i]);
         }
     }
 
-    
+
 
     saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday)
-    
+
     printTodaysSessions(CALENDAR_ELEMENTS.sessionsToday);
     printAllSessions(allSessions);
 
@@ -661,14 +658,14 @@ function swipeMonth(dir) {
 
         if (document.getElementById('trainings-month').style.display != 'none') {
             fadeOut('trainings-month', 400);
-    
+
             setTimeout(() => {
                 printAllSessions(CALENDAR_ELEMENTS.allSessions);
                 fadeIn('trainings-month', 'block')
             }, 400)
         }
         loadMonths()
-    } 
+    }
 }
 
 /**

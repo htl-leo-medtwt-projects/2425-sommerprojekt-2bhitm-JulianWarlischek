@@ -133,6 +133,9 @@ let CALENDAR_ELEMENTS = {
     allSessions: [],
     currentMonth: new Date().getDay(),
     currentMonthStartZero: 0,
+    lastSevDaysChartData: [
+
+]
 }
 
 
@@ -164,6 +167,9 @@ function setupLS() {
     if(!localStorage["sessions-to-complete"]){
         localStorage['sessions-to-complete'] = 0;
     }
+    if(!localStorage["sessions-completed-chart"]){
+        loadChartData()
+    }
 }
 setupLS()
 
@@ -183,4 +189,33 @@ loadFromLS()
  */
 function saveDataOnLS(ID, array_or_json) {
     localStorage[ID] = JSON.stringify(array_or_json);
+}
+
+
+function loadChartData() {
+    const date = new Date();
+    const today = new Date()
+    let dates = []
+
+    for (let i = 0; i < 7; i++) {
+        date.setDate(today.getDate() - i);
+        dates.push(date)
+        let newData = {
+            date: dates[i],
+            sessionsCompleted: 0
+        }
+        CALENDAR_ELEMENTS.lastSevDaysChartData.push(newData);
+    }
+
+    console.log(dates);
+    
+}
+
+
+/**
+ * Function to create a copy of an object to avoid reference problems 
+ * @param {Object} o Object to copy 
+ */
+function getCopyOf(o) {
+    return JSON.parse(JSON.stringify(o));
 }

@@ -1,4 +1,43 @@
 /**
+ * Chart.js
+ */
+const ctx = document.getElementById('completed-sessions-chart-canvas')
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: initChart(),
+    }
+});
+
+/**
+ * Inits the chart on the index.html page
+ */
+function initChart() {
+    let labels = [];
+
+    for (let i = 0; i < CALENDAR_ELEMENTS.lastSevDaysChartData.length; i++) {
+        labels.push(getFormatedDate(CALENDAR_ELEMENTS.lastSevDaysChartData[i].date))
+    }
+
+    console.log(labels);
+    
+
+    return labels;
+}
+
+/**
+ * Formats the date into a customized format
+ */
+function getFormatedDate(date) {
+    console.log(date);
+    
+    let stringRepMonth = CALENDAR_ELEMENTS.month[date.getMonth()];
+    let stringRepDate = date.getDate();
+
+    return `${stringRepMonth}. ${stringRepDate}`
+}
+
+/**
  * Function to style the GUI
  * 
  * TRAINING SESSION

@@ -37,14 +37,6 @@ function fadeIn(elementId, display) {
 }
 
 /**
- * Function to create a copy of an object to avoid reference problems 
- * @param {Object} o Object to copy 
- */
-function getCopyOf(o) {
-    return JSON.parse(JSON.stringify(o));
-}
-
-/**
  * Function to filter a number out of a string
  */
 function getInteger(int_string) {
