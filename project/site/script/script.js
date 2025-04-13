@@ -4,6 +4,8 @@
 function loadIndex() {
     SETTINGS.path = INDEX_ELEMENTS.path;
     SETTINGS.userImgPath = INDEX_ELEMENTS.userImgPath;
+    updateChart()
+    updateSessionsDone()
 }
 loadIndex()
 

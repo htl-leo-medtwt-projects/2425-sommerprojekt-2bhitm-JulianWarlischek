@@ -112,9 +112,13 @@ function sessionCompleted() {
         }
     }
     CALENDAR_ELEMENTS.sessionsToday.splice(LIVE_SESSION_ELEMENTS.currentSessionIDSelected, 1);
+    CALENDAR_ELEMENTS.lastSevDaysChartData[0].sessionsCompleted = CALENDAR_ELEMENTS.sessionsCompleted;
+
     saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday);
     saveDataOnLS('calendar-items-all', CALENDAR_ELEMENTS.allSessions);
     saveDataOnLS('completed-sessions', CALENDAR_ELEMENTS.sessionsCompleted)
+    saveDataOnLS('sessions-completed-chart', CALENDAR_ELEMENTS.lastSevDaysChartData);
+    
     printPossibleSessions()
     closeStarterMenu();
 }

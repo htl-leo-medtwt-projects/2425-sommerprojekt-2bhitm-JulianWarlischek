@@ -4,7 +4,6 @@
 function loadCalendarSettings() {
     SETTINGS.path = CALENDAR_ELEMENTS.upperSite;
     SETTINGS.userImgPath = CALENDAR_ELEMENTS.userImgPath;
-    loadChartData()
 }
 loadCalendarSettings()
 
@@ -535,15 +534,8 @@ function printAllSessions(items) {
 function loadSessionsFromLS() {
     let allSessions = JSON.parse(localStorage['calendar-items-all']);
     CALENDAR_ELEMENTS.sessionsToday = []
-    for (let i = 0; i < allSessions.length; i++) {
-        if (allSessions[i].date.dayOfMonth == new Date().getDate()) {
-            CALENDAR_ELEMENTS.sessionsToday.push(allSessions[i]);
-        }
-    }
-
-
-
-    saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday)
+    
+    loadSessionsToday();
 
     printTodaysSessions(CALENDAR_ELEMENTS.sessionsToday);
     printAllSessions(allSessions);

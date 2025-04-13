@@ -3,7 +3,12 @@
  */
 let SETTINGS = {
     path: "",
-    userImgPath: ""
+    userImgPath: "",
+    lastUpdate: {
+        month: new Date().getMonth() + 1,
+        date: new Date().getDate(),
+        year: new Date().getFullYear()
+    }
 }
 
 /**
@@ -47,7 +52,7 @@ let TRAINING_ELEMENTS = {
 /**
  * CALENDAR_ELEMENTS:
  * 
- * Elements and values of the calendar
+ * Elements and values of the calendar.html file.
  */
 let CALENDAR_ELEMENTS = {
     upperSite: "./training.html",
@@ -107,24 +112,24 @@ let CALENDAR_ELEMENTS = {
     },
     colorCodes: [
         {
-            "main": "#355B70",     // bläulicher Dunkelton
-            "darkMain": "#B8DEE4"  // heller als main
+            "main": "#355B70",
+            "darkMain": "#B8DEE4"
         },
         {
             "main": "#B1D4E8",
-            "darkMain": "#3F6476"  // kräftig dunkler als main
+            "darkMain": "#3F6476"
         },
         {
             "main": "#8A9CBF",
-            "darkMain": "#354E68"  // kräftig dunkler als main
+            "darkMain": "#354E68"
         },
         {
             "main": "#7F9FAF",
-            "darkMain": "#2C4557"  // kräftig dunkler als main
+            "darkMain": "#2C4557"
         },
         {
             "main": "#6B8CA3",
-            "darkMain": "#41586E"  // dunkler als main
+            "darkMain": "#41586E"
         }
     ],
     sessionsToday: [],
@@ -134,8 +139,7 @@ let CALENDAR_ELEMENTS = {
     currentMonth: new Date().getDay(),
     currentMonthStartZero: 0,
     lastSevDaysChartData: [
-
-]
+    ]
 }
 
 
@@ -151,6 +155,7 @@ let LIVE_SESSION_ELEMENTS = {
 }
 
 
+
 /**
  * Setup for LS (Local Storage)
  */
@@ -164,10 +169,15 @@ function setupLS() {
     if (!localStorage["completed-sessions"]) {
         localStorage['completed-sessions'] = 0;
     }
-    if(!localStorage["sessions-to-complete"]){
+    if (!localStorage["sessions-to-complete"]) {
         localStorage['sessions-to-complete'] = 0;
     }
-    if(!localStorage["sessions-completed-chart"]){
+    if (!localStorage['latest-update']) {
+        saveDataOnLS('latest-update', SETTINGS.lastUpdate);
+    } else if (localStorage['latest-update']) {
+        SETTINGS.lastUpdate = JSON.parse(localStorage['latest-update'])
+    }
+    if (!localStorage["sessions-completed-chart"]) {
         loadChartData()
     }
 }
@@ -178,11 +188,66 @@ setupLS()
  */
 function loadFromLS() {
     CALENDAR_ELEMENTS.allSessions = JSON.parse(localStorage['calendar-items-all']);
-    CALENDAR_ELEMENTS.sessionsToday = JSON.parse(localStorage['calendar-items-today']);
+    loadSessionsToday()
     CALENDAR_ELEMENTS.sessionsCompleted = JSON.parse(localStorage['completed-sessions']);
     CALENDAR_ELEMENTS.sessionsToComplete = JSON.parse(localStorage['sessions-to-complete']);
+    CALENDAR_ELEMENTS.lastSevDaysChartData = JSON.parse(localStorage["sessions-completed-chart"])
+    SETTINGS.lastUpdate = JSON.parse(localStorage['latest-update'])
+    getReference()
+    console.log(CALENDAR_ELEMENTS.lastSevDaysChartData);
 }
 loadFromLS()
+
+/**
+ * References of date
+ */
+function getReference() {
+    for (let i = 0; i < CALENDAR_ELEMENTS.lastSevDaysChartData.length; i++) {
+        const date = new Date(CALENDAR_ELEMENTS.lastSevDaysChartData[i].date);
+
+        CALENDAR_ELEMENTS.lastSevDaysChartData[i].date = date;
+    }
+
+}
+
+/**
+ * Updates chart
+ */
+function updateChart() {
+    if (!isToday(new Date(`${SETTINGS.lastUpdate.month}.${SETTINGS.lastUpdate.date}.${SETTINGS.lastUpdate.year}`))) {
+        let daysBetween = calcDaysBetween(CALENDAR_ELEMENTS.lastSevDaysChartData[0].date, new Date());
+
+        moveDaysBetween(daysBetween)
+
+        CALENDAR_ELEMENTS.lastSevDaysChartData[0].date = new Date()
+
+        saveDataOnLS("sessions-completed-chart", CALENDAR_ELEMENTS.lastSevDaysChartData)
+        saveDataOnLS('latest-update', SETTINGS.lastUpdate);
+    }
+}
+
+/**
+ * Updates training sessions done
+ */
+function updateSessionsDone() {
+    if (!isToday(new Date(`${SETTINGS.lastUpdate.month}.${SETTINGS.lastUpdate.date}.${SETTINGS.lastUpdate.year}`))) {
+        CALENDAR_ELEMENTS.sessionsCompleted = 0;
+        CALENDAR_ELEMENTS.sessionsToComplete = getSessionsOpen();
+    }
+}
+
+
+/**
+ * Moves whole chart data
+ */
+function moveDaysBetween(num) {
+    for (let i = num; i > 0; i--) {
+        for (let j = CALENDAR_ELEMENTS.lastSevDaysChartData.length - 1; j > 0; j--) {
+            CALENDAR_ELEMENTS.lastSevDaysChartData[j].date.setDate(CALENDAR_ELEMENTS.lastSevDaysChartData[j].date.getDate() + 1);
+            CALENDAR_ELEMENTS.lastSevDaysChartData[j].sessionsCompleted = CALENDAR_ELEMENTS.lastSevDaysChartData[j - 1].sessionsCompleted
+        }
+    }
+}
 
 /**
  * Safes data
@@ -193,22 +258,21 @@ function saveDataOnLS(ID, array_or_json) {
 
 
 function loadChartData() {
-    const date = new Date();
+    let date = new Date();
     const today = new Date()
-    let dates = []
+
 
     for (let i = 0; i < 7; i++) {
+        date = new Date()
         date.setDate(today.getDate() - i);
-        dates.push(date)
         let newData = {
-            date: dates[i],
+            date: date,
             sessionsCompleted: 0
         }
         CALENDAR_ELEMENTS.lastSevDaysChartData.push(newData);
     }
 
-    console.log(dates);
-    
+    saveDataOnLS('sessions-completed-chart', CALENDAR_ELEMENTS.lastSevDaysChartData)
 }
 
 
@@ -218,4 +282,48 @@ function loadChartData() {
  */
 function getCopyOf(o) {
     return JSON.parse(JSON.stringify(o));
+}
+
+/**
+ * Checks if a date is today
+ * @param {*} date 
+ * @returns boolean
+ */
+function isToday(date) {
+    const today = new Date()
+
+    return today.getDate() === date.getDate() &&
+        today.getMonth() === date.getMonth() &&
+        today.getFullYear() === date.getFullYear()
+}
+
+/**
+ * Calculates how much days are between two dates
+ */
+function calcDaysBetween(date1, date2) {
+    const diffMS = Math.abs(date2 - date1);
+
+    const perDay = 1000 * 60 * 60 * 24;
+    const days = Math.floor(diffMS / perDay);
+
+    return days;
+}
+
+/**
+ * Function to get the number of sessions today
+ */
+function getSessionsOpen() {
+    return CALENDAR_ELEMENTS.sessionsToday.length;
+}
+
+/**
+ * Loads todays sessions for a new day
+ */
+function loadSessionsToday(){
+    for (let i = 0; i < CALENDAR_ELEMENTS.allSessions.length; i++) {
+        if (CALENDAR_ELEMENTS.allSessions[i].date.dayOfMonth == new Date().getDate()) {
+            CALENDAR_ELEMENTS.sessionsToday.push(CALENDAR_ELEMENTS.allSessions[i]);
+        }
+    }
+    saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday)
 }

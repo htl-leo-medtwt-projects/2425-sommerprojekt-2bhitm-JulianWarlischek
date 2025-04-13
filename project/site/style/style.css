@@ -244,11 +244,35 @@ img {
     flex-direction: column;
     gap: 0.5em;
 }
+#completed-sessions-chart{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding-top: 0;
+}
 
 #completed-sessions-diagramm-info>h5{
     align-self: flex-end;
 }
 
+#chart-header>h3{
+    font-size: 1.5em;
+    color: #3617FF;
+}
+
+#chart-header>h6{
+    color: rgb(89, 89, 89);
+    font-size: 0.9em;
+}
+
+#chart-header{
+    font-family: "Tilt Neon", sans-serif;
+    position: relative;
+    top: 0;
+}
+#chart-out-box{
+    height: 50%;
+}
 
 /* NAVIGATION */
 #navigation {
