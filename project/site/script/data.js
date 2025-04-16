@@ -261,8 +261,7 @@ function moveDaysBetween(num) {
         }
         for (let i = CALENDAR_ELEMENTS.lastSevDaysChartData.length - 2; i >= 0; i--) {
             CALENDAR_ELEMENTS.lastSevDaysChartData[i + 1].sessionsCompleted = CALENDAR_ELEMENTS.lastSevDaysChartData[i].sessionsCompleted;
-        }
-        
+        }  
     }
     CALENDAR_ELEMENTS.lastSevDaysChartData[0].sessionsCompleted = 0;
     console.log(getCopyOf(CALENDAR_ELEMENTS.lastSevDaysChartData));
@@ -345,4 +344,15 @@ function loadSessionsToday() {
         }
     }
     saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday)
+}
+
+/**
+ * Searches for the index of a session in the all array
+ */
+function indexOf(session) {
+    for (let i = 0; i < CALENDAR_ELEMENTS.allSessions.length; i++) {
+        if (areSessionsEqual(CALENDAR_ELEMENTS.allSessions[i], session)) {
+            return i;
+        }
+    }
 }
