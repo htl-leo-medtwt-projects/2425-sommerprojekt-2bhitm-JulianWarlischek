@@ -111,7 +111,14 @@ function sessionCompleted() {
             console.log("Deleted");
         }
     }
+
     CALENDAR_ELEMENTS.sessionsToday.splice(LIVE_SESSION_ELEMENTS.currentSessionIDSelected, 1);
+    console.log("Eh gschofft");
+    console.log("Des hot passt: " + CALENDAR_ELEMENTS.sessionsCompleted);
+    console.log(CALENDAR_ELEMENTS.lastSevDaysChartData[0].sessionsCompleted);
+    
+    
+    
     CALENDAR_ELEMENTS.lastSevDaysChartData[0].sessionsCompleted = CALENDAR_ELEMENTS.sessionsCompleted;
 
     saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday);
@@ -119,6 +126,8 @@ function sessionCompleted() {
     saveDataOnLS('completed-sessions', CALENDAR_ELEMENTS.sessionsCompleted)
     saveDataOnLS('sessions-completed-chart', CALENDAR_ELEMENTS.lastSevDaysChartData);
     
+    console.log(getCopyOf(CALENDAR_ELEMENTS.lastSevDaysChartData));
+
     printPossibleSessions()
     closeStarterMenu();
 }

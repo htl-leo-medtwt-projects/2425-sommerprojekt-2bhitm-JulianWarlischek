@@ -4,8 +4,12 @@
 function loadIndex() {
     SETTINGS.path = INDEX_ELEMENTS.path;
     SETTINGS.userImgPath = INDEX_ELEMENTS.userImgPath;
-    updateChart()
-    updateSessionsDone()
+    let update1 = updateChart()
+    let update2 = updateSessionsDone();
+
+    if(update1 || update2){
+        update()
+    }
 }
 loadIndex()
 
