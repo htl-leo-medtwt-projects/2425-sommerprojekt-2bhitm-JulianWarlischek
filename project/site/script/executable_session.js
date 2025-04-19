@@ -60,6 +60,7 @@ printPossibleSessions()
  */
 function selectThisSessionToStart(sessionID) {
     if (sessionID === LIVE_SESSION_ELEMENTS.currentSessionIDSelected) {
+        LIVE_SESSION_ELEMENTS.currentSession = getCopyOf(CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected]);
         setStarterMenu(sessionID);
     } else {
         LIVE_SESSION_ELEMENTS.currentSessionIDSelected = sessionID;
@@ -88,16 +89,64 @@ function setStarterMenu(id) {
  */
 function openStarterMenu() {
     const slider = document.getElementById('session-selected');
-    slider.style.transform = "translateX(0)";
+    const trackingArea = document.getElementById('tracking-area');
 
+    slider.style.transform = "translateX(0)";
+    setTimeout(() => {
+        trackingArea.style.transform = "translateY(0)";
+    }, 500)
+
+    setTrackingAreaValues()
 }
 
 /**
- * This function opens the menu box
+ * Function to set the values of the tracking area
  */
-function closeStarterMenu() {
+function setTrackingAreaValues() {
+    const trackingAreaHeader = document.getElementById('tracking-area-header');
+    const trackingAreaHeaderIcon = document.getElementById('tracking-area-header-icon');
+    const trackingAreaHeaderName = document.getElementById('tracking-area-header-name');
+
+    trackingAreaHeader.style.color = `${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].type].darkMain}`
+    trackingAreaHeaderIcon.innerHTML = `<img src="../.${CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].type].previewImg}">`
+    trackingAreaHeaderName.innerHTML = `${CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].type].name}`
+    setDuration()
+}
+
+/**
+ * Sets the remaining duration
+ */
+function setDuration() {
+    const hours = document.getElementById('active-timer-hours')
+    const minutes = document.getElementById('active-timer-minutes')
+    const seconds = document.getElementById('active-timer-seconds')
+
+    let duration = LIVE_SESSION_ELEMENTS.currentSession.duration * 60;
+
+    let h = Math.floor(duration / 3600);
+    let m = Math.floor((duration % 3600) / 60);
+    let s = Math.floor(duration % 60);
+
+    hours.innerHTML = h < 10 ? "0" + h : h;
+    minutes.innerHTML = m < 10 ? "0" + m : m;
+    seconds.innerHTML = s < 10 ? "0" + s : s;
+}
+
+/**
+ * This function closes the menu box
+ */
+function closeStarterMenu(start) {
     const slider = document.getElementById('session-selected');
-    slider.style.transform = "translateX(100%)";
+    const trackingArea = document.getElementById('tracking-area');
+
+    if (start) {
+        fadeOut('session-selected', 500);
+    } else {
+        trackingArea.style.transform = "translateY(100%)";
+        slider.style.transform = "translateX(100%)";
+        LIVE_SESSION_ELEMENTS.currentSession = undefined;
+        LIVE_SESSION_ELEMENTS.currentSessionIDSelected = -1;
+    }
 }
 
 /**
@@ -109,25 +158,15 @@ function sessionCompleted() {
     for (let i = 0; i < CALENDAR_ELEMENTS.allSessions.length; i++) {
         if (areSessionsEqual(CALENDAR_ELEMENTS.allSessions[i], CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected])) {
             CALENDAR_ELEMENTS.allSessions.splice(i, 1);
-            console.log("Deleted");
         }
     }
-
     CALENDAR_ELEMENTS.sessionsToday.splice(LIVE_SESSION_ELEMENTS.currentSessionIDSelected, 1);
-    console.log("Eh gschofft");
-    console.log("Des hot passt: " + CALENDAR_ELEMENTS.sessionsCompleted);
-    console.log(CALENDAR_ELEMENTS.lastSevDaysChartData[0].sessionsCompleted);
-
-
-
     CALENDAR_ELEMENTS.lastSevDaysChartData[0].sessionsCompleted = CALENDAR_ELEMENTS.sessionsCompleted;
 
     saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday);
     saveDataOnLS('calendar-items-all', CALENDAR_ELEMENTS.allSessions);
     saveDataOnLS('completed-sessions', CALENDAR_ELEMENTS.sessionsCompleted)
     saveDataOnLS('sessions-completed-chart', CALENDAR_ELEMENTS.lastSevDaysChartData);
-
-    console.log(getCopyOf(CALENDAR_ELEMENTS.lastSevDaysChartData));
 
     printPossibleSessions()
     closeStarterMenu();
@@ -176,6 +215,108 @@ function changeOrder(evt) {
     orderArrAll[index2] = tempSessionAll;
 
     CALENDAR_ELEMENTS.allSessions = orderArrAll;
-
+    setTimeout(() => {
+        printPossibleSessions()
+    }, 150)
     saveDataOnLS('calendar-items-all', CALENDAR_ELEMENTS.allSessions)
+}
+
+/**
+ * Starts or continues a session
+ */
+function trackSession() {
+    if (LIVE_SESSION_ELEMENTS.sessionRunning) {
+        return;
+    }
+    const activeTimer = document.getElementById('active-timer');
+    activeTimer.style.animation = "pulse 1s ease 1s infinite";
+
+    LIVE_SESSION_ELEMENTS.sessionRunning = true;
+    LIVE_SESSION_ELEMENTS.timeTracker = setInterval(() => {
+        LIVE_SESSION_ELEMENTS.currentSession.duration = (LIVE_SESSION_ELEMENTS.currentSession.duration * 60 - 1) / 60;
+        setDuration();
+        setFill();
+        setCaloriesBurned()
+        setSweatLoss()
+        checkDuration()
+    }, 1_000)
+}
+
+/**
+ * Function that checks if the duration isnt going below 0
+ */
+function checkDuration() {
+    if (LIVE_SESSION_ELEMENTS.currentSession.duration * 60 <= 1) {
+        stopTracking();
+        setTrackState(2);
+    }
+}
+
+/**
+ * Function to calculate the calories burned
+ */
+function setCaloriesBurned() {
+    let calPerSec = CALENDAR_ELEMENTS.types[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].calPerSec;
+
+    const num = document.getElementById('calories-burned-prev-num');
+    let result = (calPerSec * (CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].duration * 60 - LIVE_SESSION_ELEMENTS.currentSession.duration * 60)).toFixed(1)
+
+    num.innerHTML = result + " cal";
+
+    LIVE_SESSION_ELEMENTS.caloriesBurned = result
+}
+
+/**
+ * Function to calculate the sweat loss
+ */
+function setSweatLoss(){
+    let sweatPerSec = CALENDAR_ELEMENTS.types[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].sweatPerSec;
+    const num = document.getElementById('sweat-loss-prev-num');
+
+    let result = (sweatPerSec * (CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].duration * 60 - LIVE_SESSION_ELEMENTS.currentSession.duration * 60)).toFixed(2)
+
+    num.innerHTML = result + " l";
+    LIVE_SESSION_ELEMENTS.sweatLoss = result
+}
+
+/**
+ * Sets the fill of the circle
+ */
+function setFill() {
+    const fill = document.getElementById('active-timer-fill');
+
+    fill.style.transform = `translateY(${(LIVE_SESSION_ELEMENTS.currentSession.duration / CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].duration) * 100}%)`
+}
+
+/**
+ * Function that sets the right buttons for tracking
+ */
+function setTrackState(state) {
+    const settings = document.getElementById('active-timer-settings-buttons');
+
+    fadeOut('active-timer-settings-buttons', 500)
+    setTimeout(() => {
+        settings.innerHTML = LIVE_SESSION_ELEMENTS.trackStates[state];
+        fadeIn('active-timer-settings-buttons', 'block')
+    }, 500)
+}
+
+/**
+ * Function that stops an active session, but it doesn't finish it
+ */
+function stopTracking() {
+    LIVE_SESSION_ELEMENTS.sessionRunning = false;
+
+    const activeTimer = document.getElementById('active-timer');
+    activeTimer.style.animation = "none";
+
+    clearInterval(LIVE_SESSION_ELEMENTS.timeTracker);
+    LIVE_SESSION_ELEMENTS.timeTracker = undefined;
+}
+
+/**
+ * Function that finishes an active session
+ */
+function finishSession() {
+
 }

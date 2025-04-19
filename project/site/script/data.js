@@ -68,31 +68,41 @@ let CALENDAR_ELEMENTS = {
             'name': 'strength training',
             'icon': '<i class="fa-solid fa-dumbbell"></i>',
             'color': 0,
-            'previewImg': './images/preview-img-strength-training.jpg'
+            'previewImg': './images/preview-img-strength-training.jpg',
+            'calPerSec': 7 / 60,
+            'sweatPerSec': 0.6 / 3600
         },
         {
             'name': 'running',
             'icon': '<i class="fa-solid fa-person-running"></i>',
             'color': 1,
-            'previewImg': './images/preview-img-running.jpg'
+            'previewImg': './images/preview-img-running.jpg',
+            'calPerSec': 10 / 60,
+            'sweatPerSec': 1 / 3600
         },
         {
             'name': 'cycling',
             'icon': '<i class="fa-solid fa-person-biking"></i>',
             'color': 2,
-            'previewImg': './images/preview-img-cycling.jpg'
+            'previewImg': './images/preview-img-cycling.jpg',
+            'calPerSec': 8 / 60,
+            'sweatPerSec': 1 / 3600
         },
         {
             'name': 'swimming',
             'icon': '<i class="fa-solid fa-person-swimming"></i>',
             'color': 3,
-            'previewImg': './images/preview-img-swimming.jpg'
+            'previewImg': './images/preview-img-swimming.jpg',
+            'calPerSec': 8 / 60,
+            'sweatPerSec': 0.8 / 3600
         },
         {
             'name': 'yoga',
             'icon': '<i class="fa-solid fa-heart"></i>',
             'color': 4,
-            'previewImg': './images/preview-img-yoga.jpg'
+            'previewImg': './images/preview-img-yoga.jpg',
+            'calPerSec': 3.5 / 60,
+            'sweatPerSec': 0.3 / 3600
         }
     ],
     currentCategory: 0,
@@ -151,7 +161,33 @@ let CALENDAR_ELEMENTS = {
 let LIVE_SESSION_ELEMENTS = {
     upperSite: './training.html',
     userImgPath: './../images/running-profile.png',
-    currentSessionIDSelected: -1
+    currentSessionIDSelected: -1,
+    currentSession: undefined,
+    trackingArea: document.getElementById('tracking-area'),
+    sessionRunning: false,
+    timeTracker: undefined,
+    trackStates: [
+        `<div id="track-state-1" class="track-state">
+            <div id="active-timer-start" class="active-timer-settings-button active-timer-start" onclick="trackSession()">
+                <i class="fa-solid fa-play"></i>
+            </div>
+        </div>`,
+        `<div id="track-state-2" class="track-state">
+            <div id="active-timer-stop" class="active-timer-settings-button" onclick="setTrackState(2); stopTracking()">
+                <i class="fa-solid fa-pause"></i>
+            </div>
+        </div>`,
+        `<div id="track-state-3" class="track-state">
+            <div id="active-timer-resume" class="active-timer-settings-button active-timer-start" onclick="trackSession(); setTrackState(1)">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            <div id="active-timer-end" class="active-timer-settings-button">
+                <i class="fa-solid fa-stop"></i>
+            </div>
+        </div>`
+    ],
+    caloriesBurned: 0,
+    sweatLoss: 0
 }
 
 
@@ -212,13 +248,8 @@ function getReference() {
  */
 function updateChart() {
     if (!isToday(new Date(`${SETTINGS.lastUpdate.month}.${SETTINGS.lastUpdate.date}.${SETTINGS.lastUpdate.year}`))) {
-        let daysBetween = calcDaysBetween(CALENDAR_ELEMENTS.lastSevDaysChartData[0].date, new Date());
-
+        let daysBetween = calcDaysBetween(new Date(`${CALENDAR_ELEMENTS.lastSevDaysChartData[0].date.getMonth() + 1}.${CALENDAR_ELEMENTS.lastSevDaysChartData[0].date.getDate()}.${CALENDAR_ELEMENTS.lastSevDaysChartData[0].date.getFullYear()}`), new Date(`${new Date().getMonth() + 1}.${new Date().getDate()}.${new Date().getFullYear()}`));
         moveDaysBetween(daysBetween)
-
-        console.log("Days between: " + daysBetween);
-
-
         return true;
     }
     return false;
@@ -231,7 +262,6 @@ function updateSessionsDone() {
     if (!isToday(new Date(`${SETTINGS.lastUpdate.month}.${SETTINGS.lastUpdate.date}.${SETTINGS.lastUpdate.year}`))) {
         CALENDAR_ELEMENTS.sessionsCompleted = 0;
         CALENDAR_ELEMENTS.sessionsToComplete = getSessionsOpen();
-        console.log("Executed");
         saveDataOnLS('completed-sessions', CALENDAR_ELEMENTS.sessionsCompleted)
         saveDataOnLS('sessions-to-complete', CALENDAR_ELEMENTS.sessionsToComplete)
         return true;
@@ -261,10 +291,9 @@ function moveDaysBetween(num) {
         }
         for (let i = CALENDAR_ELEMENTS.lastSevDaysChartData.length - 2; i >= 0; i--) {
             CALENDAR_ELEMENTS.lastSevDaysChartData[i + 1].sessionsCompleted = CALENDAR_ELEMENTS.lastSevDaysChartData[i].sessionsCompleted;
-        }  
+        }
     }
     CALENDAR_ELEMENTS.lastSevDaysChartData[0].sessionsCompleted = 0;
-    console.log(getCopyOf(CALENDAR_ELEMENTS.lastSevDaysChartData));
     saveDataOnLS("sessions-completed-chart", CALENDAR_ELEMENTS.lastSevDaysChartData)
 }
 
@@ -320,8 +349,12 @@ function isToday(date) {
  */
 function calcDaysBetween(date1, date2) {
     const diffMS = Math.abs(date2 - date1);
+    console.log(diffMS);
 
     const perDay = 1000 * 60 * 60 * 24;
+
+    console.log(perDay);
+
     const days = Math.floor(diffMS / perDay);
 
     return days;

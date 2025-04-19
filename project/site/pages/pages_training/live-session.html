@@ -47,7 +47,7 @@
 
     <!-- Session selected (Start) -->
     <div id="session-selected">
-        <div id="session-selected-close" onclick="closeStarterMenu()">
+        <div id="session-selected-close" onclick="closeStarterMenu(false);">
             <i class="fa-solid fa-xmark"></i>
         </div>
         <div id="session-selected-overlay"></div>
@@ -59,10 +59,61 @@
                     <h3 id="session-selected-duration-num"></h3>
                 </div>
             </div>
-            <div id="session-selected-start" onclick="sessionCompleted()">Start</div>
+            <div id="session-selected-start" onclick="closeStarterMenu(true);">Start</div>
         </div>
     </div>
     <!-- Session selected (End) -->
+
+    <!-- Tracking area (Start) -->
+    <div id="tracking-area">
+        <div id="tracking-area-header">
+            <div id="tracking-area-header-icon">
+
+            </div>
+            <h5 id="tracking-area-header-name">
+
+            </h5>
+        </div>
+        <div id="track-data">
+            <div id="calories-burned-prev" class="track-data-flex">
+                <div>
+                    <h5 id="calories-burned-prev-num">0.0 cal</h5>
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+                <h5>Calories burned</h5>
+            </div>
+            <div id="sweat-loss-prev" class="track-data-flex">
+                <div>
+                    <h5 id="sweat-loss-prev-num">0.00 l</h5>
+                    <i class="fa-solid fa-droplet"></i>
+                </div>
+                <h5>Sweat loss</h5>
+            </div>
+        </div>
+
+        <div id="active-timer-settings">
+            <div id="active-timer">
+                <div id="active-timer-time">
+                    <h5 class="active-timer-time-section" id="active-timer-hours">00</h5>
+                    <h5 class="active-timer-time-section-seperation">:</h5>
+                    <h5 class="active-timer-time-section" id="active-timer-minutes">25</h5>
+                    <h5 class="active-timer-time-section-seperation">:</h5>
+                    <h5 class="active-timer-time-section" id="active-timer-seconds">00</h5>
+                </div>
+                <div id="active-timer-fill">
+                </div>
+            </div>
+            <div id="active-timer-settings-buttons">
+                <div id="track-state-1" class="track-state">
+                    <div id="active-timer-start" class="active-timer-settings-button active-timer-start"
+                        onclick="trackSession(); setTrackState(1)">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tracking area (End) -->
 </body>
 
 </html>

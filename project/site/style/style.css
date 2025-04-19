@@ -75,6 +75,7 @@ img {
     src: url('../font/Satoshi-Black.otf');
 }
 
+
 /* FITBALANCE HEADER */
 #header {
     border-bottom: 2px solid black;
@@ -190,7 +191,8 @@ img {
 #dashboard-flex-grid>div:nth-child(3) {
     background: var(--darkblue-small-gradient-lighter);
 }
-#completed-sessions-flex{
+
+#completed-sessions-flex {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -205,22 +207,22 @@ img {
     align-items: center;
     color: white;
     font-family: "Tilt Neon", sans-serif;
-    
+
 }
 
-#completed-sessions>a{
+#completed-sessions>a {
     color: white;
 }
 
-#completed-sessions-diagramm-info{
+#completed-sessions-diagramm-info {
     position: relative;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content:end;
+    justify-content: end;
 }
 
-#completed-sessions-diagramm{
+#completed-sessions-diagramm {
     border: #4e33ff 2px solid;
     overflow: hidden;
     position: relative;
@@ -230,47 +232,49 @@ img {
 
 }
 
-#diagramm-content{
+#diagramm-content {
     height: 100%;
     width: 100%;
     transform: translateX(-28.57%);
     background-color: #3617FF;
 }
 
-#completed-sessions-diagramm-info{
+#completed-sessions-diagramm-info {
     color: white;
     font-family: "Tilt Neon", sans-serif;
     display: flex;
     flex-direction: column;
     gap: 0.5em;
 }
-#completed-sessions-chart{
+
+#completed-sessions-chart {
     display: flex;
     flex-direction: column;
     gap: 1em;
     padding-top: 0;
 }
 
-#completed-sessions-diagramm-info>h5{
+#completed-sessions-diagramm-info>h5 {
     align-self: flex-end;
 }
 
-#chart-header>h3{
+#chart-header>h3 {
     font-size: 1.5em;
     color: #3617FF;
 }
 
-#chart-header>h6{
+#chart-header>h6 {
     color: rgb(89, 89, 89);
     font-size: 0.9em;
 }
 
-#chart-header{
+#chart-header {
     font-family: "Tilt Neon", sans-serif;
     position: relative;
     top: 0;
 }
-#chart-out-box{
+
+#chart-out-box {
     height: 50%;
 }
 
@@ -534,7 +538,7 @@ img {
     justify-content: flex-start;
     align-items: center;
     gap: 3em;
-    transition: all 0.5s ease;
+    transition: all 0.5s cubic-bezier(.58, -0.02, .48, .81);
     overflow-y: visible;
 }
 
@@ -1198,13 +1202,13 @@ img {
     top: 0;
     width: 100vw;
     height: 100vh;
-    transition: transform 0.5s ease;
+    transition: transform 0.5s cubic-bezier(.89, .13, .31, .96), opacity 0.5s ease;
     transform: translateX(100%);
     background: url();
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    z-index: 101;
+    z-index: 102;
 }
 
 #session-selected-overlay {
@@ -1264,3 +1268,192 @@ img {
     font-size: 2em;
 }
 
+#tracking-area {
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    transform: translateY(100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5vh 0;
+    gap: 10vh;
+    align-items: center;
+}
+
+#active-timer-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+#active-timer-time {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    font-size: 1.6rem;
+    mix-blend-mode: difference;
+    position: relative;
+    z-index: 10;
+}
+
+#active-timer-time>h5 {
+    color: white;
+    font-family: "Tilt Neon", sans-serif;
+    letter-spacing: 0.1em;
+}
+
+.active-timer-start {
+    background-color: var(--light-blue);
+}
+
+#active-timer-resume{
+    background-color: #79c3ff;
+}
+
+#active-timer-end{
+    background-color: var(--main-color);
+    color: white;
+}
+
+.active-timer-settings-button {
+    padding: 1em 2em;
+    border-radius: 10px;
+    display: flex;
+}
+
+#active-timer-stop{
+    background-color: rgb(255, 73, 41);
+}
+
+#active-timer-settings-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    overflow-y: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.track-state{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 1rem; 
+}
+
+#active-timer {
+    width: 60vw;
+    height: 60vw;
+    border: 5px solid var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+
+#active-timer-fill {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    background-color: var(--main-color);
+    transform: translateY(100%);
+    transition: transform 0.5s ease;
+}
+
+#tracking-area-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    text-transform: capitalize;
+    justify-self: top;
+    font-size: 1.9rem;
+    font-family: 'calendar-font';
+}
+
+#tracking-area-header-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.track-data-flex{
+    font-size: 1.5rem;
+}
+
+.track-data-flex>h5{
+    font-style: italic;
+    color: rgb(147, 147, 147);
+    font-size: 0.7em;
+}
+
+.track-data-flex>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+    width: auto;
+}
+
+#calories-burned-prev>div>i{
+    color: rgb(228, 46, 0);
+}
+
+#sweat-loss-prev>div>i{
+    color: rgb(95, 215, 255);
+}
+
+#calories-burned-prev-num{
+    font-size: 1.5rem;
+}
+
+#calories-burned-prev{
+    border-right: 5px solid var(--main-color);
+    padding-right: 2em;
+}
+
+#track-data{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
+    font-family: "Tilt Neon", sans-serif;
+}
+
+.track-data-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+
+/* ANIMATIONS */
+@keyframes pulse {
+    0%{
+        box-shadow: 0 0 0 5px rgba(17, 22, 27, 0.741);
+    }
+    50%{
+        box-shadow: 0 0 0 10px rgba(17, 22, 27, 0.741);
+    }
+    100%{
+        box-shadow: 0 0 0 5px rgba(17, 22, 27, 0.741);
+    }
+}
