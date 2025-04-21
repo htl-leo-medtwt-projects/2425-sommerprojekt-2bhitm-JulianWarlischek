@@ -80,6 +80,37 @@ function updateGUITS() {
 updateGUITS()
 
 /**
+ * Function to style the GUI
+ * 
+ * CALORIES
+ */
+function updateGUICAL() {
+  const num = document.getElementById('dashboard-item-cal-burned-num');
+  num.innerHTML = LIVE_SESSION_ELEMENTS.caloriesBurnedTotal.toFixed(1) + " cal";
+
+  if (LIVE_SESSION_ELEMENTS.caloriesBurnedTotal > LIVE_SESSION_ELEMENTS.caloriesBurnedLastMeasure) {
+    setCalState(0);
+  } else {
+    setCalState(1);
+  }
+}
+updateGUICAL()
+
+/**
+ * Function to set the state of the comparison
+ */
+function setCalState(state) {
+  const arrow = document.getElementById('comparison-arrow');
+  const text = document.getElementById('comparison-text');
+
+  arrow.innerHTML = LIVE_SESSION_ELEMENTS.stateArrows[state];
+
+  arrow.style.color = state == 0 ? 'green' : 'red';
+
+  text.innerHTML = `${state == 0 ? 'Better' : 'Worse'} than the last measure.`
+}
+
+/**
  * Function to calculate the position of the diagramm
  */
 function calcPercent() {

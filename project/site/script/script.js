@@ -6,8 +6,9 @@ function loadIndex() {
     SETTINGS.userImgPath = INDEX_ELEMENTS.userImgPath;
     let update1 = updateChart()
     let update2 = updateSessionsDone();
+    let update3 = updateCaloriesBurned()
 
-    if(update1 || update2){
+    if(update1 || update2 || update3){
         update()
     }
 }

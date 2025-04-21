@@ -167,9 +167,10 @@ function sessionCompleted() {
     saveDataOnLS('calendar-items-all', CALENDAR_ELEMENTS.allSessions);
     saveDataOnLS('completed-sessions', CALENDAR_ELEMENTS.sessionsCompleted)
     saveDataOnLS('sessions-completed-chart', CALENDAR_ELEMENTS.lastSevDaysChartData);
+    saveDataOnLS('calories-burned-today', parseFloat(LIVE_SESSION_ELEMENTS.caloriesBurnedTotal))
 
     printPossibleSessions()
-    closeStarterMenu();
+    closeStarterMenu(false);
 }
 
 /** 
@@ -318,5 +319,23 @@ function stopTracking() {
  * Function that finishes an active session
  */
 function finishSession() {
+    const trackingArea = document.getElementById('tracking-area');
 
+    //Safe the values in the total variables
+    LIVE_SESSION_ELEMENTS.caloriesBurnedTotal += parseFloat(LIVE_SESSION_ELEMENTS.caloriesBurned);
+    LIVE_SESSION_ELEMENTS.sweatLossTotal += parseFloat(LIVE_SESSION_ELEMENTS.sweatLoss);
+
+    //Reset the dynamic variables
+    LIVE_SESSION_ELEMENTS.caloriesBurned = 0;
+    LIVE_SESSION_ELEMENTS.sweatLoss = 0;
+    LIVE_SESSION_ELEMENTS.currentSession = 0;
+
+    trackingArea.style.transition = 'all 0.5s cubic-bezier(.89, .13, .31, .96)';
+    trackingArea.style.transform = "translateY(100%)"
+    setTimeout(() => {
+        trackingArea.style.transition = "none";
+    }, 500)
+
+
+    sessionCompleted()   
 }

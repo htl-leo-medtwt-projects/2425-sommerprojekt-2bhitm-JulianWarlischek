@@ -181,13 +181,24 @@ let LIVE_SESSION_ELEMENTS = {
             <div id="active-timer-resume" class="active-timer-settings-button active-timer-start" onclick="trackSession(); setTrackState(1)">
                 <i class="fa-solid fa-play"></i>
             </div>
-            <div id="active-timer-end" class="active-timer-settings-button">
+            <div id="active-timer-end" class="active-timer-settings-button" onclick="finishSession()">
                 <i class="fa-solid fa-stop"></i>
             </div>
         </div>`
     ],
     caloriesBurned: 0,
-    sweatLoss: 0
+    sweatLoss: 0,
+    caloriesBurnedTotal: 0,
+    sweatLossTotal: 0,
+    caloriesBurnedLastMeasure: 0,
+    stateArrows: [
+        `<span class="material-symbols-outlined">
+            arrow_drop_up
+        </span>`,
+        `<span class="material-symbols-outlined">
+            arrow_drop_down
+        </span>`
+    ]
 }
 
 
@@ -216,6 +227,12 @@ function setupLS() {
     if (!localStorage["sessions-completed-chart"]) {
         loadChartData()
     }
+    if (!localStorage['calories-burned-today']) {
+        localStorage['calories-burned-today'] = 0;
+    }
+    if(!localStorage['calories-burned-lastMeasure']){
+        localStorage['calories-burned-lastMeasure'] = 0;
+    }
 }
 setupLS()
 
@@ -228,6 +245,8 @@ function loadFromLS() {
     CALENDAR_ELEMENTS.sessionsCompleted = JSON.parse(localStorage['completed-sessions']);
     CALENDAR_ELEMENTS.sessionsToComplete = JSON.parse(localStorage['sessions-to-complete']);
     CALENDAR_ELEMENTS.lastSevDaysChartData = JSON.parse(localStorage["sessions-completed-chart"])
+    LIVE_SESSION_ELEMENTS.caloriesBurnedTotal = JSON.parse(localStorage['calories-burned-today']);
+    LIVE_SESSION_ELEMENTS.caloriesBurnedLastMeasure = JSON.parse(localStorage['calories-burned-lastMeasure']);
     getReference()
 }
 loadFromLS()
@@ -268,6 +287,22 @@ function updateSessionsDone() {
     }
     return false;
 }
+
+/**
+ * Updates calories burned
+*/
+function updateCaloriesBurned() {
+    if (!isToday(new Date(`${SETTINGS.lastUpdate.month}.${SETTINGS.lastUpdate.date}.${SETTINGS.lastUpdate.year}`))) {
+        LIVE_SESSION_ELEMENTS.caloriesBurnedTotal = 0;
+        LIVE_SESSION_ELEMENTS.caloriesBurnedLastMeasure = localStorage['calories-burned-today'];
+
+        saveDataOnLS('calories-burned-lastMeasure', LIVE_SESSION_ELEMENTS.caloriesBurnedLastMeasure)
+        saveDataOnLS('calories-burned-today', LIVE_SESSION_ELEMENTS.caloriesBurnedTotal)
+        return true;
+    }
+    return false;
+}
+
 
 /**
  * Update
