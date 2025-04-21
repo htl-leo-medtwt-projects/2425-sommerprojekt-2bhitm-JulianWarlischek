@@ -234,7 +234,11 @@ function trackSession() {
 
     LIVE_SESSION_ELEMENTS.sessionRunning = true;
     LIVE_SESSION_ELEMENTS.timeTracker = setInterval(() => {
-        LIVE_SESSION_ELEMENTS.currentSession.duration = (LIVE_SESSION_ELEMENTS.currentSession.duration * 60 - 1) / 60;
+        if (LIVE_SESSION_ELEMENTS.timeLimitReached) {
+            LIVE_SESSION_ELEMENTS.currentSession.duration = (LIVE_SESSION_ELEMENTS.currentSession.duration * 60 + 1) / 60;
+        } else {
+            LIVE_SESSION_ELEMENTS.currentSession.duration = (LIVE_SESSION_ELEMENTS.currentSession.duration * 60 - 1) / 60;
+        }
         setDuration();
         setFill();
         setCaloriesBurned()
@@ -250,6 +254,10 @@ function checkDuration() {
     if (LIVE_SESSION_ELEMENTS.currentSession.duration * 60 <= 1) {
         stopTracking();
         setTrackState(2);
+        LIVE_SESSION_ELEMENTS.timeLimitReached = true;
+        LIVE_SESSION_ELEMENTS.currentSession.duration = CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].duration;
+        console.log(LIVE_SESSION_ELEMENTS.currentSession.duration);
+
     }
 }
 
@@ -260,7 +268,13 @@ function setCaloriesBurned() {
     let calPerSec = CALENDAR_ELEMENTS.types[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].calPerSec;
 
     const num = document.getElementById('calories-burned-prev-num');
-    let result = (calPerSec * (CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].duration * 60 - LIVE_SESSION_ELEMENTS.currentSession.duration * 60)).toFixed(1)
+    let result;
+
+    if (LIVE_SESSION_ELEMENTS.timeLimitReached) {
+        result = (calPerSec * (LIVE_SESSION_ELEMENTS.currentSession.duration * 60)).toFixed(1)
+    } else {
+        result = (calPerSec * (CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].duration * 60 - LIVE_SESSION_ELEMENTS.currentSession.duration * 60)).toFixed(1)
+    }
 
     num.innerHTML = result + " cal";
 
@@ -270,11 +284,16 @@ function setCaloriesBurned() {
 /**
  * Function to calculate the sweat loss
  */
-function setSweatLoss(){
+function setSweatLoss() {
     let sweatPerSec = CALENDAR_ELEMENTS.types[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].sweatPerSec;
     const num = document.getElementById('sweat-loss-prev-num');
+    let result = 0;
 
-    let result = (sweatPerSec * (CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].duration * 60 - LIVE_SESSION_ELEMENTS.currentSession.duration * 60)).toFixed(2)
+    if (LIVE_SESSION_ELEMENTS.timeLimitReached) {
+        result = (sweatPerSec * (LIVE_SESSION_ELEMENTS.currentSession.duration * 60)).toFixed(2)
+    } else {
+        result = (sweatPerSec * (CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].duration * 60 - LIVE_SESSION_ELEMENTS.currentSession.duration * 60)).toFixed(2)
+    }
 
     num.innerHTML = result + " l";
     LIVE_SESSION_ELEMENTS.sweatLoss = result
@@ -329,6 +348,8 @@ function finishSession() {
     LIVE_SESSION_ELEMENTS.caloriesBurned = 0;
     LIVE_SESSION_ELEMENTS.sweatLoss = 0;
     LIVE_SESSION_ELEMENTS.currentSession = 0;
+    LIVE_SESSION_ELEMENTS.timeLimitReached = false;
+    LIVE_SESSION_ELEMENTS.sessionRunning = false;
 
     trackingArea.style.transition = 'all 0.5s cubic-bezier(.89, .13, .31, .96)';
     trackingArea.style.transform = "translateY(100%)"
@@ -337,5 +358,24 @@ function finishSession() {
     }, 500)
 
 
-    sessionCompleted()   
+    sessionCompleted()
+}
+
+function deny() {
+    closeWarning()
+}
+
+function accept() {
+    closeWarning();
+    setTimeout(() => {
+        finishSession()
+    }, 500)
+}
+
+function openWarning() {
+    fadeIn('active-warning', 'flex');
+}
+
+function closeWarning() {
+    fadeOut('active-warning', 500)
 }

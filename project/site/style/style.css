@@ -14,6 +14,7 @@
     --light-blue: #c5e5ff;
     --secondary-blue: #3617FF;
     --calendar-input-bg: linear-gradient(200deg, #11161B 12.08%, #2A3845 140.98%);
+
 }
 
 * {
@@ -26,7 +27,6 @@ html,
 body {
     overflow-x: hidden;
     width: 100%;
-    background-color: white;
 }
 
 body {
@@ -40,6 +40,24 @@ body {
 #body-calendar {
     background-color: #e2e2e6;
     overflow-y: hidden;
+}
+
+#drink-log-body>#header {
+    color: white;
+    background-color: var(--main-color);
+    border-bottom-color: white;
+}
+
+#drink-log-html
+
+#drink-log-body #header-inner #fitbalance-logo {
+    background: white;
+    color: var(--main-color);
+}
+
+#drink-log-body {
+    background-color: var(--main-color);
+    overflow: scroll;
 }
 
 .align-body {
@@ -280,40 +298,40 @@ img {
     height: 50%;
 }
 
-.dashboard-item-header{
+.dashboard-item-header {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1em;
 }
 
-.dashboard-item-title{
+.dashboard-item-title {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
 }
 
-.dashboard-item-title>h5{
+.dashboard-item-title>h5 {
     font-size: 1.1rem;
 }
 
-.dashboard-item-title>h6{
+.dashboard-item-title>h6 {
     color: rgb(137, 137, 137);
 }
 
-.dashboard-item-icon{
+.dashboard-item-icon {
     font-size: 1.6rem;
 }
 
-#dashboard-flex-grid>div{
+#dashboard-flex-grid>div {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5em;
 }
 
-#dashboard-item-cal-burned{
+#dashboard-item-cal-burned {
     font-size: 1.2rem;
     display: flex;
     flex-direction: row;
@@ -322,7 +340,7 @@ img {
     gap: 0.2em;
 }
 
-#comparison-data{
+#comparison-data {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -332,7 +350,7 @@ img {
     opacity: 0.8;
 }
 
-#comparison-text{
+#comparison-text {
     text-align: center;
     margin-top: -1em;
     font-size: 0.7rem;
@@ -1373,11 +1391,11 @@ img {
     background-color: var(--light-blue);
 }
 
-#active-timer-resume{
+#active-timer-resume {
     background-color: #79c3ff;
 }
 
-#active-timer-end{
+#active-timer-end {
     background-color: var(--main-color);
     color: white;
 }
@@ -1388,11 +1406,11 @@ img {
     display: flex;
 }
 
-#active-timer-stop{
+#active-timer-stop {
     background-color: rgb(255, 73, 41);
 }
 
-#active-timer-settings-buttons{
+#active-timer-settings-buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1401,11 +1419,11 @@ img {
     transition: opacity 0.5s ease;
 }
 
-.track-state{
+.track-state {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 1rem; 
+    gap: 1rem;
 }
 
 #active-timer {
@@ -1431,7 +1449,7 @@ img {
     transition: transform 0.5s ease;
 }
 
-#tracking-area-header{
+#tracking-area-header {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1443,7 +1461,7 @@ img {
     font-family: 'calendar-font';
 }
 
-#tracking-area-header-icon{
+#tracking-area-header-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1453,36 +1471,36 @@ img {
     overflow: hidden;
 }
 
-.track-data-flex{
+.track-data-flex {
     font-size: 1.5rem;
 }
 
-.track-data-flex>h5{
+.track-data-flex>h5 {
     font-style: italic;
     color: rgb(147, 147, 147);
     font-size: 0.7em;
 }
 
-.track-data-flex>div{
+.track-data-flex>div {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1em;
 }
 
-#calories-burned-prev>div>i{
+#calories-burned-prev>div>i {
     color: rgb(228, 46, 0);
 }
 
-#sweat-loss-prev>div>i{
+#sweat-loss-prev>div>i {
     color: rgb(95, 215, 255);
 }
 
-#calories-burned-prev-num{
+#calories-burned-prev-num {
     font-size: 1.5rem;
 }
 
-#track-data{
+#track-data {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     justify-content: center;
@@ -1492,7 +1510,7 @@ img {
     gap: 1em;
 }
 
-.track-data-flex{
+.track-data-flex {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -1501,17 +1519,181 @@ img {
     border-radius: 10px;
 }
 
+#active-warning {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 104;
+    display: none;
+    opacity: 0;
+    padding-top: 5em;
+    justify-content: center;
+    align-items: flex-start;
+    font-family: 'calendar-font';
+    font-size: 1.1rem;
+    transition: opacity 0.5s ease;
+}
 
+#active-warning-box {
+    background-color: white;
+    padding: 1em;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    justify-content: center;
+    align-items: center;
+}
+
+#possibilities-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-self: flex-end;
+}
+
+#possibilities-buttons>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    border: 2px solid var(--main-color);
+    padding: 0.5em;
+    border-radius: 10px;
+}
+
+#deny-finish {
+    color: red;
+}
+
+#accept-finish {
+    color: rgb(0, 240, 0);
+}
+
+/* STAY HYDRATED */
+#drink-log-flex {
+    margin-top: calc(1em + var(--margin-c-header));
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
+    justify-content: center;
+    align-items: center;
+    font-family: 'calendar-font';
+    padding: 0 2em;
+}
+
+#hydration-data {
+    display: grid;
+    grid-template-columns: repeat(2, 100vw);
+    width: 100vw;
+    grid-template-rows: 100vw;
+}
+
+.hydration-data-element {
+    width: 100%;
+    border: 5px solid red;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#drink-log-flex>h3 {
+    align-self: flex-start;
+    letter-spacing: 0.1em;
+    font-size: 1.4rem;
+}
+
+#hydration-chart {
+    width: 70%;
+    height: 70%;
+    border: 2px white solid;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    animation: water-waves linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.water-wave {
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    z-index: -1;
+    left: -35%;
+    top: 50%;
+}
+
+#wave-1 {
+    background: #33cfff;
+    opacity: 0.3;
+    border-radius: 35%;
+    animation: inherit;
+    animation-duration: 14s;
+}
+
+#wave-2 {
+    background: #0eaffe;
+    opacity: 0.5;
+    border-radius: 33%;
+    animation: inherit;
+    animation-duration: 15s;
+}
+
+#wave-3 {
+    background: #0f7ae4;
+    opacity: 0.7;
+    border-radius: 40%;
+    animation: inherit;
+    animation-duration: 17s;
+}
+
+#add-hydration {
+    background-color: #c6e6f6;
+    padding: 0.7em 0.95em;
+    color: var(--main-color);
+    border-radius: 50%;
+}
+
+#hydration-body {
+    overflow: hidden;
+    position: relative;
+    animation: water-waves linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
 
 /* ANIMATIONS */
 @keyframes pulse {
-    0%{
+    0% {
         box-shadow: 0 0 0 5px rgba(17, 22, 27, 0.741);
     }
-    50%{
+
+    50% {
         box-shadow: 0 0 0 10px rgba(17, 22, 27, 0.741);
     }
-    100%{
+
+    100% {
         box-shadow: 0 0 0 5px rgba(17, 22, 27, 0.741);
+    }
+}
+
+@keyframes water-waves {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
     }
 }

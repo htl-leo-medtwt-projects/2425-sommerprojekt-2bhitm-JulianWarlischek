@@ -45,7 +45,9 @@ let TRAINING_ELEMENTS = {
     ],
     section_links: [
         './pages_training/calendar.html',
-        './pages_training/live-session.html'
+        './pages_training/live-session.html',
+        'idk',
+        './pages_training/drink-log.html',
     ]
 }
 
@@ -166,6 +168,7 @@ let LIVE_SESSION_ELEMENTS = {
     trackingArea: document.getElementById('tracking-area'),
     sessionRunning: false,
     timeTracker: undefined,
+    timeLimitReached: false,
     trackStates: [
         `<div id="track-state-1" class="track-state">
             <div id="active-timer-start" class="active-timer-settings-button active-timer-start" onclick="trackSession()">
@@ -181,7 +184,7 @@ let LIVE_SESSION_ELEMENTS = {
             <div id="active-timer-resume" class="active-timer-settings-button active-timer-start" onclick="trackSession(); setTrackState(1)">
                 <i class="fa-solid fa-play"></i>
             </div>
-            <div id="active-timer-end" class="active-timer-settings-button" onclick="finishSession()">
+            <div id="active-timer-end" class="active-timer-settings-button" onclick="openWarning()">
                 <i class="fa-solid fa-stop"></i>
             </div>
         </div>`
@@ -201,6 +204,15 @@ let LIVE_SESSION_ELEMENTS = {
     ]
 }
 
+/**
+ * DRINK_LOG_ELEMENTS
+ * 
+ * Elements and values of the drink log
+ */
+let DRINK_LOG_ELEMENTS = {
+    upperSite: './training.html',
+    userImgPath: './../images/running-profile.png',
+}
 
 
 /**

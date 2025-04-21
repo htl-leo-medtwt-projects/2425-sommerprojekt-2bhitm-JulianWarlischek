@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" id="drink-log-html">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluid intake</title>
+    <script src="https://kit.fontawesome.com/3a03b4384b.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../style/style.css">
+    <script src="../../script/data.js" defer></script>
+    <script src="../../script/script.js" defer></script>
+    <script src="../../script/executable_drink-log.js" defer></script>
+    <script src="../../script/path_system.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,700,1,10"
+        rel="stylesheet" />
+</head>
+
+<body id="drink-log-body">
+    <!-- Header (Start) -->
+    <div id="header">
+        <div id="header-inner">
+            <div id="fitbalance-logo">
+                <h3 id="fitbalance-logo-headline">Fitbalance</h3>
+            </div>
+            <div id="user-stats">
+                <div id="user-stats-img">
+                    <img src="../../images/running-profile.png" alt="user-img"> <!-- profile image -->
+                </div>
+                <h4 id="user-stats-level-name">Level 1</h4>
+            </div>
+        </div>
+    </div>
+    <!-- Header (End) -->
+
+    <!-- Drink log (Start) -->
+    <div id="drink-log-flex">
+        <h3>Current Hydration</h3>
+        <div id="hydration-data">
+            <div class="hydration-data-element">
+                <div id="hydration-chart">
+                    <h6>15 L</h6>
+                    <div class="water-wave" id="wave-1"></div>
+                    <div class="water-wave" id="wave-2"></div>
+                    <div class="water-wave" id="wave-3"></div>
+                </div>
+            </div>
+            <div class="hydration-data-element">
+                <div id="hydration-body">
+                    <img src="../../images/body.png" alt="body">
+                    <div class="water-wave" id="wave-1"></div>
+                    <div class="water-wave" id="wave-2"></div>
+                    <div class="water-wave" id="wave-3"></div>
+                </div>
+            </div>
+        </div>
+        <div id="add-hydration">
+            <i class="fa-solid fa-plus"></i>
+        </div>
+    </div>
+    <!-- Drink log (End) -->
+
+</body>
+
+</html>
