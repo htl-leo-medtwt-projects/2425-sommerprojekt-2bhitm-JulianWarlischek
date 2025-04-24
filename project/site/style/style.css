@@ -48,7 +48,6 @@ body {
     border-bottom-color: white;
 }
 
-#drink-log-html
 
 #drink-log-body #header-inner #fitbalance-logo {
     background: white;
@@ -57,9 +56,11 @@ body {
 
 #drink-log-body {
     background-color: var(--main-color);
-    overflow: scroll;
 }
 
+#drink-log-html{
+    overflow: hidden;
+}
 .align-body {
     display: flex;
     flex-direction: column;
@@ -1671,6 +1672,46 @@ img {
     justify-content: center;
     height: 100%;
     width: 100%;
+}
+
+#hydration-page-overlay{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    pointer-events: none;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+#hydration-setter{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.9em 1.9em;
+    height: 60vh;
+    width: 100vw;
+    background: var(--main-color);
+    position: absolute;
+    bottom: 0;
+    z-index: 2;
+    transform: translateY(100%);
+    border-radius: 40px 40px 0 0;
+    transition: transform 0.5s cubic-bezier(.58, -0.02, .48, .81);                                                                                             ;
+}
+
+#close-hydration-setter{
+    background-color: #0eaffe;
+    opacity: 0.8;
+    color: white;
+    padding: 0.2em 0.35em;
+    border-radius: 50%;
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* ANIMATIONS */
