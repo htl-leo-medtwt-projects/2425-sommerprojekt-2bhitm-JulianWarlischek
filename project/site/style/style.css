@@ -58,9 +58,10 @@ body {
     background-color: var(--main-color);
 }
 
-#drink-log-html{
+#drink-log-html {
     overflow: hidden;
 }
+
 .align-body {
     display: flex;
     flex-direction: column;
@@ -1581,7 +1582,7 @@ img {
     color: white;
     display: flex;
     flex-direction: column;
-    gap: 10vh;
+    gap: 5vh;
     justify-content: center;
     align-items: center;
     font-family: 'calendar-font';
@@ -1597,7 +1598,6 @@ img {
 
 .hydration-data-element {
     width: 100%;
-    border: 5px solid red;
     height: 100%;
     display: flex;
     align-items: center;
@@ -1674,7 +1674,7 @@ img {
     width: 100%;
 }
 
-#hydration-page-overlay{
+#hydration-page-overlay {
     width: 100vw;
     height: 100vh;
     position: absolute;
@@ -1686,7 +1686,7 @@ img {
     transition: opacity 0.6s ease;
 }
 
-#hydration-setter{
+#hydration-setter {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1699,10 +1699,11 @@ img {
     z-index: 2;
     transform: translateY(100%);
     border-radius: 40px 40px 0 0;
-    transition: transform 0.5s cubic-bezier(.58, -0.02, .48, .81);                                                                                             ;
+    transition: transform 0.5s cubic-bezier(.58, -0.02, .48, .81);
+    ;
 }
 
-#close-hydration-setter{
+#close-hydration-setter {
     background-color: #0eaffe;
     opacity: 0.8;
     color: white;
@@ -1712,6 +1713,12 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#hydration-setter-input-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    gap: 1em;
 }
 
 /* ANIMATIONS */
