@@ -212,6 +212,7 @@ let LIVE_SESSION_ELEMENTS = {
 let DRINK_LOG_ELEMENTS = {
     upperSite: './training.html',
     userImgPath: './../images/running-profile.png',
+    input_values: [1, 2, 3, 4, 5, 6, 7, 8, 9, ".", 0, "delete"]
 }
 
 

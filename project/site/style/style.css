@@ -1689,18 +1689,18 @@ img {
 #hydration-setter {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 1.9em 1.9em;
+    padding: 1.9em 2em;
     height: 60vh;
     width: 100vw;
     background: var(--main-color);
     position: absolute;
     bottom: 0;
     z-index: 2;
+    gap: 10%;
     transform: translateY(100%);
     border-radius: 40px 40px 0 0;
     transition: transform 0.5s cubic-bezier(.58, -0.02, .48, .81);
-    ;
+    font-family: "Tilt Neon", sans-serif;
 }
 
 #close-hydration-setter {
@@ -1713,13 +1713,64 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
 }
 
 #hydration-setter-input-grid {
     display: grid;
-    grid-template-columns: repeat(3, auto);
-    gap: 1em;
+    grid-template-columns: repeat(3, 33%);
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 0.6em;
+    font-family: "Tilt Neon", sans-serif;
 }
+
+.input-field-elem{
+    background-color:#2a3743;
+    color: white;
+    border-radius: 10px;
+    padding: 0.6em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#hydration-setter-output-flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    color: white;
+}
+
+#hydration-glass-picker{
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    color: white;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    font-family: "Tilt Neon", sans-serif;
+    margin-top: 20%;
+}
+
+.glass-img{
+    width: 15%;
+}
+
+.glass-option{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    border-radius: 10px;
+    gap: 1em;
+    border: 3px solid white;
+}
+
 
 /* ANIMATIONS */
 @keyframes pulse {

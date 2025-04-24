@@ -30,30 +30,17 @@ function closeHydrationSetter() {
  * Load numbers to input
  */
 function loadInputField() {
-    let counter = 0;
-    let inputFieldCounter = 0;
     let tempString = ""
 
-    while (true) {
-        if (inputFieldCounter == 12) {
-            tempString += `<div class="input-field-elem"><i class="fa-solid fa-delete-left"></i></div>`
-        }else if(inputFieldCounter == 10){
+    for(let i = 0; i < DRINK_LOG_ELEMENTS.input_values.length; i++){
+        if (DRINK_LOG_ELEMENTS.input_values[i] === 'delete') {
+            tempString += `<div style="color: red;" class="input-field-elem"><i class="fa-solid fa-delete-left"></i></div>`
+        }else if(DRINK_LOG_ELEMENTS.input_values[i] === '.'){
             tempString += `<div class="input-field-elem"><p>.</p></div>`
-        } else if(inputFieldCounter != 0) {
-            tempString += `<div class="input-field-elem"><p>${counter}</p></div>`
-            counter--
-        }
-        inputFieldCounter++;
-        if(counter == 9){
-            counter = 0;
-        }
-        if(inputFieldCounter != 0 && counter == 0){
-            break
+        } else {
+            tempString += `<div class="input-field-elem"><p>${DRINK_LOG_ELEMENTS.input_values[i]}</p></div>`
         }
     }
-
     document.getElementById('hydration-setter-input-grid').innerHTML = tempString;
-
-
 }
 loadInputField()
