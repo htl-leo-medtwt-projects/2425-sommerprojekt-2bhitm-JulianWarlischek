@@ -1743,6 +1743,7 @@ img {
     align-items: center;
     gap: 1em;
     color: white;
+    font-size: 2em;
 }
 
 #hydration-glass-picker{
