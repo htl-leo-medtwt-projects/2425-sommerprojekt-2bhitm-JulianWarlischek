@@ -38,10 +38,21 @@
         <div id="hydration-data">
             <div class="hydration-data-element">
                 <div id="hydration-chart">
-                    <h6>15 L</h6>
-                    <div class="water-wave" id="wave-1"></div>
-                    <div class="water-wave" id="wave-2"></div>
-                    <div class="water-wave" id="wave-3"></div>
+                    <div id="hydration-chart-flex">
+                        <div class="hydration-chart-data-goal">
+                            <input type="text" id="curr-liter-goal" placeholder="0" onchange="saveHydrationGoal()">
+                            <h6 id="liter">L</h6>
+                        </div>
+                        <div class="hydration-chart-data-goal">
+                            <h6 id="curr-liter-reached">0</h6>
+                            <h6>L</h6>
+                        </div>
+                    </div>
+                    <div id="wave-holder">
+                        <div class="water-wave" id="wave-1"></div>
+                        <div class="water-wave" id="wave-2"></div>
+                        <div class="water-wave" id="wave-3"></div>
+                    </div>
                 </div>
             </div>
             <div class="hydration-data-element">
@@ -63,7 +74,7 @@
             <i class="fa-solid fa-xmark"></i>
         </div>
         <div id="hydration-setter-output-flex">
-            <h5 id="curr-liter">15</h5>
+            <h5 id="curr-liter">0</h5>
             <p>L</p>
         </div>
         <div id="hydration-glass-picker">
@@ -83,7 +94,7 @@
         <div id="hydration-setter-input-grid">
 
         </div>
-        <div id="add-hydration-setter">
+        <div id="add-hydration-setter" onclick="addHydrationReached()">
             <h5>Add</h5>
         </div>
     </div>

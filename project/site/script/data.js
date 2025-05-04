@@ -212,7 +212,9 @@ let LIVE_SESSION_ELEMENTS = {
 let DRINK_LOG_ELEMENTS = {
     upperSite: './training.html',
     userImgPath: './../images/running-profile.png',
-    input_values: [1, 2, 3, 4, 5, 6, 7, 8, 9, ".", 0, "delete"]
+    input_values: [1, 2, 3, 4, 5, 6, 7, 8, 9, ".", 0, "delete"],
+    goal: 0,
+    reached: 0,
 }
 
 
@@ -243,8 +245,14 @@ function setupLS() {
     if (!localStorage['calories-burned-today']) {
         localStorage['calories-burned-today'] = 0;
     }
-    if(!localStorage['calories-burned-lastMeasure']){
+    if (!localStorage['calories-burned-lastMeasure']) {
         localStorage['calories-burned-lastMeasure'] = 0;
+    }
+    if (!localStorage['hydration-goal']) {
+        localStorage['hydration-goal'] = 0;
+    }
+    if (!localStorage['hydration-reached']) {
+        localStorage['hydration-reached'] = 0;
     }
 }
 setupLS()
@@ -261,6 +269,8 @@ function loadFromLS() {
     LIVE_SESSION_ELEMENTS.caloriesBurnedTotal = JSON.parse(localStorage['calories-burned-today']);
     LIVE_SESSION_ELEMENTS.caloriesBurnedLastMeasure = JSON.parse(localStorage['calories-burned-lastMeasure']);
     getReference()
+    DRINK_LOG_ELEMENTS.goal = JSON.parse(localStorage['hydration-goal']);
+    DRINK_LOG_ELEMENTS.reached = JSON.parse(localStorage['hydration-reached']);
 }
 loadFromLS()
 

@@ -1617,10 +1617,21 @@ img {
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    animation: water-waves linear infinite;
     display: flex;
     align-items: center;
+    font-family: 'calendar-font';
     justify-content: center;
+}
+
+#wave-holder{
+    animation: water-waves linear infinite;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    left: 0;
+    pointer-events: none;
+    transform: translateY(100%);
 }
 
 .water-wave {
@@ -1629,7 +1640,7 @@ img {
     position: absolute;
     z-index: -1;
     left: -35%;
-    top: 50%;
+    top: 0%;
 }
 
 #wave-1 {
@@ -1696,7 +1707,7 @@ img {
     position: absolute;
     bottom: 0;
     z-index: 2;
-    gap: 10%;
+    gap: 7.5%;
     transform: translateY(100%);
     border-radius: 40px 40px 0 0;
     transition: transform 0.5s cubic-bezier(.58, -0.02, .48, .81);
@@ -1726,8 +1737,8 @@ img {
     font-family: "Tilt Neon", sans-serif;
 }
 
-.input-field-elem{
-    background-color:#2a3743;
+.input-field-elem {
+    background-color: #2a3743;
     color: white;
     border-radius: 10px;
     padding: 0.6em 0;
@@ -1736,7 +1747,7 @@ img {
     align-items: center;
 }
 
-#hydration-setter-output-flex{
+#hydration-setter-output-flex {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1746,7 +1757,73 @@ img {
     font-size: 2em;
 }
 
-#hydration-glass-picker{
+.hydration-chart-data-goal {
+    display: flex;
+    flex-direction: row;
+    font-family: "Tilt Neon", sans-serif;
+}
+
+
+.hydration-chart-data-goal:nth-child(1) {
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+}
+
+.hydration-chart-data-goal:nth-child(2) {
+    opacity: 0.8;
+}
+
+.hydration-chart-data-goal {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.hydration-chart-data-goal>h6 {
+    font-size: 1.2em;
+}
+
+#hydration-chart-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+}
+
+#curr-liter-goal {
+    width: 4ch;
+    font-size: 1.5em;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    font-family: "Tilt Neon", sans-serif;
+}
+
+#liter{
+    color: rgb(155, 155, 155);
+}
+
+#curr-liter-reached {
+    width: 4ch;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+#curr-liter-goal::placeholder {
+    color: rgb(155, 155, 155);
+}
+
+#hydration-glass-picker {
     display: grid;
     grid-template-columns: repeat(2, 50%);
     color: white;
@@ -1754,14 +1831,13 @@ img {
     align-items: center;
     gap: 1em;
     font-family: "Tilt Neon", sans-serif;
-    margin-top: 20%;
 }
 
-.glass-img{
+.glass-img {
     width: 15%;
 }
 
-.glass-option{
+.glass-option {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -1771,6 +1847,19 @@ img {
     gap: 1em;
     border: 3px solid white;
 }
+
+#add-hydration-setter {
+    background: linear-gradient(120deg, rgb(107, 181, 254) 10%, rgb(0, 128, 255));
+    text-align: center;
+    width: auto;
+    padding: 1em;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50px;
+    color: white;
+}
+
 
 
 /* ANIMATIONS */

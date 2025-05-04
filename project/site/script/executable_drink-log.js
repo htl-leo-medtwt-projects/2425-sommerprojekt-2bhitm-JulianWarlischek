@@ -4,6 +4,8 @@
 function loadDrinkLogSettings() {
     SETTINGS.path = DRINK_LOG_ELEMENTS.upperSite;
     SETTINGS.userImgPath = DRINK_LOG_ELEMENTS.userImgPath;
+    document.getElementById('curr-liter-goal').value = DRINK_LOG_ELEMENTS.goal == 0 ? "" : DRINK_LOG_ELEMENTS.goal;
+    changeHydrationReachedUI()
 }
 loadDrinkLogSettings()
 
@@ -48,6 +50,10 @@ loadInputField()
 function inputNumber(input, replace) {
     let currentNumber = document.getElementById('curr-liter').innerHTML;
 
+    if (currentNumber === "0") {
+        document.getElementById('curr-liter').innerHTML = "";
+    }
+
     if (input === 'delete') {
         document.getElementById('curr-liter').innerHTML = currentNumber.substring(0, currentNumber.length - 1);
     } else if (input === '.') {
@@ -60,4 +66,58 @@ function inputNumber(input, replace) {
             document.getElementById('curr-liter').innerHTML += num;
         }
     }
+}
+
+/**
+ * Saves the hydration goal to LS
+ */
+function saveHydrationGoal() {
+    let value = document.getElementById('curr-liter-goal').value;
+
+    document.getElementById('liter').style.color = 'white'
+
+
+    if (isNaN(value) || parseFloat(value) < 0 || parseFloat(value) > 100 || value == "") {
+        value = 0;
+        console.log(value);
+        document.getElementById('curr-liter-goal').value = "";
+        document.getElementById('curr-liter-goal').placeholder = value;
+        document.getElementById('liter').style.color = 'rgb(155, 155, 155)';
+    }
+
+    saveDataOnLS('hydration-goal', parseFloat(value));
+    changeHydrationReachedUI()
+}
+
+function addHydrationReached() {
+    let value = document.getElementById('curr-liter').innerHTML;
+
+    console.log(document.getElementById('curr-liter').innerHTML);
+
+    if (isNaN(value) || parseFloat(value) > 100) {
+        value = 0;
+    }
+
+    document.getElementById('curr-liter').innerHTML = "0";
+
+    DRINK_LOG_ELEMENTS.reached += parseFloat(value);
+    saveDataOnLS('hydration-reached', DRINK_LOG_ELEMENTS.reached)
+    changeHydrationReachedUI()
+}
+
+function changeHydrationReachedUI() {
+    let html = document.getElementById('curr-liter-reached');
+
+    html.innerHTML = DRINK_LOG_ELEMENTS.reached
+
+    let result = 100;
+
+    if (DRINK_LOG_ELEMENTS.goal != 0) {
+        result = 100 - (DRINK_LOG_ELEMENTS.reached / DRINK_LOG_ELEMENTS.goal) * 100
+    }else if(DRINK_LOG_ELEMENTS.reached != 0){
+        result = 100;
+    }
+    console.log(result);
+
+    document.getElementById('wave-holder').style.transform = `translateY(${result + 5}%)`
 }
