@@ -42,12 +42,16 @@ body {
     overflow-y: hidden;
 }
 
+
 #drink-log-body>#header {
     color: white;
     background-color: var(--main-color);
     border-bottom-color: white;
 }
 
+.body-fitbalance{
+    overflow-y: scroll;
+}
 
 #drink-log-body #header-inner #fitbalance-logo {
     background: white;
@@ -1861,6 +1865,63 @@ img {
 }
 
 
+/* FITBALANCE */
+#welcome-box{
+    background-image: url('../images/fitbalance-bg.jpg');
+    background-size: 230%;
+    background-position: center 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: calc(var(--margin-c-header) -1em);
+}
+
+#welcome-box-overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.776);
+    filter: grayscale(1.6);
+}
+
+#welcome-text{
+    color: #f1fcff;
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 100%;
+    font-family: "Tilt Neon", sans-serif;
+}
+
+#welcome-text>h3{
+    font-family: 'calendar-font-black';
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+}
+
+#welcome-text>h3>span{
+    color: var(--secondary-blue);
+    z-index: 5;
+}
+
+#welcome-text>p{
+    font-size: 1.1rem;
+}
 
 /* ANIMATIONS */
 @keyframes pulse {

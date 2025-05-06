@@ -217,6 +217,18 @@ let DRINK_LOG_ELEMENTS = {
     reached: 0,
 }
 
+/**
+ * FITBALANCE_ELEMENTS
+ * 
+ * Elements and values of the fitbalance page
+ */
+let FITBALANCE_ELEMENTS = {
+    upperSite: './index.html',
+    userImgPath: './images/running-profile.png',
+    welcomeBoxState: 0,
+    welcomeBox: document.getElementById('welcome-box')
+}
+
 
 /**
  * Setup for LS (Local Storage)
