@@ -158,3 +158,50 @@ function setHydration() {
 }
 
 setHydration()
+
+/**
+ * GSAP
+ */
+let sections = document.querySelectorAll('.dashboard-item');
+for (let i = 0; i < sections.length; i++) {
+    generateScrollAnimation(i);
+}
+
+
+
+function generateScrollAnimation(i){
+
+    let element = sections[i];
+
+    
+    if(i%2 == 0) {
+        
+        gsap.set(element, {
+            x: '-50%',
+            rotate: -30,
+            y: '-50%'
+        });
+    } else {
+        gsap.set(element, {
+            x: '50%',
+            rotate: 30,
+            y: '-50%'
+        });
+    }
+    
+    
+    /* SET END KEY FRAME */
+    gsap.to(element, {
+        x: 0,
+        scale: 1,
+        opacity: 1,
+        duration: 0.7,
+        rotate: 0,
+        y: 0,
+        scrollTrigger: {
+            trigger: element,
+            start: '10% 150%', 
+        }
+    });
+    
+}

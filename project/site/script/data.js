@@ -225,8 +225,87 @@ let DRINK_LOG_ELEMENTS = {
 let FITBALANCE_ELEMENTS = {
     upperSite: './index.html',
     userImgPath: './images/running-profile.png',
-    welcomeBoxState: 0,
-    welcomeBox: document.getElementById('welcome-box')
+    welcomeBox: document.getElementById('welcome-box'),
+    questionColors: [
+        {
+            "bg": "#B7DFFC",
+            "border": "#5A9ECF"
+        },
+        {
+            "bg": "#FFD6D6",
+            "border": "#B25A5A"
+        },
+        {
+            "bg": "#D0F5C8",
+            "border": "#6FA46B"
+        },
+        {
+            "bg": "#FFF1B8",
+            "border": "#B2933A"
+        },
+        {
+            "bg": "#E6D6FF",
+            "border": "#7A5FB2"
+        },
+        {
+            "bg": "#FFCFCF",
+            "border": "#A95555"
+        },
+        {
+            "bg": "#CFFFE3",
+            "border": "#4DA67E"
+        },
+        {
+            "bg": "#FFF4CC",
+            "border": "#B29A4F"
+        },
+        {
+            "bg": "#C8F0FF",
+            "border": "#4F9CB2"
+        },
+        {
+            "bg": "#D7D4FF",
+            "border": "#6863B2"
+        }
+    ],
+    usedColors: [
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false,
+        false
+    ],
+    questions: [
+        {
+            "headline": "How do I track my calories?",
+            "description": "Just start a workout and let the app do the math! We'll estimate your burned calories for you — no calculator or sweat required (well, maybe a little sweat)."
+        },
+        {
+            "headline": "Where can I log my water intake?",
+            "description": "Head over to the 'Stay hydrated' tab under 'Training'. There, you can set your daily goal and log every glorious sip. Your future hydrated self will thank you!"
+        },
+        {
+            "headline": "Can I create custom workouts?",
+            "description": "Absolutely! Whether you're into yoga, cycling, or lifting like a superhero — plan your workouts down to the minute and revisit them anytime in the calendar."
+        },
+        {
+            "headline": "Do I need to register or log in?",
+            "description": "No pressure! You can try out the app without logging in. But if you want your progress to stick around longer than your last gym crush — registration helps!"
+        },
+        {
+            "headline": "Can I learn about muscles?",
+            "description": "Totally! Tap a muscle, and we’ll show you what it does and how to train it — it’s like a friendly anatomy lesson without the textbook."
+        },
+        {
+            "headline": "Is my progress visible in a dashboard?",
+            "description": "You bet. Your workouts, hydration, and burnt calories all show up in one place. It's like your fitness life got a personal assistant."
+        }
+    ]
 }
 
 

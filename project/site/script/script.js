@@ -8,7 +8,7 @@ function loadIndex() {
     let update2 = updateSessionsDone();
     let update3 = updateCaloriesBurned()
 
-    if(update1 || update2 || update3){
+    if (update1 || update2 || update3) {
         update()
     }
 }
@@ -50,4 +50,11 @@ function getInteger(int_string) {
     const nums = int_string.match(/\d+/);
 
     return nums[0];
-}   
+}
+
+/**
+ * Generates a random value
+ */
+function getRandom(max, min) {
+    return Math.floor(Math.random() * max) + min;
+}
