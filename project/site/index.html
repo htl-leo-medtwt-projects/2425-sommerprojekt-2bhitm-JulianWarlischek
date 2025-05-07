@@ -68,11 +68,30 @@
                             </div>
                         </div>
                     </div>
-                    <h3 id="dashboard-item-cal-burned-num">500 cal</h3>
+                    <h3 id="dashboard-item-cal-burned-num"></h3>
                 </div>
-                <h5 id="comparison-text">Better than yesterday</h5>
+                <h5 id="comparison-text"></h5>
             </div>
-            <div class="dashboard-item"></div>
+            <div class="dashboard-item">
+                <div class="dashboard-item-header">
+                    <div class="dashboard-item-icon" id="dashboard-item-icon-hydration">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <div class="dashboard-item-title" id="dashboard-item-icon-headline">
+                        <h5>Hydration</h5>
+                        <h6>today</h6>
+                    </div>
+                </div>
+                <div class="dashboard-item-data-box">
+                    <svg class="progress-ring">
+                        <circle class="bg" r="40" cx="50" cy="50" />
+                        <circle class="progress" id="hydration-progress" r="40" cx="50" cy="50" />
+                    </svg>
+                    <div id="dashboard-hydration-reached">
+                        <p id="dashboard-hydration-reached-num">0.75 / 1 L</p>
+                    </div>
+                </div>
+            </div>
             <div class="dashboard-item"></div>
             <div class="dashboard-item"></div>
         </div>

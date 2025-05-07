@@ -134,3 +134,27 @@ function getSessionsComplete(arr) {
   }
   return values;
 }
+
+
+/**
+ * Set Hydration
+ */
+function setHydration() {
+  const progress = document.getElementById('hydration-progress');
+  const num = document.getElementById('dashboard-hydration-reached-num');
+
+  const radius = progress.r.baseVal.value;
+
+  const goal = DRINK_LOG_ELEMENTS.goal;
+  const reached = Math.min(DRINK_LOG_ELEMENTS.reached, goal); 
+
+  const percentage = reached / goal;
+  const offset = (2 * Math.PI * radius)* (1 - percentage);
+
+  progress.style.strokeDasharray = `${(2 * Math.PI * radius)}`;
+  progress.style.strokeDashoffset = `${offset}`;
+
+  num.innerHTML = `${reached} / ${goal} L`;
+}
+
+setHydration()
