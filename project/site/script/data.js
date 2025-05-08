@@ -417,6 +417,19 @@ function updateCaloriesBurned() {
     return false;
 }
 
+/**
+ * Updates hydration
+*/
+function updateHydration() {
+    if (!isToday(new Date(`${SETTINGS.lastUpdate.month}.${SETTINGS.lastUpdate.date}.${SETTINGS.lastUpdate.year}`))) {
+        DRINK_LOG_ELEMENTS.goal = 0;
+        DRINK_LOG_ELEMENTS.reached = 0;
+
+        saveDataOnLS('hydration-reached', DRINK_LOG_ELEMENTS.reached)
+        saveDataOnLS('hydration-goal', DRINK_LOG_ELEMENTS.goal)
+    }
+}
+
 
 /**
  * Update

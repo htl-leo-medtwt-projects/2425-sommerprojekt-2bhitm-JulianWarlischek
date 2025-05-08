@@ -7,6 +7,7 @@ function loadIndex() {
     let update1 = updateChart()
     let update2 = updateSessionsDone();
     let update3 = updateCaloriesBurned()
+    let update4 = updateHydration();
 
     if (update1 || update2 || update3) {
         update()

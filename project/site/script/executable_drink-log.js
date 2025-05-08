@@ -79,14 +79,14 @@ function saveHydrationGoal() {
 
     if (isNaN(value) || parseFloat(value) < 0 || parseFloat(value) > 100 || value == "") {
         value = 0;
-        console.log(value);
         document.getElementById('curr-liter-goal').value = "";
         document.getElementById('curr-liter-goal').placeholder = value;
         document.getElementById('liter').style.color = 'rgb(155, 155, 155)';
     }
 
-    saveDataOnLS('hydration-goal', parseFloat(value));
+    DRINK_LOG_ELEMENTS.goal = parseFloat(value);
     changeHydrationReachedUI()
+    saveDataOnLS('hydration-goal', parseFloat(value));
 }
 
 function addHydrationReached() {
@@ -111,12 +111,13 @@ function changeHydrationReachedUI() {
     html.innerHTML = DRINK_LOG_ELEMENTS.reached
 
     let result = 100;
-
-    if (DRINK_LOG_ELEMENTS.goal != 0) {
+    
+    if(DRINK_LOG_ELEMENTS.goal < DRINK_LOG_ELEMENTS.reached){
+        result = 0;
+    }else if (DRINK_LOG_ELEMENTS.goal != 0) {
         result = 100 - (DRINK_LOG_ELEMENTS.reached / DRINK_LOG_ELEMENTS.goal) * 100
-    }else if(DRINK_LOG_ELEMENTS.reached != 0){
-        result = 100;
-    }
+    } 
+    
     console.log(result);
 
     document.getElementById('wave-holder').style.transform = `translateY(${result + 5}%)`
