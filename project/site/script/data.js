@@ -308,6 +308,16 @@ let FITBALANCE_ELEMENTS = {
     ]
 }
 
+/**
+ * USER_ELEMENTS
+ * 
+ * Elements and values of the fitbalance page
+ */
+let USER_ELEMENTS = {
+    upperSite: './index.html',
+    userImgPath: './images/running-profile.png'
+}
+
 
 /**
  * Setup for LS (Local Storage)

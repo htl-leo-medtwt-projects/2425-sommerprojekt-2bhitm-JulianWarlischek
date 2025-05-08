@@ -4,7 +4,6 @@
 function loadFitbalancePage() {
     SETTINGS.path = FITBALANCE_ELEMENTS.upperSite;
     SETTINGS.userImgPath = FITBALANCE_ELEMENTS.userImgPath;
-
 }
 loadFitbalancePage()
 
