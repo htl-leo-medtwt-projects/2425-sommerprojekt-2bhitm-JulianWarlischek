@@ -2085,7 +2085,8 @@ svg {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: var(--margin-c-header);
+    margin-top: calc(var(--margin-c-header) - 0.5em);
+    
 }
 
 #upper-profile-section{
@@ -2093,18 +2094,80 @@ svg {
     height: 20vh;
     background-color: lightblue;
     position: relative;
+    overflow: visible;
+}
+
+#picker-section{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 3%;
+    top: 5%;
+    transform: translateX(200%);
+    transition: transform 0.5s ease;
+}
+
+#picker-section>div{
+    background-color: white;
+    border-radius:5px;
+    padding: 0.5em 0.7em;
+    width: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vw;
+    color: grey;
+    box-shadow: var(--box-shadow);
 }
 
 #upper-profile-color-input{
-    position: absolute;
-    right: 5%;
-    top: 5%;
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
     border: none;
-    outline: none;
     background-color: transparent;
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
+
+#edit-profile-color{
+    position: absolute;
+    right: 3%;
+    top: 5%;
+    background-color: white;
+    padding: 0.5em 0.5em;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+}
+
+#upper-profile-section-img{
+    width: 25vw;
+    height: 25vw;
+    padding: 1em;
+    background-color: white;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    position: absolute;
+    left: 50%;
+    top: -50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+#upper-profile-img-rectangle{
+    width: 100%;
+    height: 5vh;
+    background-color: white;
+    position: absolute;
+    bottom: -3px;
+}
+
+#lower-profile-name>h3{
+    text-align: center;
+    font-family: 'Tilt Neon', sans-serif;
+    letter-spacing: 0.05em;
 }
 
 /* ANIMATIONS */

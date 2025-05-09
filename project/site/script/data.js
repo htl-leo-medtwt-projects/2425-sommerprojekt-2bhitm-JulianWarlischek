@@ -315,7 +315,8 @@ let FITBALANCE_ELEMENTS = {
  */
 let USER_ELEMENTS = {
     upperSite: './index.html',
-    userImgPath: './images/running-profile.png'
+    userImgPath: './images/running-profile.png',
+    profileColor: '#5A9ECF',
 }
 
 
@@ -355,6 +356,9 @@ function setupLS() {
     if (!localStorage['hydration-reached']) {
         localStorage['hydration-reached'] = 0;
     }
+    if(!localStorage['profile-color']) {
+        localStorage['profile-color'] = "#5A9ECF";
+    }   
 }
 setupLS()
 
@@ -372,6 +376,7 @@ function loadFromLS() {
     getReference()
     DRINK_LOG_ELEMENTS.goal = JSON.parse(localStorage['hydration-goal']);
     DRINK_LOG_ELEMENTS.reached = JSON.parse(localStorage['hydration-reached']);
+    USER_ELEMENTS.profileColor = JSON.parse(localStorage['profile-color']);
 }
 loadFromLS()
 

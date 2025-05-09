@@ -7,6 +7,8 @@
     <title>Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,700,1,10"
         rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/3a03b4384b.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="../style/style.css">
     <script src="../script/data.js" defer></script>
     <script src="../script/script.js" defer></script>
@@ -15,8 +17,8 @@
 </head>
 
 <body>
-     <!-- Header (Start) -->
-     <div id="header">
+    <!-- Header (Start) -->
+    <div id="header">
         <div id="header-inner">
             <div id="fitbalance-logo">
                 <h3 id="fitbalance-logo-headline">Fitbalance</h3>
@@ -34,7 +36,27 @@
     <!-- Profile Section (Start) -->
     <div id="profile-section">
         <div id="upper-profile-section">
-            <input type="color" id="upper-profile-color-input" value="#FFFFFF">
+            <div id="edit-profile-color" onclick="openColorPicker()">
+                <i class="fa-solid fa-pencil"></i>
+            </div>
+            <div id="picker-section">
+                <div id="color-picker">
+                    <input type="color" id="upper-profile-color-input" value="#FFFFFF" onchange="newColor()">
+                </div>
+                <div id="close-color-picker" onclick="closeColorPicker()">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <div id="upper-profile-img-rectangle">
+                <div id="upper-profile-section-img">
+                    <img src="../images/standard-user.avif" alt="standard-user">
+                </div>
+            </div>
+        </div>
+        <div id="lower-profile-section">
+            <div id="lower-profile-name">
+                <h3>John Doe</h3>
+            </div>
         </div>
     </div>
     <!-- Profile Section (End) -->
