@@ -356,9 +356,9 @@ function setupLS() {
     if (!localStorage['hydration-reached']) {
         localStorage['hydration-reached'] = 0;
     }
-    if(!localStorage['profile-color']) {
+    if (!localStorage['profile-color']) {
         localStorage['profile-color'] = "#5A9ECF";
-    }   
+    }
 }
 setupLS()
 
@@ -376,7 +376,7 @@ function loadFromLS() {
     getReference()
     DRINK_LOG_ELEMENTS.goal = JSON.parse(localStorage['hydration-goal']);
     DRINK_LOG_ELEMENTS.reached = JSON.parse(localStorage['hydration-reached']);
-    USER_ELEMENTS.profileColor = JSON.parse(localStorage['profile-color']);
+    USER_ELEMENTS.profileColor = localStorage['profile-color'];
 }
 loadFromLS()
 
@@ -529,8 +529,6 @@ function calcDaysBetween(date1, date2) {
     console.log(diffMS);
 
     const perDay = 1000 * 60 * 60 * 24;
-
-    console.log(perDay);
 
     const days = Math.floor(diffMS / perDay);
 

@@ -54,13 +54,69 @@
             </div>
         </div>
         <div id="lower-profile-section">
+            <div id="edit-profile" onclick="openEditor()">
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <div id="lower-profile-member-since">
+                <h3 id="member-since">Member since: 2023</h3>
+            </div>
             <div id="lower-profile-name">
-                <h3>John Doe</h3>
+                <h3 id="user-name">John Doe</h3>
+            </div>
+            <div id="person-data">
+                <div id="person-data-gender">
+                    <h3 id="user-gender">Male</h3>
+                </div>
+                <div class="seperator-dot">
+                    <i class="fa-solid fa-circle"></i>
+                </div>
+                <div id="person-data-age">
+                    <h3 id="user-age">25 years old</h3>
+                </div>
+            </div>
+            <hr class="seperator-line">
+            <div id="personal-data">
+                <h3>Your data:</h3>
+                <div id="personal-data-flex">
+                    <div id="personal-data-weight">
+                        <h3>Weight</h3>
+                        <h3 id="user-weight">70 kg</h3>
+                    </div>
+                    <hr class="seperator-line">
+                    <div id="personal-data-height">
+                        <h3>Height</h3>
+                        <h3 id="user-height">180 cm</h3>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <!-- Profile Section (End) -->
 
+    <!-- Edit Profile Section (Start) -->
+    <div id="edit-profile-section">
+        <div id="leave-edit-profile" onclick="closeEditor()">
+            <i class="fa-solid  fa-arrow-left"></i>
+        </div>
+        <div id="edit-profile-section-inner">
+            <h3 id="edit-profile-headline">Edit Profile</h3>
+            <div id="edit-profile-section-img">
+                <div id="change-profile-img-button">
+                    <i class="fa-solid fa-camera"></i>
+                </div>
+                <img src="../images/standard-user.avif" alt="standard-user">
+            </div>
+            <div id="edit-profile-section-inputs">
+                <div class="input-group">
+                    <h2 class="input-group-label">Name</h2>
+                    <h3 class="input-group-value" id="input-user-name">John Doe</h3>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Profile Section (End) -->
 
     <!-- Navigation (Start) -->
     <div id="navigation">

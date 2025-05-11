@@ -33,3 +33,22 @@ function closeColorPicker() {
 
     colorPicker.style.transform = 'translateX(200%)';
 }
+
+
+/**
+ * Function to open the edit profile section
+ */
+function openEditor(){
+    fadeIn('edit-profile-section', 'flex');
+}
+
+
+/**
+ * Function to close the edit profile section
+ */
+function closeEditor(forcedQuit = false){
+    if(forcedQuit){
+        fadeOut('edit-profile-section', 400);
+    }
+}
+
