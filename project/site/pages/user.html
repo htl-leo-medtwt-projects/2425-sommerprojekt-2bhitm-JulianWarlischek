@@ -111,7 +111,29 @@
                     <h2 class="input-group-label">Name</h2>
                     <h3 class="input-group-value" id="input-user-name">John Doe</h3>
                 </div>
-
+                <div id="input-group-grid">
+                    <div class="input-group">
+                        <h2 class="input-group-label">Gender</h2>
+                        <h3 class="input-group-value" id="input-user-gender">Male</h3>
+                    </div>
+                    <div class="input-group">
+                        <h2 class="input-group-label">Age</h2>
+                        <h3 class="input-group-value" id="input-user-age">25</h3>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <h2 class="input-group-label">E-mail</h2>
+                    <h3 class="input-group-value" id="input-user-mail">john.doe@example.com</h3>
+                </div>
+                <div class="input-group">
+                    <h2 class="input-group-label">Weight</h2>
+                    <h3 class="input-group-value" id="input-user-weight-num"></h3>
+                    <input type="range" id="input-user-weight" value="0" min="30" max="200" oninput="moveWeightSlider()">
+                </div>
+                <div class="input-group">
+                    <h2 class="input-group-label">Height</h2>
+                    <h3 class="input-group-value" id="input-user-height-num"></h3>
+                    <input type="range" id="input-user-height" value="0" min="30" max="200" oninput="moveHeightSlider()">
                 </div>
             </div>
         </div>

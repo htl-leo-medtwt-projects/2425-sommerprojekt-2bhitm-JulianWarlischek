@@ -2270,10 +2270,10 @@ svg {
     height: 100vh;
     opacity: 0;
     background-color: white;
-    z-index: 11;
+    z-index: 101;
     display: none;
     transition: 0.4s ease opacity;
-    padding: 3em;
+    padding: 3em 2em;
 }
 
 #leave-edit-profile{
@@ -2330,11 +2330,11 @@ svg {
 
 .input-group{
     width: 100%;
-    padding: 0.5em;
+    padding: 0.7em 1em;
     align-self: flex-start;
-    border-radius: 5px;
+    border-radius: 10px;
     font-family: 'calendar-font';
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
 .input-group>h2{
@@ -2342,6 +2342,71 @@ svg {
     color: rgb(167, 167, 167);
     
 }
+
+.input-group>h3{
+    font-family: 'calendar-font-black';
+}
+
+#edit-profile-section-inputs{
+    display: flex;
+    flex-direction: column;
+    gap:1.5em;
+    justify-content: center;
+    align-items: center;
+}
+
+#input-group-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.input-group>#input-user-weight, .input-group>#input-user-height{
+    width: 100%;
+}
+
+#input-user-weight-num, #input-user-height-num{
+    width: 6ch;
+    position: relative;
+    margin-top: 0.5em;
+}
+
+
+#input-user-weight, #input-user-height{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 2em;
+    height: 1em;
+    background-color: rgba(54, 23, 255, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+#input-user-weight::-webkit-slider-thumb, #input-user-height::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1em;
+    height: 2em;
+    background-color: var(--secondary-blue);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#input-user-weight::-moz-range-thumb, #input-user-height::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #4CAF50;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+
 /* ANIMATIONS */
 @keyframes pulse {
     0% {
