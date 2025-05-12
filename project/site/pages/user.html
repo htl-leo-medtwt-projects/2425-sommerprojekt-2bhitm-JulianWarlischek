@@ -61,17 +61,17 @@
                 <h3 id="member-since">Member since: 2023</h3>
             </div>
             <div id="lower-profile-name">
-                <h3 id="user-name">John Doe</h3>
+                <h3 id="user-name" class="user-data-info"></h3>
             </div>
             <div id="person-data">
                 <div id="person-data-gender">
-                    <h3 id="user-gender">Male</h3>
+                    <h3 id="user-gender" class="user-data-info"></h3>
                 </div>
                 <div class="seperator-dot">
                     <i class="fa-solid fa-circle"></i>
                 </div>
                 <div id="person-data-age">
-                    <h3 id="user-age">25 years old</h3>
+                    <h3 id="user-age" class="user-data-info"></h3>
                 </div>
             </div>
             <hr class="seperator-line">
@@ -80,12 +80,12 @@
                 <div id="personal-data-flex">
                     <div id="personal-data-weight">
                         <h3>Weight</h3>
-                        <h3 id="user-weight">70 kg</h3>
+                        <h3 id="user-weight"></h3>
                     </div>
                     <hr class="seperator-line">
                     <div id="personal-data-height">
                         <h3>Height</h3>
-                        <h3 id="user-height">180 cm</h3>
+                        <h3 id="user-height"></h3>
                     </div>
                 </div>
             </div>
@@ -95,7 +95,7 @@
 
     <!-- Edit Profile Section (Start) -->
     <div id="edit-profile-section">
-        <div id="leave-edit-profile" onclick="closeEditor()">
+        <div id="leave-edit-profile" >
             <i class="fa-solid  fa-arrow-left"></i>
         </div>
         <div id="edit-profile-section-inner">
@@ -109,31 +109,51 @@
             <div id="edit-profile-section-inputs">
                 <div class="input-group">
                     <h2 class="input-group-label">Name</h2>
-                    <h3 class="input-group-value" id="input-user-name">John Doe</h3>
+                    <input type="text" class="input-group-value" id="input-user-name" onchange="readName()"
+                        placeholder="John Doe">
                 </div>
                 <div id="input-group-grid">
                     <div class="input-group">
                         <h2 class="input-group-label">Gender</h2>
-                        <h3 class="input-group-value" id="input-user-gender">Male</h3>
+                        <input type="text" class="input-group-value" id="input-user-gender" onchange="readGender()"
+                            placeholder="Male/Female/Other">
                     </div>
                     <div class="input-group">
                         <h2 class="input-group-label">Age</h2>
-                        <h3 class="input-group-value" id="input-user-age">25</h3>
+                        <input type="number" class="input-group-value" id="input-user-age" onchange="readAge()"
+                            placeholder="18">
                     </div>
                 </div>
                 <div class="input-group">
                     <h2 class="input-group-label">E-mail</h2>
-                    <h3 class="input-group-value" id="input-user-mail">john.doe@example.com</h3>
+                    <input type="email" class="input-group-value" id="input-user-mail" onchange="readMail()"
+                        placeholder="JohnDoe@example.com">
                 </div>
                 <div class="input-group">
                     <h2 class="input-group-label">Weight</h2>
                     <h3 class="input-group-value" id="input-user-weight-num"></h3>
-                    <input type="range" id="input-user-weight" value="0" min="30" max="200" oninput="moveWeightSlider()">
+                    <input type="range" id="input-user-weight" value="0" min="30" max="200"
+                        oninput="moveWeightSlider()">
                 </div>
                 <div class="input-group">
                     <h2 class="input-group-label">Height</h2>
                     <h3 class="input-group-value" id="input-user-height-num"></h3>
-                    <input type="range" id="input-user-height" value="0" min="30" max="200" oninput="moveHeightSlider()">
+                    <input type="range" id="input-user-height" value="0" min="30" max="200"
+                        oninput="moveHeightSlider()">
+                </div>
+                <div id="save-changes" onclick="saveChanges()">
+                    <h3 id="save-changes-text">Save</h3>
+                </div>
+            </div>
+        </div>
+        <div id="unsaved-changes-confirmation">
+            <h3 id="unsaved-changes-text">You have unsaved changes! Are you sure you want to exit?</h3>
+            <div id="unsaved-changes-confirmation-buttons">
+                <div id="unsaved-changes-confirmation-yes" onclick="closeEditor(true)">
+                    <h3>Yes</h3>
+                </div>
+                <div id="unsaved-changes-confirmation-no" onclick="closeConfirmation()">
+                    <h3>No</h3>
                 </div>
             </div>
         </div>

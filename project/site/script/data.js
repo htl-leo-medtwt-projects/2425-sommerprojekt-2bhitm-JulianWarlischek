@@ -317,6 +317,13 @@ let USER_ELEMENTS = {
     upperSite: './index.html',
     userImgPath: './images/running-profile.png',
     profileColor: '#5A9ECF',
+    thisUser: {
+        name: undefined,
+        age: undefined,
+        gender: undefined,
+        weight: undefined,
+        height: undefined,
+    }
 }
 
 
@@ -357,7 +364,7 @@ function setupLS() {
         localStorage['hydration-reached'] = 0;
     }
     if (!localStorage['profile-color']) {
-        localStorage['profile-color'] = "#5A9ECF";
+        localStorage['profile-color'] = JSON.stringify(USER_ELEMENTS.profileColor);
     }
 }
 setupLS()
@@ -376,7 +383,7 @@ function loadFromLS() {
     getReference()
     DRINK_LOG_ELEMENTS.goal = JSON.parse(localStorage['hydration-goal']);
     DRINK_LOG_ELEMENTS.reached = JSON.parse(localStorage['hydration-reached']);
-    USER_ELEMENTS.profileColor = localStorage['profile-color'];
+    USER_ELEMENTS.profileColor = JSON.parse(localStorage['profile-color']);
 }
 loadFromLS()
 
@@ -564,3 +571,4 @@ function indexOf(session) {
         }
     }
 }
+

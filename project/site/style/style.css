@@ -2083,15 +2083,15 @@ svg {
 }
 
 /* PROFILE */
-#profile-section{
+#profile-section {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-top: calc(var(--margin-c-header) - 0.5em);
-    
+
 }
 
-#upper-profile-section{
+#upper-profile-section {
     width: 100%;
     height: 20vh;
     background-color: lightblue;
@@ -2099,7 +2099,7 @@ svg {
     overflow: visible;
 }
 
-#picker-section{
+#picker-section {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -2112,9 +2112,9 @@ svg {
     transition: transform 0.5s ease;
 }
 
-#picker-section>div{
+#picker-section>div {
     background-color: white;
-    border-radius:5px;
+    border-radius: 5px;
     padding: 0.5em 0.7em;
     width: 10vw;
     display: flex;
@@ -2125,7 +2125,7 @@ svg {
     box-shadow: var(--box-shadow);
 }
 
-#upper-profile-color-input{
+#upper-profile-color-input {
     border: none;
     background-color: transparent;
     outline: none;
@@ -2133,7 +2133,7 @@ svg {
     height: 100%;
 }
 
-#edit-profile-color{
+#edit-profile-color {
     position: absolute;
     right: 3%;
     top: 5%;
@@ -2143,7 +2143,7 @@ svg {
     box-shadow: var(--box-shadow);
 }
 
-#upper-profile-section-img{
+#upper-profile-section-img {
     width: 25vw;
     height: 25vw;
     padding: 1em;
@@ -2158,7 +2158,7 @@ svg {
     z-index: 4;
 }
 
-#upper-profile-img-rectangle{
+#upper-profile-img-rectangle {
     width: 100%;
     height: 5vh;
     background-color: white;
@@ -2166,14 +2166,14 @@ svg {
     bottom: -3px;
 }
 
-#lower-profile-name>h3{
+#lower-profile-name>h3 {
     letter-spacing: 0.05em;
     color: var(--main-color);
     font-family: 'Tilt Neon', sans-serif;
     font-size: 2em;
 }
 
-#lower-profile-section{
+#lower-profile-section {
     font-family: 'calendar-font';
     text-align: center;
     color: rgb(112, 112, 112);
@@ -2185,11 +2185,11 @@ svg {
     position: relative;
 }
 
-#lower-profile-member-since>h3{
+#lower-profile-member-since>h3 {
     font-size: 1em;
 }
 
-#person-data{
+#person-data {
     display: flex;
     flex-direction: row;
     gap: 1em;
@@ -2198,18 +2198,18 @@ svg {
     font-size: 0.8em;
 }
 
-.seperator-dot{
+.seperator-dot {
     font-size: 0.05em;
     transform: scale(0.5);
 }
 
-.seperator-line{
+.seperator-line {
     width: 90%;
     margin: 1em 0;
     border-radius: 1em;
 }
 
-#personal-data{
+#personal-data {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -2220,13 +2220,14 @@ svg {
     width: 100%;
     padding-bottom: 1em;
 }
-#personal-data>h3{
+
+#personal-data>h3 {
     font-size: 1.2em;
     align-self: flex-start;
     color: var(--main-color);
 }
 
-#personal-data>#personal-data-flex{
+#personal-data>#personal-data-flex {
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -2237,7 +2238,8 @@ svg {
     padding: 1em 0;
     box-shadow: var(--box-shadow);
 }
-#personal-data-flex>div{
+
+#personal-data-flex>div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -2246,12 +2248,12 @@ svg {
     padding: 0 1em;
 }
 
-#personal-data-flex>.seperator-line{
+#personal-data-flex>.seperator-line {
     margin: 0;
     width: 100%;
 }
 
-#edit-profile{
+#edit-profile {
     background: var(--darkblue-small-gradient);
     color: white;
     padding: 0.5em 0.7em;
@@ -2263,7 +2265,7 @@ svg {
 }
 
 
-#edit-profile-section{
+#edit-profile-section {
     position: absolute;
     top: 0;
     width: 100vw;
@@ -2276,14 +2278,14 @@ svg {
     padding: 3em 2em;
 }
 
-#leave-edit-profile{
+#leave-edit-profile {
     position: absolute;
     top: 5%;
     left: 10%;
     font-size: 1.5em;
 }
 
-#edit-profile-section-inner{
+#edit-profile-section-inner {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -2291,14 +2293,14 @@ svg {
     gap: 2em;
 }
 
-#edit-profile-section-inner>h3{
+#edit-profile-section-inner>h3 {
     font-family: 'calendar-font-bold';
     font-size: 1.1em;
     color: var(--main-color);
     text-align: center;
 }
 
-#edit-profile-section-img{
+#edit-profile-section-img {
     width: 18vw;
     height: 18vw;
     margin-top: 1em;
@@ -2309,14 +2311,14 @@ svg {
     align-self: center;
 }
 
-#edit-profile-section-img>img{
+#edit-profile-section-img>img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
 
-#change-profile-img-button{
+#change-profile-img-button {
     position: absolute;
     top: 80%;
     right: 0%;
@@ -2328,7 +2330,7 @@ svg {
     border-radius: 50%;
 }
 
-.input-group{
+.input-group {
     width: 100%;
     padding: 0.7em 1em;
     align-self: flex-start;
@@ -2337,25 +2339,25 @@ svg {
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 }
 
-.input-group>h2{
+.input-group>h2 {
     font-size: 1em;
     color: rgb(167, 167, 167);
-    
+
 }
 
-.input-group>h3{
+.input-group>h3 {
     font-family: 'calendar-font-black';
 }
 
-#edit-profile-section-inputs{
+#edit-profile-section-inputs {
     display: flex;
     flex-direction: column;
-    gap:1.5em;
+    gap: 1.5em;
     justify-content: center;
     align-items: center;
 }
 
-#input-group-grid{
+#input-group-grid {
     display: grid;
     grid-template-columns: repeat(2, 48%);
     gap: 1em;
@@ -2364,18 +2366,21 @@ svg {
     width: 100%;
 }
 
-.input-group>#input-user-weight, .input-group>#input-user-height{
+.input-group>#input-user-weight,
+.input-group>#input-user-height {
     width: 100%;
 }
 
-#input-user-weight-num, #input-user-height-num{
+#input-user-weight-num,
+#input-user-height-num {
     width: 6ch;
     position: relative;
     margin-top: 0.5em;
 }
 
 
-#input-user-weight, #input-user-height{
+#input-user-weight,
+#input-user-height {
     -webkit-appearance: none;
     appearance: none;
     width: 2em;
@@ -2386,7 +2391,8 @@ svg {
     margin-top: 1em;
 }
 
-#input-user-weight::-webkit-slider-thumb, #input-user-height::-webkit-slider-thumb {
+#input-user-weight::-webkit-slider-thumb,
+#input-user-height::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 1em;
@@ -2397,13 +2403,80 @@ svg {
     border-radius: 10px;
 }
 
-#input-user-weight::-moz-range-thumb, #input-user-height::-moz-range-thumb {
+#input-user-weight::-moz-range-thumb,
+#input-user-height::-moz-range-thumb {
     width: 20px;
     height: 20px;
     background: #4CAF50;
     border: none;
     border-radius: 50%;
     cursor: pointer;
+}
+
+#save-changes {
+    background: var(--darkblue-small-gradient);
+    padding: 1em 8em;
+    color: white;
+    border-radius: 50px;
+    font-family: 'calendar-font-bold';
+    margin-top: 1em;
+    box-shadow: var(--box-shadow);
+}
+
+.input-group>input[type="text"], .input-group>input[type="number"], .input-group>input[type="email"] {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: black;
+    font-size: 1.2em;
+    font-family: 'calendar-font-black';
+    width: 100%;
+}
+
+.input-group>input[type="text"]::placeholder, .input-group>input[type="number"]::placeholder, .input-group>input[type="email"]::placeholder{
+    font-style: italic;
+    color: rgb(224, 224, 224);
+}
+
+.user-data-info{
+    text-transform: capitalize;
+}
+
+#unsaved-changes-confirmation {
+    display: none;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5em;
+    text-align: center;
+    font-family: 'calendar-font';
+}
+
+#unsaved-changes-confirmation-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#unsaved-changes-confirmation-yes{
+    background-color: var(--main-color);
+    color: white;
+    width: 100%;
+    padding: 1em;
+    border-radius: 50px;
+    border: 2px solid var(--main-color);
+}
+
+#unsaved-changes-confirmation-no{
+    color: black;
+    width: 100%;
+    padding: 1em;
+    border-radius: 50px;
+    border: 2px solid var(--main-color);
 }
 
 
