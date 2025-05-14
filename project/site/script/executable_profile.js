@@ -5,7 +5,7 @@ function loadUserSettings() {
     SETTINGS.path = USER_ELEMENTS.upperSite;
     SETTINGS.userImgPath = USER_ELEMENTS.userImgPath;
     document.getElementById('upper-profile-section').style.backgroundColor = USER_ELEMENTS.profileColor;
-    document.getElementById('leave-edit-profile').onclick = () => { closeEditor(false) };
+    document.getElementById('leave-edit-profile').onclick = () => { closeEditor(false), checkForUnsavedChanges() };
 }
 loadUserSettings();
 
@@ -56,7 +56,9 @@ function closeEditor(forcedQuit = false) {
     } else {
         fadeOut('edit-profile-section-inner', 0)
         fadeIn('unsaved-changes-confirmation', 'flex');
-
+        if (!USER_ELEMENTS.unsavedChanges) {
+            closeEditor(true);
+        }
         document.getElementById('leave-edit-profile').onclick = () => { closeEditor(true) };
     }
 }
@@ -64,7 +66,7 @@ function closeEditor(forcedQuit = false) {
 function closeConfirmation() {
     fadeOut('unsaved-changes-confirmation', 0);
     fadeIn('edit-profile-section-inner', 'flex');
-    document.getElementById('leave-edit-profile').onclick = () => { closeEditor(false) };
+    document.getElementById('leave-edit-profile').onclick = () => { closeEditor(false), checkForUnsavedChanges() };
 }
 
 function moveWeightSlider(saveToJSON) {
@@ -82,11 +84,13 @@ function moveWeightSlider(saveToJSON) {
     number.innerHTML = sliderValue + " kg";
     //Copilot generated this code (End)
 
-    if(saveToJSON) {
+    if (saveToJSON) {
         USER_ELEMENTS.thisUser.weight = sliderValue;
     }
+    checkForUnsavedChanges();
 }
-moveWeightSlider();
+
+moveWeightSlider(true)
 
 function moveHeightSlider(saveToJSON) {
     let sliderValue = document.getElementById('input-user-height').value;
@@ -102,19 +106,21 @@ function moveHeightSlider(saveToJSON) {
 
     number.innerHTML = sliderValue + " cm";
     //Copilot generated this code (End)
-    if(saveToJSON) {
+    if (saveToJSON) {
         USER_ELEMENTS.thisUser.height = sliderValue;
     }
+    checkForUnsavedChanges();
 }
-moveHeightSlider();
+moveHeightSlider(true)
 
 /**
  * Function to save the name of the user
  */
 function readName(saveToJSON) {
     let name = document.getElementById('input-user-name').value;
+    checkForUnsavedChanges();
     if (name.length > 0) {
-        if(saveToJSON) {
+        if (saveToJSON) {
             USER_ELEMENTS.thisUser.name = name;
         }
         return true
@@ -122,6 +128,7 @@ function readName(saveToJSON) {
         document.getElementById('input-user-name').value = "";
         //Throw an error here
     }
+
 }
 
 
@@ -130,9 +137,10 @@ function readName(saveToJSON) {
  */
 function readGender(saveToJSON) {
     let gender = document.getElementById('input-user-gender').value.toLowerCase();
+    checkForUnsavedChanges();
 
     if (gender === "other" || gender === 'male' || gender === 'female') {
-        if(saveToJSON) {
+        if (saveToJSON) {
             USER_ELEMENTS.thisUser.gender = gender;
         }
         return true
@@ -148,9 +156,9 @@ function readGender(saveToJSON) {
  */
 function readAge(saveToJSON) {
     let age = document.getElementById('input-user-age').value;
-
+    checkForUnsavedChanges();
     if (age > 0 && age < 120) {
-        if(saveToJSON) {
+        if (saveToJSON) {
             USER_ELEMENTS.thisUser.age = age;
         }
         return true
@@ -166,11 +174,11 @@ function readAge(saveToJSON) {
  */
 function readMail(saveToJSON) {
     let mail = document.getElementById('input-user-mail').value;
-
+    checkForUnsavedChanges();
     if (mail.includes('@') && mail.includes('.')) {
-        if(saveToJSON) {
+        if (saveToJSON) {
             USER_ELEMENTS.thisUser.mail = mail;
-        }   
+        }
         return true
     } else {
         document.getElementById('input-user-mail').value = "";
@@ -206,4 +214,39 @@ function loadDataToProfile() {
     document.getElementById('user-age').innerHTML = USER_ELEMENTS.thisUser.age + " years old";
     document.getElementById('user-weight').innerHTML = USER_ELEMENTS.thisUser.weight + " kg";
     document.getElementById('user-height').innerHTML = USER_ELEMENTS.thisUser.height + " cm";
+}
+
+/**
+ * Function to check if there are unsaved changes
+ */
+function checkForUnsavedChanges() {
+    if (document.getElementById('input-user-name').value != USER_ELEMENTS.thisUser.name || document.getElementById('input-user-gender').value != USER_ELEMENTS.thisUser.gender || document.getElementById('input-user-age').value != USER_ELEMENTS.thisUser.age || document.getElementById('input-user-mail').value != USER_ELEMENTS.thisUser.mail || document.getElementById('input-user-weight').value != USER_ELEMENTS.thisUser.weight || document.getElementById('input-user-height').value != USER_ELEMENTS.thisUser.height) {
+        USER_ELEMENTS.unsavedChanges = true;
+    } else {
+        USER_ELEMENTS.unsavedChanges = false;
+    }
+}
+
+function openLogin() {
+    let loginSlider = document.getElementById('login-section');
+
+    loginSlider.style.transform = 'translateY(0)';
+}
+
+function openRegister() {
+    let registerSlider = document.getElementById('register-section');
+
+    registerSlider.style.transform = 'translateY(0)';
+}
+
+function closeLogin() {
+    let loginSlider = document.getElementById('login-section');
+
+    loginSlider.style.transform = 'translateY(100%)';
+}
+
+function closeRegister() {
+    let registerSlider = document.getElementById('register-section');
+
+    registerSlider.style.transform = 'translateY(100%)';
 }

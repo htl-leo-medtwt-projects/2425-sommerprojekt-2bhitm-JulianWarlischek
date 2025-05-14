@@ -318,12 +318,14 @@ let USER_ELEMENTS = {
     userImgPath: './images/running-profile.png',
     profileColor: '#5A9ECF',
     thisUser: {
-        name: undefined,
-        age: undefined,
-        gender: undefined,
-        weight: undefined,
-        height: undefined,
-    }
+        name: '',
+        age: '',
+        mail: '',
+        gender: '',
+        weight: '',
+        height: '',
+    },
+    unsavedChanges: false
 }
 
 

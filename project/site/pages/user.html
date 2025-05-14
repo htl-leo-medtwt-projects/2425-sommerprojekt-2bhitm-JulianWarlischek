@@ -95,7 +95,7 @@
 
     <!-- Edit Profile Section (Start) -->
     <div id="edit-profile-section">
-        <div id="leave-edit-profile" >
+        <div id="leave-edit-profile">
             <i class="fa-solid  fa-arrow-left"></i>
         </div>
         <div id="edit-profile-section-inner">
@@ -159,6 +159,92 @@
         </div>
     </div>
     <!-- Edit Profile Section (End) -->
+
+    <!-- Login/Register Section (Start) -->
+    <div id="login-or-register-section">
+        <div id="login-or-register-section-inner">
+            <h3>Welcome to Fitbalance!</h3>
+
+            <div id="login-or-register-section-buttons">
+                <div id="login-button" class="login-or-register-button" onclick="openLogin()">
+                    <h3>Login</h3>
+                </div>
+                <div id="register-button" class="login-or-register-button" onclick="openRegister()">
+                    <h3>Register</h3>
+                </div>
+            </div>
+
+            <div id="login-or-register-info">
+
+                <p><i class="fa-solid fa-circle-info"></i> Please note: If you create or have an account, your tracked
+                    data will be stored long-term.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Login/Register Section (End) -->
+
+    <!-- Login Section (Start) -->
+    <div id="login-section">
+        <div id="login-section-inner">
+            <div id="login-section-upper">
+                <div class="close-login-or-register" onclick="closeLogin()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+                <div id="login-logo">
+                    <img src="../images/f-logo.png" alt="logo">
+                </div>
+                <h3>Welcome back</h3>
+            </div>
+            <div id="login-section-lower">
+                <div class="login-input-group">
+                    <input type="email" class="login-input-group-value" id="login-email"
+                        placeholder="JohnDoe@example.com">
+                    <h2 class="login-input-group-label">E-mail</h2>
+                </div>
+                <div class="login-input-group">
+                    <input type="password" class="login-input-group-value" id="login-password" placeholder="********">
+                    <h2 class="login-input-group-label">Password</h2>
+                </div>
+                <div id="login-button-submit">
+                    <h3>Login</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Login Section (End) -->
+
+
+    <!-- Register Section (Start) -->
+    <div id="register-section">
+        <div id="register-section-inner">
+            <div id="register-section-upper">
+                <div class="close-login-or-register" onclick="closeRegister()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </div>
+                <div id="register-logo">
+                    <img src="../images/f-logo.png" alt="logo">
+                </div>
+                <h3>Welcome to Fitbalance</h3>
+            </div>
+            <div id="register-section-lower">
+                <div class="register-input-group">
+                    <input type="email" class="register-input-group-value" id="register-email"
+                        placeholder="JohnDoe@example.com">
+                    <h2 class="register-input-group-label">E-mail</h2>
+                </div>
+                <div class="register-input-group">
+                    <input type="password" class="register-input-group-value" id="register-password"
+                        placeholder="********">
+                    <h2 class="register-input-group-label">Password</h2>
+                </div>
+                <div id="register-button-submit">
+                    <h3>Register</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register Section (End) -->
+
 
     <!-- Navigation (Start) -->
     <div id="navigation">
