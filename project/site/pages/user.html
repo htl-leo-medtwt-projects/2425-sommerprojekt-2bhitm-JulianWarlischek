@@ -230,7 +230,7 @@
             <div id="register-section-lower">
                 <div class="register-input-group">
                     <input type="text" class="register-input-group-value" id="register-name" placeholder="John Doe">
-                    <h2 class="register-input-group-label">Name</h2>
+                    <h2 class="register-input-group-label" id="register-input-group-label-name">Name</h2>
                 </div>
                 <div class="register-group-grid">
                     <div class="register-input-group">
@@ -249,20 +249,40 @@
                 </div>
                 <div class="register-input-group">
                     <input type="password" class="register-input-group-value" id="register-password"
-                        placeholder="********">
-                    <h2 class="register-input-group-label">Password</h2>
+                        placeholder="********" oninput="checkPasswordRegister()">
+                    <h2 class="register-input-group-label" id="register-input-group-label-password">Password</h2>
                 </div>
                 <div class="login-input-group">
                     <input type="password" class="login-input-group-value" id="register-password-confirm" placeholder="********" oninput="checkPasswordConfirmRegister()">
                     <h2 class="register-input-group-label" id="register-input-group-label-password-confirm">Confirm Password</h2>
                 </div>
-                <div id="register-button-submit">
+                <div id="register-button-submit" onclick="registerData()">
                     <h3>Register</h3>
                 </div>
             </div>
         </div>
     </div>
     <!-- Register Section (End) -->
+
+    <!-- Register Body Data (Start) -->
+    <div id="register-body-data-box">
+        <div id="register-body-data-previous">
+            <i class="fa-solid fa-arrow-left"></i>
+        </div>
+        <div id="register-body-data-box-inner">
+            <div id="register-body-data-box-headline">
+                <h3>Body Data</h3>
+            </div>
+            <div id="register-body-data-box-img">
+            </div>
+            <div id="register-body-data-box-input">
+
+            </div>
+
+        </div>
+    </div>
+    <!-- Register Body Data (End) -->
+
 
 
     <!-- Navigation (Start) -->

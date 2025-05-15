@@ -262,9 +262,15 @@ function checkGenderRegister() {
         document.getElementById('register-gender').value = "";
         if (input != "") {
             document.getElementById('register-input-group-label-gender').style.color = 'red';
+            return false;
         }
-
     }
+
+    if (input == "") {
+        document.getElementById('register-input-group-label-gender').style.color = 'red';
+        return false;
+    }
+    return true;
 }
 
 function checkAgeRegister() {
@@ -276,8 +282,15 @@ function checkAgeRegister() {
 
         if (input != "") {
             document.getElementById('register-input-group-label-age').style.color = 'red';
+            return false;
         }
     }
+
+    if (input == "") {
+        document.getElementById('register-input-group-label-age').style.color = 'red';
+        return false;
+    }
+    return true
 }
 
 function checkMailRegister() {
@@ -288,9 +301,18 @@ function checkMailRegister() {
         document.getElementById('register-email').value = "";
         if (input != "") {
             document.getElementById('register-input-group-label-email').style.color = 'red';
+            return false;
         }
     }
+
+    if (input == "") {
+        document.getElementById('register-input-group-label-email').style.color = 'red';
+        return false;
+    }
+    return true;
 }
+
+
 
 function checkPasswordConfirmRegister() {
     let pw = document.getElementById('register-password').value;
@@ -301,6 +323,59 @@ function checkPasswordConfirmRegister() {
     if (pw_confirm != "") {
         if (pw != pw_confirm) {
             document.getElementById('register-input-group-label-password-confirm').style.color = 'red';
+            return false;
         }
     }
+
+    if (pw_confirm == "") {
+        document.getElementById('register-input-group-label-password-confirm').style.color = 'red';
+        return false;
+    }
+    return true;
+}
+
+function checkPasswordRegister() {
+    let pw = document.getElementById('register-password').value;
+    document.getElementById('register-input-group-label-password').style.color = 'black';
+    if (pw.length < 8 && pw != "") {
+        document.getElementById('register-input-group-label-password').style.color = 'red';
+        return false;
+    }
+
+    if (pw == "") {
+        document.getElementById('register-input-group-label-password').style.color = 'red';
+        return false;
+    }
+    return true;
+}
+
+function checkNameRegister() {
+    let input = document.getElementById('register-name').value;
+
+    document.getElementById('register-input-group-label-name').style.color = 'black';
+    if (input == "") {
+        document.getElementById('register-input-group-label-name').style.color = 'red';
+        return false;
+    }
+    return true;
+}
+
+function registerData() {
+    let val1 = checkGenderRegister();
+    let val2 = checkAgeRegister();
+    let val3 = checkMailRegister();
+    let val4 = checkPasswordConfirmRegister();
+    let val5 = checkNameRegister();
+    let val6 = checkPasswordRegister()
+
+    
+
+    if (!val1 || !val2 || !val3 || !val4 || !val5 || !val6) {
+        return
+    }
+    setRegisterBodyData();
+}
+
+function setRegisterBodyData() {
+    
 }

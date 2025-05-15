@@ -325,7 +325,20 @@ let USER_ELEMENTS = {
         weight: '',
         height: '',
     },
-    unsavedChanges: false
+    unsavedChanges: false,
+    registerInput: [
+        {
+            'headline': 'Set weight',
+            'img': "../images/weight-input.jpg",
+            'html': '<input type="range" id="register-weight" min="30" max="200" value="30">',
+        },
+        {
+            'headline': 'Set height',
+            'img': "../images/body-input.png",
+            'html': '<input type="range" id="register-height" min="30" max="200" value="30">',
+        }
+    ],
+    registerInputIndex: 0,
 }
 
 
@@ -387,7 +400,7 @@ function loadFromLS() {
     DRINK_LOG_ELEMENTS.reached = JSON.parse(localStorage['hydration-reached']);
     USER_ELEMENTS.profileColor = JSON.parse(localStorage['profile-color']);
 }
-loadFromLS()
+loadFromLS();
 
 /**
  * References of date

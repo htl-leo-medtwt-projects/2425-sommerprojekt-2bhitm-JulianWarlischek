@@ -2747,6 +2747,32 @@ svg {
     top: 13%;
 }
 
+#register-body-data-box {
+    background-color: white;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    z-index: 9;
+    margin-top: var(--margin-c-header);
+    padding: 3em 0;
+    font-family: 'calendar-font';
+}
+
+#register-body-data-previous {
+    position: absolute;
+    top: 2%;
+    font-size: 1.5em;
+    left: 7%;
+}
+
+#register-body-data-box-inner{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 @keyframes water-waves {
     0% {
         transform: rotate(0deg);
