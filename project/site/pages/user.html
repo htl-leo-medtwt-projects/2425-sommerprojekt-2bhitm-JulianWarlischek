@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="user-body-html">
 
 <head>
     <meta charset="UTF-8">
@@ -16,7 +16,7 @@
     <script src="../script/path_system.js" defer></script>
 </head>
 
-<body>
+<body class="user-body-html">
     <!-- Header (Start) -->
     <div id="header">
         <div id="header-inner">
@@ -205,6 +205,7 @@
                     <input type="password" class="login-input-group-value" id="login-password" placeholder="********">
                     <h2 class="login-input-group-label">Password</h2>
                 </div>
+        
                 <div id="login-button-submit">
                     <h3>Login</h3>
                 </div>
@@ -228,14 +229,32 @@
             </div>
             <div id="register-section-lower">
                 <div class="register-input-group">
+                    <input type="text" class="register-input-group-value" id="register-name" placeholder="John Doe">
+                    <h2 class="register-input-group-label">Name</h2>
+                </div>
+                <div class="register-group-grid">
+                    <div class="register-input-group">
+                        <input type="text" class="register-input-group-value" id="register-gender" placeholder="Male" onchange="checkGenderRegister()">
+                        <h2 id="register-input-group-label-gender" class="register-input-group-label">Gender</h2>
+                    </div>
+                    <div class="register-input-group">
+                        <input type="number" class="register-input-group-value" id="register-age" placeholder="18" onchange="checkAgeRegister()">
+                        <h2 class="register-input-group-label" id="register-input-group-label-age">Age</h2>
+                    </div>
+                </div>
+                <div class="register-input-group">
                     <input type="email" class="register-input-group-value" id="register-email"
-                        placeholder="JohnDoe@example.com">
-                    <h2 class="register-input-group-label">E-mail</h2>
+                        placeholder="JohnDoe@example.com" onchange="checkMailRegister()">
+                    <h2 class="register-input-group-label" id="register-input-group-label-email">E-mail</h2>
                 </div>
                 <div class="register-input-group">
                     <input type="password" class="register-input-group-value" id="register-password"
                         placeholder="********">
                     <h2 class="register-input-group-label">Password</h2>
+                </div>
+                <div class="login-input-group">
+                    <input type="password" class="login-input-group-value" id="register-password-confirm" placeholder="********" oninput="checkPasswordConfirmRegister()">
+                    <h2 class="register-input-group-label" id="register-input-group-label-password-confirm">Confirm Password</h2>
                 </div>
                 <div id="register-button-submit">
                     <h3>Register</h3>

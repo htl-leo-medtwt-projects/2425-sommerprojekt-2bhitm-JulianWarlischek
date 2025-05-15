@@ -128,7 +128,6 @@ function readName(saveToJSON) {
         document.getElementById('input-user-name').value = "";
         //Throw an error here
     }
-
 }
 
 
@@ -231,22 +230,77 @@ function openLogin() {
     let loginSlider = document.getElementById('login-section');
 
     loginSlider.style.transform = 'translateY(0)';
+    fadeOut('navigation', 0)
 }
 
 function openRegister() {
     let registerSlider = document.getElementById('register-section');
 
-    registerSlider.style.transform = 'translateY(0)';
+    registerSlider.style.transform = 'translateY(5%)';
+
+    fadeOut('navigation', 0)
 }
 
 function closeLogin() {
     let loginSlider = document.getElementById('login-section');
 
     loginSlider.style.transform = 'translateY(100%)';
+    fadeIn('navigation', 'flex')
 }
 
 function closeRegister() {
     let registerSlider = document.getElementById('register-section');
 
     registerSlider.style.transform = 'translateY(100%)';
+    fadeIn('navigation', 'flex')
+}
+
+function checkGenderRegister() {
+    let input = document.getElementById('register-gender').value.toLowerCase();
+    document.getElementById('register-input-group-label-gender').style.color = 'black';
+    if (input != 'male' && input != 'female' && input != 'other') {
+        document.getElementById('register-gender').value = "";
+        if (input != "") {
+            document.getElementById('register-input-group-label-gender').style.color = 'red';
+        }
+
+    }
+}
+
+function checkAgeRegister() {
+    let input = document.getElementById('register-age').value;
+
+    document.getElementById('register-input-group-label-age').style.color = 'black';
+    if (input < 0 || input > 120) {
+        document.getElementById('register-age').value = "";
+
+        if (input != "") {
+            document.getElementById('register-input-group-label-age').style.color = 'red';
+        }
+    }
+}
+
+function checkMailRegister() {
+    let input = document.getElementById('register-email').value;
+
+    document.getElementById('register-input-group-label-email').style.color = 'black';
+    if (!input.includes('@') || !input.includes('.')) {
+        document.getElementById('register-email').value = "";
+        if (input != "") {
+            document.getElementById('register-input-group-label-email').style.color = 'red';
+        }
+    }
+}
+
+function checkPasswordConfirmRegister() {
+    let pw = document.getElementById('register-password').value;
+    let pw_confirm = document.getElementById('register-password-confirm').value;
+
+    document.getElementById('register-input-group-label-password-confirm').style.color = 'black';
+
+    if (pw_confirm != "") {
+        if (pw != pw_confirm) {
+            document.getElementById('register-input-group-label-password-confirm').style.color = 'red';
+        }
+    }
 }
