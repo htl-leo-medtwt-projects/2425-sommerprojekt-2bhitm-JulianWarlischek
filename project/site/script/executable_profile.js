@@ -1,3 +1,5 @@
+
+
 /**
  * Settings of user.html
  */
@@ -368,7 +370,7 @@ function registerData() {
     let val5 = checkNameRegister();
     let val6 = checkPasswordRegister()
 
-    
+
 
     if (!val1 || !val2 || !val3 || !val4 || !val5 || !val6) {
         return
@@ -376,6 +378,93 @@ function registerData() {
     setRegisterBodyData();
 }
 
-function setRegisterBodyData() {
-    
+function setRegisterBodyData(state) {
+    openRegisterBodyData();
+
+    fadeOut('register-body-data-box-inner', 300);
+    if (state) {
+        document.getElementById('register-body-data-box-headline-text').innerHTML = USER_ELEMENTS.registerInput[USER_ELEMENTS.registerInputIndex].headline;
+        document.getElementById('register-body-data-box-img').innerHTML = `<img src="${USER_ELEMENTS.registerInput[USER_ELEMENTS.registerInputIndex].img}" alt="register-img">`;
+        document.getElementById('register-body-data-box-input').innerHTML = USER_ELEMENTS.registerInput[USER_ELEMENTS.registerInputIndex].html;
+    }
+    setTimeout(() => {
+        document.getElementById('register-body-data-box-headline-text').innerHTML = USER_ELEMENTS.registerInput[USER_ELEMENTS.registerInputIndex].headline;
+        document.getElementById('register-body-data-box-img').innerHTML = `<img src="${USER_ELEMENTS.registerInput[USER_ELEMENTS.registerInputIndex].img}" alt="register-img">`;
+        document.getElementById('register-body-data-box-input').innerHTML = USER_ELEMENTS.registerInput[USER_ELEMENTS.registerInputIndex].html;
+        fadeIn('register-body-data-box-inner', 'flex');
+        if (USER_ELEMENTS.registerInputIndex === 0) {
+            updateWeightLabel();
+        } else {
+            updateHeightLabel();
+        }
+    }, 300);
+
+
+}
+setRegisterBodyData(true)
+
+
+function openRegisterBodyData() {
+    fadeIn('register-body-data-box', 'flex')
+}
+
+function closeRegisterBodyData() {
+    fadeOut('register-body-data-box', 300);
+}
+
+function updateWeightLabel() {
+    let sliderValue = document.getElementById('register-weight').value;
+    let number = document.getElementById('register-weight-label');
+
+    //Copilot generated this code
+    let min = 30;
+    let max = 200;
+    let percentage = ((sliderValue - min) / (max - min)) * 100 - 5;
+
+    number.style.left = `${percentage < 0 ? 0 : Math.min(percentage, 75)}%`;
+
+    number.innerHTML = sliderValue + " kg";
+    //Copilot generated this code (End)
+}
+setTimeout(() => {
+    updateWeightLabel()
+}, 300)
+
+function updateHeightLabel() {
+    let sliderValue = document.getElementById('register-height').value;
+    let number = document.getElementById('register-height-label');
+
+    //Copilot generated this code
+    let min = 30;
+    let max = 200;
+    let percentage = ((sliderValue - min) / (max - min)) * 100 - 5;
+
+    number.style.left = `${percentage < 0 ? 0 : Math.min(percentage, 75)}%`;
+
+    number.innerHTML = sliderValue + " cm";
+    //Copilot generated this code (End)
+}
+
+
+function riseInputCounter() {
+    USER_ELEMENTS.registerInputIndex++;
+
+    if(USER_ELEMENTS.registerInputIndex > USER_ELEMENTS.registerInput.length - 1) {
+        closeRegisterBodyData()
+        USER_ELEMENTS.registerInputIndex = 0;
+    }
+
+    setRegisterBodyData();
+}
+
+function lowerInputCounter() {
+    USER_ELEMENTS.registerInputIndex--;
+
+    if (USER_ELEMENTS.registerInputIndex < 0) {
+        closeRegisterBodyData()
+        openRegister();
+        USER_ELEMENTS.registerInputIndex = 0;
+    }
+
+    setRegisterBodyData();
 }

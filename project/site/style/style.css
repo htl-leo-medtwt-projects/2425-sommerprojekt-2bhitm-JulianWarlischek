@@ -2487,22 +2487,6 @@ svg {
     border: 2px solid var(--main-color);
 }
 
-
-/* ANIMATIONS */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 5px rgba(17, 22, 27, 0.741);
-    }
-
-    50% {
-        box-shadow: 0 0 0 10px rgba(17, 22, 27, 0.741);
-    }
-
-    100% {
-        box-shadow: 0 0 0 5px rgba(17, 22, 27, 0.741);
-    }
-}
-
 #login-or-register-section-inner {
     position: absolute;
     top: 0;
@@ -2727,7 +2711,6 @@ svg {
     font-family: 'calendar-font-black';
 }
 
-
 .register-input-group-label {
     font-size: 0.9em;
 }
@@ -2757,6 +2740,8 @@ svg {
     margin-top: var(--margin-c-header);
     padding: 3em 0;
     font-family: 'calendar-font';
+    transition: opacity 0.5s ease;
+
 }
 
 #register-body-data-previous {
@@ -2766,11 +2751,74 @@ svg {
     left: 7%;
 }
 
-#register-body-data-box-inner{
+#register-body-data-box-inner {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    width: 100%;
     align-items: center;
+    gap: 15vh;
+    transition: 0.5s ease opacity;
+}
+
+#register-body-data-box-img {
+    width: 60%;
+    position: relative;
+}
+
+#register-body-data-box-input{
+    position: relative;
+}
+#register-body-data-box-input>input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 2em;
+    height: 1em;
+    width: 50vw;
+    background-color: rgba(54, 23, 255, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+#register-weight-label{
+    position: relative;
+    font-size: 1.2em;
+    font-family: 'Tilt Neon', sans-serif;
+    width: 6ch;
+}
+
+
+#register-body-data-box-input>input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 1em;
+    height: 2em;
+    background-color: var(--secondary-blue);
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+#register-height-label{
+    position: relative;
+    font-size: 1.2em;
+    font-family: 'Tilt Neon', sans-serif;
+    width: 6ch;
+}
+
+/* ANIMATIONS */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 5px rgba(17, 22, 27, 0.741);
+    }
+
+    50% {
+        box-shadow: 0 0 0 10px rgba(17, 22, 27, 0.741);
+    }
+
+    100% {
+        box-shadow: 0 0 0 5px rgba(17, 22, 27, 0.741);
+    }
 }
 
 @keyframes water-waves {

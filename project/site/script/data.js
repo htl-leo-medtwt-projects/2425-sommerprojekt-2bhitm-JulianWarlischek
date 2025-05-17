@@ -329,13 +329,13 @@ let USER_ELEMENTS = {
     registerInput: [
         {
             'headline': 'Set weight',
-            'img': "../images/weight-input.jpg",
-            'html': '<input type="range" id="register-weight" min="30" max="200" value="30">',
+            'img': "../images/weight-input.gif",
+            'html': '<p id="register-weight-label"></p><input onchange="riseInputCounter()" type="range" id="register-weight" min="30" max="200" value="30" oninput="updateWeightLabel()">',
         },
         {
             'headline': 'Set height',
-            'img': "../images/body-input.png",
-            'html': '<input type="range" id="register-height" min="30" max="200" value="30">',
+            'img': "../images/heigt-input.gif",
+            'html': '<p id="register-height-label"></p><input onchange="riseInputCounter()" type="range" id="register-height" min="30" max="200" value="30" oninput="updateHeightLabel()">',
         }
     ],
     registerInputIndex: 0,
