@@ -187,7 +187,7 @@
     <div id="login-section">
         <div id="login-section-inner">
             <div id="login-section-upper">
-                <div class="close-login-or-register" onclick="closeLogin()">
+                <div class="close-login-or-register" onclick="resetLogin();closeLogin()">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </div>
                 <div id="login-logo">
@@ -198,15 +198,15 @@
             <div id="login-section-lower">
                 <div class="login-input-group">
                     <input type="email" class="login-input-group-value" id="login-email"
-                        placeholder="JohnDoe@example.com">
-                    <h2 class="login-input-group-label">E-mail</h2>
+                        placeholder="JohnDoe@example.com" onchange="checkMailLogin()">
+                    <h2 class="login-input-group-label" id="login-input-group-label-email">E-mail</h2>
                 </div>
                 <div class="login-input-group">
                     <input type="password" class="login-input-group-value" id="login-password" placeholder="********">
-                    <h2 class="login-input-group-label">Password</h2>
+                    <h2 class="login-input-group-label" id="login-input-group-label-password">Password</h2>
                 </div>
         
-                <div id="login-button-submit">
+                <div id="login-button-submit" onclick="login()">
                     <h3>Login</h3>
                 </div>
             </div>
@@ -219,7 +219,7 @@
     <div id="register-section">
         <div id="register-section-inner">
             <div id="register-section-upper">
-                <div class="close-login-or-register" onclick="closeRegister()">
+                <div class="close-login-or-register" onclick="resetRegister(); closeRegister()">
                     <i class="fa-solid fa-right-from-bracket"></i>
                 </div>
                 <div id="register-logo">

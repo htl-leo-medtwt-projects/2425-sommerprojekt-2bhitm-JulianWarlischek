@@ -6,16 +6,36 @@
 function loadUserSettings() {
     SETTINGS.path = USER_ELEMENTS.upperSite;
     SETTINGS.userImgPath = USER_ELEMENTS.userImgPath;
-    document.getElementById('upper-profile-section').style.backgroundColor = USER_ELEMENTS.profileColor;
+    setUser()
+    document.getElementById('upper-profile-section').style.backgroundColor = USER_ELEMENTS.thisUser.profileColor === '' ? '#5A9ECF' : USER_ELEMENTS.thisUser.profileColor;
     document.getElementById('leave-edit-profile').onclick = () => { closeEditor(false), checkForUnsavedChanges() };
 }
 loadUserSettings();
 
+function loadThisUser() {
+    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
+        if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
+            USER_ELEMENTS.thisUser = USER_ELEMENTS.loggedUsers[i];
+            break
+        }
+    }
+}
+
 function newColor() {
     let color = document.getElementById('upper-profile-color-input').value;
     document.getElementById('upper-profile-section').style.backgroundColor = color;
+    USER_ELEMENTS.thisUser.profileColor = color;
+    insertUser()
+}
 
-    saveDataOnLS('profile-color', color);
+function insertUser() {
+    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
+        if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
+            USER_ELEMENTS.loggedUsers[i] = USER_ELEMENTS.thisUser;
+            saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
+            break
+        }
+    }
 }
 
 /**
@@ -44,6 +64,9 @@ function openEditor() {
     fadeIn('edit-profile-section', 'flex');
     fadeIn('edit-profile-section-inner', 'flex');
     fadeOut('unsaved-changes-confirmation', 0);
+    moveHeightSlider(false)
+    moveWeightSlider(false)
+    setInputValues();
 }
 
 
@@ -52,14 +75,17 @@ function openEditor() {
  */
 function closeEditor(forcedQuit = false) {
     if (forcedQuit) {
+
         fadeOut('edit-profile-section', 400);
         fadeIn('edit-profile-section-inner', 'flex');
         closeConfirmation();
     } else {
         fadeOut('edit-profile-section-inner', 0)
         fadeIn('unsaved-changes-confirmation', 'flex');
+
         if (!USER_ELEMENTS.unsavedChanges) {
             closeEditor(true);
+            return
         }
         document.getElementById('leave-edit-profile').onclick = () => { closeEditor(true) };
     }
@@ -68,7 +94,7 @@ function closeEditor(forcedQuit = false) {
 function closeConfirmation() {
     fadeOut('unsaved-changes-confirmation', 0);
     fadeIn('edit-profile-section-inner', 'flex');
-    document.getElementById('leave-edit-profile').onclick = () => { closeEditor(false), checkForUnsavedChanges() };
+    document.getElementById('leave-edit-profile').onclick = () => { checkForUnsavedChanges(), closeEditor(false) };
 }
 
 function moveWeightSlider(saveToJSON) {
@@ -121,6 +147,8 @@ moveHeightSlider(true)
 function readName(saveToJSON) {
     let name = document.getElementById('input-user-name').value;
     checkForUnsavedChanges();
+    console.log(USER_ELEMENTS.thisUser.name);
+
     if (name.length > 0) {
         if (saveToJSON) {
             USER_ELEMENTS.thisUser.name = name;
@@ -215,17 +243,35 @@ function loadDataToProfile() {
     document.getElementById('user-age').innerHTML = USER_ELEMENTS.thisUser.age + " years old";
     document.getElementById('user-weight').innerHTML = USER_ELEMENTS.thisUser.weight + " kg";
     document.getElementById('user-height').innerHTML = USER_ELEMENTS.thisUser.height + " cm";
+    setInputValues();
+}
+
+function setInputValues() {
+    document.getElementById('input-user-name').value = USER_ELEMENTS.thisUser.name;
+    document.getElementById('input-user-gender').value = USER_ELEMENTS.thisUser.gender;
+    document.getElementById('input-user-age').value = USER_ELEMENTS.thisUser.age;
+    document.getElementById('input-user-mail').value = USER_ELEMENTS.thisUser.mail;
+    document.getElementById('input-user-weight').value = USER_ELEMENTS.thisUser.weight;
+    document.getElementById('input-user-height').value = USER_ELEMENTS.thisUser.height;
 }
 
 /**
  * Function to check if there are unsaved changes
  */
 function checkForUnsavedChanges() {
+    console.log(document.getElementById('input-user-name').value != USER_ELEMENTS.thisUser.name);
+    console.log(document.getElementById('input-user-gender').value != USER_ELEMENTS.thisUser.gender);
+    console.log(document.getElementById('input-user-age').value != USER_ELEMENTS.thisUser.age);
+    console.log(document.getElementById('input-user-mail').value != USER_ELEMENTS.thisUser.mail);
+    console.log(document.getElementById('input-user-weight').value != USER_ELEMENTS.thisUser.weight);
+    console.log(document.getElementById('input-user-height').value != USER_ELEMENTS.thisUser.height);
+
     if (document.getElementById('input-user-name').value != USER_ELEMENTS.thisUser.name || document.getElementById('input-user-gender').value != USER_ELEMENTS.thisUser.gender || document.getElementById('input-user-age').value != USER_ELEMENTS.thisUser.age || document.getElementById('input-user-mail').value != USER_ELEMENTS.thisUser.mail || document.getElementById('input-user-weight').value != USER_ELEMENTS.thisUser.weight || document.getElementById('input-user-height').value != USER_ELEMENTS.thisUser.height) {
         USER_ELEMENTS.unsavedChanges = true;
     } else {
         USER_ELEMENTS.unsavedChanges = false;
     }
+
 }
 
 function openLogin() {
@@ -233,14 +279,17 @@ function openLogin() {
 
     loginSlider.style.transform = 'translateY(0)';
     fadeOut('navigation', 0)
+    fadeOut('header', 0)
 }
 
 function openRegister() {
     let registerSlider = document.getElementById('register-section');
 
-    registerSlider.style.transform = 'translateY(5%)';
+    registerSlider.style.transform = 'translateY(0%)';
 
     fadeOut('navigation', 0)
+    fadeOut('header', 0)
+
 }
 
 function closeLogin() {
@@ -248,6 +297,7 @@ function closeLogin() {
 
     loginSlider.style.transform = 'translateY(100%)';
     fadeIn('navigation', 'flex')
+    fadeIn('header', 'flex') 
 }
 
 function closeRegister() {
@@ -255,6 +305,7 @@ function closeRegister() {
 
     registerSlider.style.transform = 'translateY(100%)';
     fadeIn('navigation', 'flex')
+    fadeIn('header', 'flex')
 }
 
 function checkGenderRegister() {
@@ -272,6 +323,7 @@ function checkGenderRegister() {
         document.getElementById('register-input-group-label-gender').style.color = 'red';
         return false;
     }
+    USER_ELEMENTS.registerUser.gender = input;
     return true;
 }
 
@@ -292,6 +344,7 @@ function checkAgeRegister() {
         document.getElementById('register-input-group-label-age').style.color = 'red';
         return false;
     }
+    USER_ELEMENTS.registerUser.age = input;
     return true
 }
 
@@ -311,6 +364,7 @@ function checkMailRegister() {
         document.getElementById('register-input-group-label-email').style.color = 'red';
         return false;
     }
+    USER_ELEMENTS.registerUser.mail = input;
     return true;
 }
 
@@ -348,7 +402,13 @@ function checkPasswordRegister() {
         document.getElementById('register-input-group-label-password').style.color = 'red';
         return false;
     }
+    getHas(pw)
+
     return true;
+}
+
+async function getHas(pw) {
+    USER_ELEMENTS.registerUser.password = await hashStringSHA256(pw);
 }
 
 function checkNameRegister() {
@@ -359,6 +419,7 @@ function checkNameRegister() {
         document.getElementById('register-input-group-label-name').style.color = 'red';
         return false;
     }
+    USER_ELEMENTS.registerUser.name = input;
     return true;
 }
 
@@ -370,12 +431,10 @@ function registerData() {
     let val5 = checkNameRegister();
     let val6 = checkPasswordRegister()
 
-
-
     if (!val1 || !val2 || !val3 || !val4 || !val5 || !val6) {
         return
     }
-    setRegisterBodyData();
+    setRegisterBodyData(true);
 }
 
 function setRegisterBodyData(state) {
@@ -392,16 +451,13 @@ function setRegisterBodyData(state) {
         document.getElementById('register-body-data-box-img').innerHTML = `<img src="${USER_ELEMENTS.registerInput[USER_ELEMENTS.registerInputIndex].img}" alt="register-img">`;
         document.getElementById('register-body-data-box-input').innerHTML = USER_ELEMENTS.registerInput[USER_ELEMENTS.registerInputIndex].html;
         fadeIn('register-body-data-box-inner', 'flex');
-        if (USER_ELEMENTS.registerInputIndex === 0) {
+        if (USER_ELEMENTS.registerInputIndex === 0 && state) {
             updateWeightLabel();
-        } else {
+        } else if (USER_ELEMENTS.registerInputIndex === 1) {
             updateHeightLabel();
         }
     }, 300);
-
-
 }
-setRegisterBodyData(true)
 
 
 function openRegisterBodyData() {
@@ -413,7 +469,7 @@ function closeRegisterBodyData() {
 }
 
 function updateWeightLabel() {
-    let sliderValue = document.getElementById('register-weight').value;
+    let sliderValue = getCopyOf(document.getElementById('register-weight').value);
     let number = document.getElementById('register-weight-label');
 
     //Copilot generated this code
@@ -425,10 +481,10 @@ function updateWeightLabel() {
 
     number.innerHTML = sliderValue + " kg";
     //Copilot generated this code (End)
+
+    USER_ELEMENTS.registerUser.weight = sliderValue;
 }
-setTimeout(() => {
-    updateWeightLabel()
-}, 300)
+
 
 function updateHeightLabel() {
     let sliderValue = document.getElementById('register-height').value;
@@ -443,15 +499,31 @@ function updateHeightLabel() {
 
     number.innerHTML = sliderValue + " cm";
     //Copilot generated this code (End)
+
+    USER_ELEMENTS.registerUser.height = sliderValue;
 }
 
 
 function riseInputCounter() {
     USER_ELEMENTS.registerInputIndex++;
 
-    if(USER_ELEMENTS.registerInputIndex > USER_ELEMENTS.registerInput.length - 1) {
+    if (USER_ELEMENTS.registerInputIndex > USER_ELEMENTS.registerInput.length - 1) {
         closeRegisterBodyData()
+        USER_ELEMENTS.thisUser.name = USER_ELEMENTS.registerUser.name;
+        USER_ELEMENTS.thisUser.age = USER_ELEMENTS.registerUser.age;
+        USER_ELEMENTS.thisUser.gender = USER_ELEMENTS.registerUser.gender;
+        USER_ELEMENTS.thisUser.mail = USER_ELEMENTS.registerUser.mail;
+        USER_ELEMENTS.thisUser.weight = USER_ELEMENTS.registerUser.weight;
+        USER_ELEMENTS.thisUser.height = USER_ELEMENTS.registerUser.height;
+        USER_ELEMENTS.thisUser.password = USER_ELEMENTS.registerUser.password;
+        USER_ELEMENTS.thisUser.profileColor = USER_ELEMENTS.registerUser.profileColor;
+        setToken();
+        USER_ELEMENTS.loggedUsers.push(USER_ELEMENTS.thisUser);
+        saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
+
         USER_ELEMENTS.registerInputIndex = 0;
+        openProfile()
+        setToken()
     }
 
     setRegisterBodyData();
@@ -467,4 +539,117 @@ function lowerInputCounter() {
     }
 
     setRegisterBodyData();
+}
+
+function openProfile() {
+    let profileSlider = document.getElementById('profile-section');
+
+    profileSlider.style.transform = 'translateY(0)';
+    fadeOut('navigation', 0)
+    closeRegister();
+    loadDataToProfile()
+    fadeOut('login-or-register-section', 0)
+}
+
+function setToken() {
+    USER_ELEMENTS.thisUser.token = USER_ELEMENTS.tokenSettings.tokenLength;
+    USER_ELEMENTS.thisUser.activeOnDevice = true;
+}
+
+function setUser() {
+    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
+        if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
+            USER_ELEMENTS.thisUser = USER_ELEMENTS.loggedUsers[i];
+            openProfile()
+            USER_ELEMENTS.thisUser.token--;
+            USER_ELEMENTS.loggedUsers[i] = USER_ELEMENTS.thisUser;
+            checkValidToken()
+            saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
+            break
+        }
+    }
+}
+
+function checkValidToken() {
+    if (USER_ELEMENTS.thisUser.token <= 0) {
+        USER_ELEMENTS.thisUser.activeOnDevice = false;
+        USER_ELEMENTS.thisUser.token = 0;
+    }
+}
+
+function checkMailLogin() {
+    let input = document.getElementById('login-email').value;
+
+    document.getElementById('login-input-group-label-email').style.color = 'black';
+    if (!input.includes('@') || !input.includes('.')) {
+        document.getElementById('login-email').value = "";
+        if (input != "") {
+            document.getElementById('login-input-group-label-email').style.color = 'red';
+            return false;
+        }
+    }
+
+    if (input == "") {
+        document.getElementById('login-input-group-label-email').style.color = 'red';
+        return false;
+    }
+    return true;
+}
+
+async function login() {
+    let val1 = checkMailLogin();
+    let val2 = checkPasswordLogin();
+
+    if (!val1 || !val2) {
+        return
+    }
+    let email = document.getElementById('login-email').value;
+    let password = await getHash(document.getElementById('login-password').value);
+
+    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
+        console.log(USER_ELEMENTS.loggedUsers[i].password + " == " + password);
+        console.log(USER_ELEMENTS.loggedUsers[i].mail + " == " + email);
+        if (USER_ELEMENTS.loggedUsers[i].mail == email && USER_ELEMENTS.loggedUsers[i].password == password) {
+            USER_ELEMENTS.thisUser = USER_ELEMENTS.loggedUsers[i];
+            USER_ELEMENTS.thisUser.activeOnDevice = true;
+            USER_ELEMENTS.thisUser.token = USER_ELEMENTS.tokenSettings.tokenLength;
+            saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
+            openProfile()
+            closeLogin()
+            return
+        }
+    }
+}
+
+function checkPasswordLogin() {
+    let pw = document.getElementById('login-password').value;
+    document.getElementById('login-input-group-label-password').style.color = 'black';
+
+    if (pw == "") {
+        document.getElementById('login-input-group-label-password').style.color = 'red';
+        return false;
+    }
+    return true
+}
+
+function resetLogin() {
+    document.getElementById('login-email').value = "";
+    document.getElementById('login-password').value = "";
+    document.getElementById('login-input-group-label-email').style.color = 'black';
+    document.getElementById('login-input-group-label-password').style.color = 'black';
+}
+
+function resetRegister() {
+    document.getElementById('register-name').value = "";
+    document.getElementById('register-gender').value = "";
+    document.getElementById('register-age').value = "";
+    document.getElementById('register-email').value = "";
+    document.getElementById('register-password').value = "";
+    
+    document.getElementById('register-input-group-label-name').style.color = 'black';
+    document.getElementById('register-input-group-label-gender').style.color = 'black';
+    document.getElementById('register-input-group-label-age').style.color = 'black';
+    document.getElementById('register-input-group-label-email').style.color = 'black';
+    document.getElementById('register-input-group-label-password').style.color = 'black';
+    document.getElementById('register-input-group-label-password-confirm').style.color = 'black';
 }

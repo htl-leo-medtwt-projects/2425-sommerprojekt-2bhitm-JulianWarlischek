@@ -2646,7 +2646,6 @@ svg {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 2em;
     transform: translateY(100%);
     transition: transform 0.5s ease;
 }
@@ -2661,7 +2660,7 @@ svg {
     width: 100%;
     font-family: 'calendar-font';
     padding: 2em 0;
-    gap: 1em;
+    gap: 10%;
     position: relative;
 }
 
@@ -2670,11 +2669,13 @@ svg {
 }
 
 #register-section-inner {
-    width: 100%;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: var(--box-shadow);
     background-color: white;
+    position: absolute;
+    width: 85%;
+    top: 5vh;
 }
 
 #register-section-lower {
@@ -2684,7 +2685,7 @@ svg {
     align-items: center;
     width: 100%;
     padding: 2em;
-    gap: 1.5em;
+    gap: 2vh;
 }
 
 .register-group-grid {
@@ -2737,11 +2738,11 @@ svg {
     position: absolute;
     top: 0;
     z-index: 9;
-    margin-top: var(--margin-c-header);
     padding: 3em 0;
     font-family: 'calendar-font';
     transition: opacity 0.5s ease;
-
+    opacity: 0;
+    display: none;
 }
 
 #register-body-data-previous {

@@ -316,7 +316,6 @@ let FITBALANCE_ELEMENTS = {
 let USER_ELEMENTS = {
     upperSite: './index.html',
     userImgPath: './images/running-profile.png',
-    profileColor: '#5A9ECF',
     thisUser: {
         name: '',
         age: '',
@@ -324,6 +323,10 @@ let USER_ELEMENTS = {
         gender: '',
         weight: '',
         height: '',
+        password: '',
+        profileColor: '',
+        token: 0,
+        activeOnDevice: false
     },
     unsavedChanges: false,
     registerInput: [
@@ -338,7 +341,21 @@ let USER_ELEMENTS = {
             'html': '<p id="register-height-label"></p><input onchange="riseInputCounter()" type="range" id="register-height" min="30" max="200" value="30" oninput="updateHeightLabel()">',
         }
     ],
+    registerUser: {
+        name: '',
+        age: '',
+        mail: '',
+        gender: '',
+        weight: '',
+        height: '',
+        password: '',
+        profileColor: '',
+    },
     registerInputIndex: 0,
+    loggedUsers: [],
+    tokenSettings: {
+        tokenLength: 10,
+    }
 }
 
 
@@ -378,8 +395,8 @@ function setupLS() {
     if (!localStorage['hydration-reached']) {
         localStorage['hydration-reached'] = 0;
     }
-    if (!localStorage['profile-color']) {
-        localStorage['profile-color'] = JSON.stringify(USER_ELEMENTS.profileColor);
+    if(!localStorage['logged-users']) {
+        localStorage['logged-users'] = '[]';
     }
 }
 setupLS()
@@ -398,7 +415,7 @@ function loadFromLS() {
     getReference()
     DRINK_LOG_ELEMENTS.goal = JSON.parse(localStorage['hydration-goal']);
     DRINK_LOG_ELEMENTS.reached = JSON.parse(localStorage['hydration-reached']);
-    USER_ELEMENTS.profileColor = JSON.parse(localStorage['profile-color']);
+    USER_ELEMENTS.loggedUsers = JSON.parse(localStorage['logged-users']);
 }
 loadFromLS();
 
@@ -586,4 +603,22 @@ function indexOf(session) {
         }
     }
 }
+/**
+ * Hash algorithm for the password
+ * @param {string} str String to hash
+ * @returns {string} Hashed string
+ * 
+ * This code is from ChatGPT
+ */
+async function hashStringSHA256(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex;
+}
 
+async function getHash(str) {
+    return await hashStringSHA256(str)
+}
