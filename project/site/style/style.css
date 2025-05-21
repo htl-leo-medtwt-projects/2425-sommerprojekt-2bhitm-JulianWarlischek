@@ -2838,6 +2838,98 @@ svg {
     width: 80%;
     padding: 1em 0;
 }
+
+/* LEARN ABOUT YOUR MUSCLES */
+#muscle-navigation{
+    width: 100vw;
+    margin-top: var(--margin-c-header);
+    overflow-y: scroll;
+    padding-bottom: 0.5em;
+    border-bottom: 2px solid gray;
+} 
+
+#muscle-navigation::-webkit-scrollbar{
+    display: none;
+}
+#muscle-navigation-inner{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+    justify-content: flex-start;
+    overflow-y: scroll;
+    min-width: 200vw;
+    padding: 0 1em;
+    height: 100%;
+}
+
+#muscle-navigation-inner>div{
+    padding: 0.7em;
+    display: flex;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    background-color: var(--main-color);
+    color: white;
+    border-radius: 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+
+    transition: all 0.5s ease;
+    box-sizing:content-box;
+}
+
+#data-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 1em;
+}
+
+#option-box{
+    margin-top: 2em;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    gap: 1em;
+    width: 100%;
+    text-align: center;
+}
+
+#option-box>div{
+    padding: 1em 0;
+    width: 100%;
+    border-radius: 10px;
+    font-family: 'calendar-font';
+    background-color: #2b3844;
+}
+
+#learn-about-box{
+    color: white;
+    font-family: 'calendar-font-black';
+    text-align: center;
+    margin-top: 2em;
+}
+
+#learn-about-box>h4{
+    font-size: 1em;
+    color: var(--light-blue);
+    text-align: left;
+    font-style: italic;
+}
+
+#learn-about-box>h2{
+    margin-top: 2em;
+}
+
+#learn-about-box>p{
+    margin-top: 1em;
+    font-family: 'Tilt Neon', sans-serif;
+}
+
+
 /* ANIMATIONS */
 @keyframes pulse {
     0% {
