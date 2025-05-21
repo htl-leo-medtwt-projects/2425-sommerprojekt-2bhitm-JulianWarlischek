@@ -12,14 +12,6 @@ function loadUserSettings() {
 }
 loadUserSettings();
 
-function loadThisUser() {
-    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
-        if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
-            USER_ELEMENTS.thisUser = USER_ELEMENTS.loggedUsers[i];
-            break
-        }
-    }
-}
 
 function newColor() {
     let color = document.getElementById('upper-profile-color-input').value;
@@ -28,10 +20,13 @@ function newColor() {
     insertUser()
 }
 
-function insertUser() {
+function insertUser(setFalse) {
     for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
         if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
             USER_ELEMENTS.loggedUsers[i] = USER_ELEMENTS.thisUser;
+            if(setFalse){
+                USER_ELEMENTS.loggedUsers[i].activeOnDevice = false;
+            }
             saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
             break
         }
@@ -243,6 +238,7 @@ function loadDataToProfile() {
     document.getElementById('user-age').innerHTML = USER_ELEMENTS.thisUser.age + " years old";
     document.getElementById('user-weight').innerHTML = USER_ELEMENTS.thisUser.weight + " kg";
     document.getElementById('user-height').innerHTML = USER_ELEMENTS.thisUser.height + " cm";
+    document.getElementById('upper-profile-section').style.backgroundColor = USER_ELEMENTS.thisUser.profileColor === '' ? '#5A9ECF' : USER_ELEMENTS.thisUser.profileColor;
     setInputValues();
 }
 
@@ -297,7 +293,7 @@ function closeLogin() {
 
     loginSlider.style.transform = 'translateY(100%)';
     fadeIn('navigation', 'flex')
-    fadeIn('header', 'flex') 
+    fadeIn('header', 'flex')
 }
 
 function closeRegister() {
@@ -545,36 +541,9 @@ function openProfile() {
     let profileSlider = document.getElementById('profile-section');
 
     profileSlider.style.transform = 'translateY(0)';
-    fadeOut('navigation', 0)
     closeRegister();
     loadDataToProfile()
     fadeOut('login-or-register-section', 0)
-}
-
-function setToken() {
-    USER_ELEMENTS.thisUser.token = USER_ELEMENTS.tokenSettings.tokenLength;
-    USER_ELEMENTS.thisUser.activeOnDevice = true;
-}
-
-function setUser() {
-    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
-        if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
-            USER_ELEMENTS.thisUser = USER_ELEMENTS.loggedUsers[i];
-            openProfile()
-            USER_ELEMENTS.thisUser.token--;
-            USER_ELEMENTS.loggedUsers[i] = USER_ELEMENTS.thisUser;
-            checkValidToken()
-            saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
-            break
-        }
-    }
-}
-
-function checkValidToken() {
-    if (USER_ELEMENTS.thisUser.token <= 0) {
-        USER_ELEMENTS.thisUser.activeOnDevice = false;
-        USER_ELEMENTS.thisUser.token = 0;
-    }
 }
 
 function checkMailLogin() {
@@ -645,11 +614,26 @@ function resetRegister() {
     document.getElementById('register-age').value = "";
     document.getElementById('register-email').value = "";
     document.getElementById('register-password').value = "";
-    
+
     document.getElementById('register-input-group-label-name').style.color = 'black';
     document.getElementById('register-input-group-label-gender').style.color = 'black';
     document.getElementById('register-input-group-label-age').style.color = 'black';
     document.getElementById('register-input-group-label-email').style.color = 'black';
     document.getElementById('register-input-group-label-password').style.color = 'black';
     document.getElementById('register-input-group-label-password-confirm').style.color = 'black';
+}
+
+function logout() {
+    USER_ELEMENTS.thisUser.token = 0;
+    insertUser(true);
+    closeProfile()
+}
+
+function closeProfile() {
+    let profileSlider = document.getElementById('profile-section');
+
+    profileSlider.style.transform = 'translateY(100%)';
+    fadeIn('navigation', 'flex')
+    fadeIn('header', 'flex')
+    fadeIn('login-or-register-section', 'flex')
 }

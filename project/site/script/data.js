@@ -46,8 +46,8 @@ let TRAINING_ELEMENTS = {
     section_links: [
         './pages_training/calendar.html',
         './pages_training/live-session.html',
-        'idk',
-        './pages_training/drink-log.html',
+        './pages_training/muscles.html',
+        './pages_training/drink-log.html'
     ]
 }
 
@@ -354,8 +354,18 @@ let USER_ELEMENTS = {
     registerInputIndex: 0,
     loggedUsers: [],
     tokenSettings: {
-        tokenLength: 10,
+        tokenLength: 70,
     }
+}
+
+/**
+ * MUSCLE_ELEMENTS
+ * 
+ * Elements and values of the muscles.html file.
+ */
+let MUSCLE_ELEMENTS = {
+    upperSite: "./training.html",
+    userImgPath: "./../images/running-profile.png",
 }
 
 

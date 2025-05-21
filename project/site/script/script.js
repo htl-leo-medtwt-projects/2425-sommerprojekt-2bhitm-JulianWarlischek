@@ -59,3 +59,59 @@ function getInteger(int_string) {
 function getRandom(max, min) {
     return Math.floor(Math.random() * max) + min;
 }
+
+/**
+ * Function to generate a token
+ */
+function setToken() {
+    USER_ELEMENTS.thisUser.token = USER_ELEMENTS.tokenSettings.tokenLength;
+    USER_ELEMENTS.thisUser.activeOnDevice = true;
+}
+
+/**
+ * Loads the correct user from the local storage
+ */
+function loadThisUser() {
+    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
+        if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
+            USER_ELEMENTS.thisUser = USER_ELEMENTS.loggedUsers[i];
+            break
+        }
+    }
+}
+loadThisUser();
+
+/**
+ * Search for the user in the local storage
+ */
+function setUser() {
+    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
+        if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
+            USER_ELEMENTS.thisUser = USER_ELEMENTS.loggedUsers[i];
+            if (document.title == "Profile") {
+                openProfile()
+            }
+            USER_ELEMENTS.thisUser.token--;
+            USER_ELEMENTS.loggedUsers[i] = USER_ELEMENTS.thisUser;
+            checkValidToken()
+            saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
+            return
+        }
+    }
+    if(document.title == "Profile") {
+        closeProfile()
+    }
+}
+if (document.title != "Profile") {
+    setUser()
+}
+
+/**
+ * Checks if token is valid
+ */
+function checkValidToken() {
+    if (USER_ELEMENTS.thisUser.token <= 0) {
+        USER_ELEMENTS.thisUser.activeOnDevice = false;
+        USER_ELEMENTS.thisUser.token = 0;
+    }
+}

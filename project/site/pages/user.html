@@ -15,7 +15,6 @@
     <script src="../script/executable_profile.js" defer></script>
     <script src="../script/path_system.js" defer></script>
 </head>
-
 <body class="user-body-html">
     <!-- Header (Start) -->
     <div id="header">
@@ -35,58 +34,66 @@
 
     <!-- Profile Section (Start) -->
     <div id="profile-section">
-        <div id="upper-profile-section">
-            <div id="edit-profile-color" onclick="openColorPicker()">
-                <i class="fa-solid fa-pencil"></i>
-            </div>
-            <div id="picker-section">
-                <div id="color-picker">
-                    <input type="color" id="upper-profile-color-input" value="#FFFFFF" onchange="newColor()">
+        <div>
+            <div id="upper-profile-section">
+                <div id="edit-profile-color" onclick="openColorPicker()">
+                    <i class="fa-solid fa-pencil"></i>
                 </div>
-                <div id="close-color-picker" onclick="closeColorPicker()">
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
-            </div>
-            <div id="upper-profile-img-rectangle">
-                <div id="upper-profile-section-img">
-                    <img src="../images/standard-user.avif" alt="standard-user">
-                </div>
-            </div>
-        </div>
-        <div id="lower-profile-section">
-            <div id="edit-profile" onclick="openEditor()">
-                <i class="fa-solid fa-gear"></i>
-            </div>
-            <div id="lower-profile-member-since">
-                <h3 id="member-since">Member since: 2023</h3>
-            </div>
-            <div id="lower-profile-name">
-                <h3 id="user-name" class="user-data-info"></h3>
-            </div>
-            <div id="person-data">
-                <div id="person-data-gender">
-                    <h3 id="user-gender" class="user-data-info"></h3>
-                </div>
-                <div class="seperator-dot">
-                    <i class="fa-solid fa-circle"></i>
-                </div>
-                <div id="person-data-age">
-                    <h3 id="user-age" class="user-data-info"></h3>
-                </div>
-            </div>
-            <hr class="seperator-line">
-            <div id="personal-data">
-                <h3>Your data:</h3>
-                <div id="personal-data-flex">
-                    <div id="personal-data-weight">
-                        <h3>Weight</h3>
-                        <h3 id="user-weight"></h3>
+                <div id="picker-section">
+                    <div id="color-picker">
+                        <input type="color" id="upper-profile-color-input" value="#FFFFFF" onchange="newColor()">
                     </div>
-                    <hr class="seperator-line">
-                    <div id="personal-data-height">
-                        <h3>Height</h3>
-                        <h3 id="user-height"></h3>
+                    <div id="close-color-picker" onclick="closeColorPicker()">
+                        <i class="fa-solid fa-xmark"></i>
                     </div>
+                </div>
+                <div id="upper-profile-img-rectangle">
+                    <div id="upper-profile-section-img">
+                        <img src="../images/standard-user.avif" alt="standard-user">
+                    </div>
+                </div>
+            </div>
+            <div id="lower-profile-section">
+                <div id="edit-profile" onclick="openEditor()">
+                    <i class="fa-solid fa-gear"></i>
+                </div>
+                <div id="lower-profile-member-since">
+                    <h3 id="member-since">Member since: 2023</h3>
+                </div>
+                <div id="lower-profile-name">
+                    <h3 id="user-name" class="user-data-info"></h3>
+                </div>
+                <div id="person-data">
+                    <div id="person-data-gender">
+                        <h3 id="user-gender" class="user-data-info"></h3>
+                    </div>
+                    <div class="seperator-dot">
+                        <i class="fa-solid fa-circle"></i>
+                    </div>
+                    <div id="person-data-age">
+                        <h3 id="user-age" class="user-data-info"></h3>
+                    </div>
+                </div>
+                <hr class="seperator-line">
+                <div id="personal-data">
+                    <h3>Your data:</h3>
+                    <div id="personal-data-flex">
+                        <div id="personal-data-weight">
+                            <h3>Weight</h3>
+                            <h3 id="user-weight"></h3>
+                        </div>
+                        <hr class="seperator-line">
+                        <div id="personal-data-height">
+                            <h3>Height</h3>
+                            <h3 id="user-height"></h3>
+                        </div>
+                    </div>
+                </div>
+                <div id="logout-button">
+                    <h3 id="logout-text" onclick="logout()">Logout</h3>
+                </div>
+                <div style="height: 25vh; width: 100%;">
+
                 </div>
             </div>
         </div>
@@ -205,7 +212,7 @@
                     <input type="password" class="login-input-group-value" id="login-password" placeholder="********">
                     <h2 class="login-input-group-label" id="login-input-group-label-password">Password</h2>
                 </div>
-        
+
                 <div id="login-button-submit" onclick="login()">
                     <h3>Login</h3>
                 </div>
@@ -234,11 +241,13 @@
                 </div>
                 <div class="register-group-grid">
                     <div class="register-input-group">
-                        <input type="text" class="register-input-group-value" id="register-gender" placeholder="Male" onchange="checkGenderRegister()">
+                        <input type="text" class="register-input-group-value" id="register-gender" placeholder="Male"
+                            onchange="checkGenderRegister()">
                         <h2 id="register-input-group-label-gender" class="register-input-group-label">Gender</h2>
                     </div>
                     <div class="register-input-group">
-                        <input type="number" class="register-input-group-value" id="register-age" placeholder="18" onchange="checkAgeRegister()">
+                        <input type="number" class="register-input-group-value" id="register-age" placeholder="18"
+                            onchange="checkAgeRegister()">
                         <h2 class="register-input-group-label" id="register-input-group-label-age">Age</h2>
                     </div>
                 </div>
@@ -253,8 +262,10 @@
                     <h2 class="register-input-group-label" id="register-input-group-label-password">Password</h2>
                 </div>
                 <div class="login-input-group">
-                    <input type="password" class="login-input-group-value" id="register-password-confirm" placeholder="********" oninput="checkPasswordConfirmRegister()">
-                    <h2 class="register-input-group-label" id="register-input-group-label-password-confirm">Confirm Password</h2>
+                    <input type="password" class="login-input-group-value" id="register-password-confirm"
+                        placeholder="********" oninput="checkPasswordConfirmRegister()">
+                    <h2 class="register-input-group-label" id="register-input-group-label-password-confirm">Confirm
+                        Password</h2>
                 </div>
                 <div id="register-button-submit" onclick="registerData()">
                     <h3>Register</h3>
@@ -266,7 +277,7 @@
 
     <!-- Register Body Data (Start) -->
     <div id="register-body-data-box">
-        <div id="register-body-data-previous" onclick="lowerInputCounter()"> 
+        <div id="register-body-data-previous" onclick="lowerInputCounter()">
             <i class="fa-solid fa-arrow-left"></i>
         </div>
         <div id="register-body-data-box-inner">
