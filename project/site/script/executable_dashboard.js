@@ -160,6 +160,18 @@ function setHydration() {
 setHydration()
 
 /**
+ * Function to style the GUI
+ * 
+ * WEIGHT
+ */
+function updateGUIWEIGHT() {
+  const num = document.getElementById('dashboard-item-weight-num');
+  num.innerHTML = USER_ELEMENTS.thisUser.weight ? USER_ELEMENTS.thisUser.weight + " kg" : "No data";
+}
+updateGUIWEIGHT()
+
+
+/**
  * GSAP
  */
 let sections = document.querySelectorAll('.dashboard-item');

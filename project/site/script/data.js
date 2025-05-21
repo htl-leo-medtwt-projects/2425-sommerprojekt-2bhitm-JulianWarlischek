@@ -438,588 +438,514 @@ let MUSCLE_ELEMENTS = {
         "#FF0000"  // 10 - Maximum Difficulty (Red)
     ],
     exercises: [
+        // Chest
         [
             {
-                name: "Barbell Bench Press",
-                description: "A classic compound movement that targets the pectoral muscles. Performed lying on a flat bench, pressing a barbell upward from chest level.",
-                difficulty: "medium",
-                equipment: "barbell",
-                type: "compound"
+                name: "Bench Press",
+                description: "Classic chest exercise using a barbell.",
+                targetMuscle: "Chest",
+                difficulty: 6,
+                src: "../../images/exercises/barbell-bench-press.jpg"
             },
             {
-                name: "Dumbbell Flyes",
-                description: "An isolation exercise that stretches and contracts the chest muscles. Performed lying on a bench with arms outstretched and bringing dumbbells together.",
-                difficulty: "medium",
-                equipment: "dumbbells",
-                type: "isolation"
+                name: "Push-Up",
+                description: "Bodyweight chest exercise.",
+                targetMuscle: "Chest",
+                difficulty: 3,
+                src: "../../images/exercises/push ups.jpeg"
             },
             {
-                name: "Incline Bench Press",
-                description: "Targets the upper chest. Performed on an inclined bench pressing a barbell or dumbbells.",
-                difficulty: "medium",
-                equipment: "barbell or dumbbells",
-                type: "compound"
-            },
-            {
-                name: "Push-Ups",
-                description: "A bodyweight exercise that strengthens the chest, triceps, and shoulders. Can be modified for different skill levels.",
-                difficulty: "easy",
-                equipment: "bodyweight",
-                type: "compound"
-            },
-            {
-                name: "Cable Crossover",
-                description: "Performed using cable machines to isolate and contract the chest through a wide range of motion.",
-                difficulty: "medium",
-                equipment: "cable machine",
-                type: "isolation"
-            },
-            {
-                name: "Chest Dips",
-                description: "Done on parallel bars, leaning forward to emphasize chest activation.",
-                difficulty: "hard",
-                equipment: "dip bars",
-                type: "compound"
-            },
-            {
-                name: "Machine Chest Press",
-                description: "A beginner-friendly machine-based press to target the chest.",
-                difficulty: "easy",
-                equipment: "machine",
-                type: "compound"
-            },
-            {
-                name: "Incline Dumbbell Flyes",
-                description: "Focuses on the upper chest with a stretching motion on an incline bench.",
-                difficulty: "medium",
-                equipment: "dumbbells",
-                type: "isolation"
+                name: "Incline Dumbbell Press",
+                description: "Chest press on an incline bench to target upper pectorals.",
+                targetMuscle: "Chest",
+                difficulty: 5
             },
             {
                 name: "Decline Bench Press",
-                description: "Emphasizes the lower portion of the pectorals. Performed on a decline bench.",
-                difficulty: "medium",
-                equipment: "barbell",
-                type: "compound"
+                description: "Targets the lower part of the chest with a downward angle.",
+                targetMuscle: "Chest",
+                difficulty: 6
+            },
+            {
+                name: "Chest Fly",
+                description: "Isolates the pectorals using dumbbells or cables.",
+                targetMuscle: "Chest",
+                difficulty: 4
+            },
+            {
+                name: "Cable Crossover",
+                description: "Excellent isolation movement for full chest contraction.",
+                targetMuscle: "Chest",
+                difficulty: 5
             },
             {
                 name: "Pec Deck Machine",
-                description: "An isolation machine that mimics the motion of a dumbbell flye.",
-                difficulty: "easy",
-                equipment: "machine",
-                type: "isolation"
-            }
+                description: "Machine-based isolation of the pectoral muscles.",
+                targetMuscle: "Chest",
+                difficulty: 3
+            },
+            {
+                name: "Dumbbell Pullover",
+                description: "Stretches and works the chest and lats.",
+                targetMuscle: "Chest",
+                difficulty: 5
+            },
+            {
+                name: "Svend Press",
+                description: "A plate press to target the inner chest.",
+                targetMuscle: "Chest",
+                difficulty: 4
+            },
+            {
+                name: "Landmine Press",
+                description: "Angled barbell press that targets the upper chest.",
+                targetMuscle: "Chest",
+                difficulty: 6
+            },
         ],
-
         [
+            // Shoulders
             {
                 name: "Overhead Press",
-                description: "A compound movement targeting the deltoids and triceps. Press a barbell overhead from shoulder level.",
-                difficulty: "hard",
-                equipment: "barbell",
-                type: "compound"
+                description: "Shoulder pressing movement with a barbell.",
+                targetMuscle: "Shoulders",
+                difficulty: 6
             },
             {
-                name: "Lateral Raises",
-                description: "An isolation exercise to develop the side delts by raising dumbbells outward to shoulder level.",
-                difficulty: "medium",
-                equipment: "dumbbells",
-                type: "isolation"
+                name: "Lateral Raise",
+                description: "Isolates the lateral deltoids.",
+                targetMuscle: "Shoulders",
+                difficulty: 4
             },
             {
-                name: "Front Raises",
-                description: "Focuses on the front delts by lifting dumbbells or plates forward and up to eye level.",
-                difficulty: "medium",
-                equipment: "dumbbells or plate",
-                type: "isolation"
+                name: "Front Raise",
+                description: "Targets the anterior deltoid using dumbbells or cables.",
+                targetMuscle: "Shoulders",
+                difficulty: 4
             },
             {
                 name: "Arnold Press",
-                description: "A variation of the overhead press with a rotational movement for full shoulder development.",
-                difficulty: "hard",
-                equipment: "dumbbells",
-                type: "compound"
+                description: "Dumbbell press variation that engages all heads of the deltoid.",
+                targetMuscle: "Shoulders",
+                difficulty: 7
             },
             {
-                name: "Rear Delt Flyes",
-                description: "Targets the rear delts. Performed bent over while lifting dumbbells to the sides.",
-                difficulty: "medium",
-                equipment: "dumbbells",
-                type: "isolation"
+                name: "Face Pulls",
+                description: "Good for rear deltoid and posture.",
+                targetMuscle: "Shoulders",
+                difficulty: 5
             },
             {
-                name: "Machine Shoulder Press",
-                description: "A guided press machine to safely train shoulder strength and hypertrophy.",
-                difficulty: "easy",
-                equipment: "machine",
-                type: "compound"
+                name: "Reverse Fly",
+                description: "Works the rear delts and upper back.",
+                targetMuscle: "Shoulders",
+                difficulty: 5
             },
             {
                 name: "Cable Lateral Raise",
-                description: "Performed with a cable to keep tension on the side delts throughout the movement.",
-                difficulty: "medium",
-                equipment: "cable machine",
-                type: "isolation"
+                description: "Constant tension on the lateral deltoid.",
+                targetMuscle: "Shoulders",
+                difficulty: 5
             },
             {
-                name: "Push Press",
-                description: "A powerful movement using a leg drive to help press a barbell overhead.",
-                difficulty: "hard",
-                equipment: "barbell",
-                type: "compound"
+                name: "Seated Dumbbell Press",
+                description: "Stabilized version of shoulder press.",
+                targetMuscle: "Shoulders",
+                difficulty: 5
             },
             {
-                name: "Plate Front Raise",
-                description: "Performed by lifting a weight plate in front of the body to target the anterior deltoid.",
-                difficulty: "easy",
-                equipment: "weight plate",
-                type: "isolation"
+                name: "Z Press",
+                description: "Overhead press performed seated on the floor to target stability.",
+                targetMuscle: "Shoulders",
+                difficulty: 8
             },
             {
-                name: "Face Pulls",
-                description: "A shoulder and upper back exercise done with cables, targeting the rear delts and traps.",
-                difficulty: "medium",
-                equipment: "cable machine",
-                type: "isolation"
-            }
+                name: "Upright Row",
+                description: "Pulls weight to chest height to target shoulders and traps.",
+                targetMuscle: "Shoulders",
+                difficulty: 5
+            },
         ],
-
         [
+
+            // Triceps
             {
-                name: "Tricep Pushdown",
-                description: "A staple isolation movement performed with a cable machine. Push the handle down to fully contract the triceps.",
-                difficulty: "easy",
-                equipment: "cable machine",
-                type: "isolation"
-            },
-            {
-                name: "Close-Grip Bench Press",
-                description: "A variation of the bench press that emphasizes triceps by keeping the hands closer together on the bar.",
-                difficulty: "medium",
-                equipment: "barbell",
-                type: "compound"
-            },
-            {
-                name: "Overhead Dumbbell Extension",
-                description: "Performed sitting or standing, this exercise stretches the triceps by lowering a dumbbell behind the head and extending up.",
-                difficulty: "medium",
-                equipment: "dumbbell",
-                type: "isolation"
+                name: "Triceps Dips",
+                description: "Bodyweight triceps exercise.",
+                targetMuscle: "Triceps",
+                difficulty: 5
             },
             {
                 name: "Skull Crushers",
-                description: "An isolation movement performed lying down, extending a barbell or EZ-bar from forehead level upward.",
-                difficulty: "medium",
-                equipment: "EZ-bar or barbell",
-                type: "isolation"
+                description: "Isolated triceps exercise with barbell or dumbbells.",
+                targetMuscle: "Triceps",
+                difficulty: 6
             },
             {
-                name: "Dips (Triceps Focus)",
-                description: "Done with an upright torso to target the triceps. Can be bodyweight or weighted for difficulty.",
-                difficulty: "hard",
-                equipment: "dip bars",
-                type: "compound"
+                name: "Close-Grip Bench Press",
+                description: "Bench press variation focusing on triceps.",
+                targetMuscle: "Triceps",
+                difficulty: 6
             },
             {
-                name: "Kickbacks",
-                description: "A focused tricep movement performed by extending the arms back while holding dumbbells.",
-                difficulty: "easy",
-                equipment: "dumbbells",
-                type: "isolation"
+                name: "Triceps Kickback",
+                description: "Isolation exercise with dumbbells.",
+                targetMuscle: "Triceps",
+                difficulty: 4
             },
             {
-                name: "Cable Overhead Extension",
-                description: "A cable variation of the overhead tricep extension for constant resistance throughout the range.",
-                difficulty: "medium",
-                equipment: "cable machine",
-                type: "isolation"
+                name: "Overhead Triceps Extension",
+                description: "Targets the long head of the triceps.",
+                targetMuscle: "Triceps",
+                difficulty: 5
             },
             {
-                name: "Bench Dips",
-                description: "A bodyweight dip between two benches that challenges triceps. Add weight for intensity.",
-                difficulty: "easy",
-                equipment: "bench",
-                type: "compound"
+                name: "Cable Pushdown",
+                description: "Popular isolation movement for the triceps.",
+                targetMuscle: "Triceps",
+                difficulty: 3
             },
             {
-                name: "Diamond Push-Ups",
-                description: "A push-up variation with hands close together forming a diamond shape, heavily targeting the triceps.",
-                difficulty: "medium",
-                equipment: "bodyweight",
-                type: "compound"
+                name: "Single Arm Cable Pushdown",
+                description: "Unilateral isolation movement.",
+                targetMuscle: "Triceps",
+                difficulty: 4
             },
             {
-                name: "Barbell JM Press",
-                description: "A hybrid between a close-grip bench and a skull crusher to overload the triceps safely.",
-                difficulty: "hard",
-                equipment: "barbell",
-                type: "compound"
-            }
+                name: "Diamond Push-Up",
+                description: "Push-up variation focused on triceps.",
+                targetMuscle: "Triceps",
+                difficulty: 5
+            },
+            {
+                name: "JM Press",
+                description: "Hybrid between skull crusher and press.",
+                targetMuscle: "Triceps",
+                difficulty: 7
+            },
+            {
+                name: "Tate Press",
+                description: "Uncommon but effective triceps isolation.",
+                targetMuscle: "Triceps",
+                difficulty: 6
+            },
         ],
-
         [
+            // Back
+            {
+                name: "Pull-Up",
+                description: "Bodyweight exercise for back and biceps.",
+                targetMuscle: "Back",
+                difficulty: 7
+            },
+            {
+                name: "Barbell Row",
+                description: "Back exercise pulling weight to torso.",
+                targetMuscle: "Back",
+                difficulty: 6
+            },
             {
                 name: "Deadlift",
-                description: "A full-body strength movement that heavily engages the entire back, glutes, and hamstrings.",
-                difficulty: "hard",
-                equipment: "barbell",
-                type: "compound"
-            },
-            {
-                name: "Pull-Ups",
-                description: "Bodyweight pulling movement that targets lats and upper back. Can be weighted for difficulty.",
-                difficulty: "hard",
-                equipment: "pull-up bar",
-                type: "compound"
-            },
-            {
-                name: "Barbell Rows",
-                description: "A rowing exercise done with a barbell to develop thickness and strength in the back.",
-                difficulty: "medium",
-                equipment: "barbell",
-                type: "compound"
+                description: "Full-body compound lift with emphasis on back and legs.",
+                targetMuscle: "Back",
+                difficulty: 9
             },
             {
                 name: "Lat Pulldown",
-                description: "A cable-based machine exercise that mimics the pull-up, great for building lat width.",
-                difficulty: "easy",
-                equipment: "machine",
-                type: "compound"
+                description: "Cable-based vertical pulling movement.",
+                targetMuscle: "Back",
+                difficulty: 4
             },
             {
                 name: "Seated Cable Row",
-                description: "Targets the mid-back by pulling a cable attachment toward the torso while seated.",
-                difficulty: "medium",
-                equipment: "cable machine",
-                type: "compound"
+                description: "Horizontal pulling movement for the back.",
+                targetMuscle: "Back",
+                difficulty: 5
             },
             {
                 name: "T-Bar Row",
-                description: "A powerful rowing variation that uses a landmine setup to train the upper back.",
-                difficulty: "hard",
-                equipment: "barbell",
-                type: "compound"
+                description: "Rowing movement with a landmine barbell setup.",
+                targetMuscle: "Back",
+                difficulty: 6
             },
             {
-                name: "Face Pulls",
-                description: "Works rear delts and upper back. Performed with a rope on a cable machine.",
-                difficulty: "medium",
-                equipment: "cable machine",
-                type: "isolation"
+                name: "Face Pull",
+                description: "Great for upper traps and rear delts.",
+                targetMuscle: "Back",
+                difficulty: 5
             },
             {
-                name: "Straight Arm Pulldown",
-                description: "An isolation movement that trains the lats through shoulder extension using a cable.",
-                difficulty: "medium",
-                equipment: "cable machine",
-                type: "isolation"
-            },
-            {
-                name: "Machine Row",
-                description: "A back-friendly rowing variation using a machine for stable resistance.",
-                difficulty: "easy",
-                equipment: "machine",
-                type: "compound"
+                name: "Dumbbell Row",
+                description: "Single-arm rowing movement.",
+                targetMuscle: "Back",
+                difficulty: 5
             },
             {
                 name: "Inverted Row",
-                description: "A bodyweight horizontal pulling movement performed under a bar or suspension trainer.",
-                difficulty: "medium",
-                equipment: "bodyweight",
-                type: "compound"
-            }
+                description: "Bodyweight rowing movement using a bar.",
+                targetMuscle: "Back",
+                difficulty: 4
+            },
+            {
+                name: "Good Morning",
+                description: "Strengthens lower back and hamstrings.",
+                targetMuscle: "Back",
+                difficulty: 8
+            },
         ],
-
         [
+
+            // Biceps
             {
                 name: "Barbell Curl",
-                description: "The fundamental curling movement using a barbell to develop biceps mass.",
-                difficulty: "medium",
-                equipment: "barbell",
-                type: "isolation"
+                description: "Basic biceps curling exercise.",
+                targetMuscle: "Biceps",
+                difficulty: 4
             },
             {
                 name: "Hammer Curl",
-                description: "Targets both the biceps and brachialis by holding dumbbells with a neutral grip.",
-                difficulty: "easy",
-                equipment: "dumbbells",
-                type: "isolation"
+                description: "Neutral grip curl for brachialis and biceps.",
+                targetMuscle: "Biceps",
+                difficulty: 3
             },
             {
-                name: "Preacher Curl",
-                description: "Done seated on a preacher bench, isolating the biceps and minimizing momentum.",
-                difficulty: "medium",
-                equipment: "EZ-bar or dumbbells",
-                type: "isolation"
+                name: "Chin-Up",
+                description: "Pull-up variation using underhand grip.",
+                targetMuscle: "Biceps",
+                difficulty: 6
             },
             {
                 name: "Concentration Curl",
-                description: "Performed seated, focusing on strict form to isolate the biceps muscle.",
-                difficulty: "medium",
-                equipment: "dumbbell",
-                type: "isolation"
+                description: "Seated single-arm isolation curl.",
+                targetMuscle: "Biceps",
+                difficulty: 4
+            },
+            {
+                name: "Preacher Curl",
+                description: "Biceps curl supported by preacher bench.",
+                targetMuscle: "Biceps",
+                difficulty: 5
             },
             {
                 name: "Cable Curl",
-                description: "Uses a cable machine for constant tension through the entire curl movement.",
-                difficulty: "easy",
-                equipment: "cable machine",
-                type: "isolation"
-            },
-            {
-                name: "Incline Dumbbell Curl",
-                description: "Performed lying back on an incline bench to stretch the biceps at the start of the curl.",
-                difficulty: "medium",
-                equipment: "dumbbells",
-                type: "isolation"
+                description: "Constant tension throughout the movement.",
+                targetMuscle: "Biceps",
+                difficulty: 4
             },
             {
                 name: "Zottman Curl",
-                description: "Combines a regular curl and a reverse curl in one motion to target both heads and forearms.",
-                difficulty: "hard",
-                equipment: "dumbbells",
-                type: "isolation"
+                description: "Combines regular and reverse curls.",
+                targetMuscle: "Biceps",
+                difficulty: 6
+            },
+            {
+                name: "Incline Dumbbell Curl",
+                description: "Curl performed seated with arms hanging back.",
+                targetMuscle: "Biceps",
+                difficulty: 5
+            },
+            {
+                name: "Drag Curl",
+                description: "Variation with minimal shoulder movement.",
+                targetMuscle: "Biceps",
+                difficulty: 4
             },
             {
                 name: "Reverse Curl",
-                description: "Targets the brachialis and forearms with an overhand grip.",
-                difficulty: "medium",
-                equipment: "barbell or EZ-bar",
-                type: "isolation"
+                description: "Targets brachialis and forearms.",
+                targetMuscle: "Biceps",
+                difficulty: 5
             },
-            {
-                name: "21s",
-                description: "A technique combining partial and full reps to create a biceps burn. Usually done with a barbell.",
-                difficulty: "hard",
-                equipment: "barbell or EZ-bar",
-                type: "isolation"
-            },
-            {
-                name: "Machine Bicep Curl",
-                description: "Performed on a seated machine to isolate the biceps with controlled motion.",
-                difficulty: "easy",
-                equipment: "machine",
-                type: "isolation"
-            }
         ],
-
         [
-            {
-                name: "Crunches",
-                description: "A simple bodyweight movement targeting the upper abdominal muscles.",
-                difficulty: "easy",
-                equipment: "bodyweight",
-                type: "isolation"
-            },
+            // Core
             {
                 name: "Plank",
-                description: "An isometric hold that trains the core and stabilizers through total body tension.",
-                difficulty: "medium",
-                equipment: "bodyweight",
-                type: "isolation"
+                description: "Core stability hold.",
+                targetMuscle: "Core",
+                difficulty: 4
             },
             {
-                name: "Leg Raises",
-                description: "Targets the lower abs by lifting the legs while lying on your back.",
-                difficulty: "medium",
-                equipment: "bodyweight",
-                type: "isolation"
+                name: "Russian Twist",
+                description: "Rotational core exercise.",
+                targetMuscle: "Core",
+                difficulty: 5
             },
             {
-                name: "Hanging Leg Raises",
-                description: "An advanced core movement performed while hanging from a bar.",
-                difficulty: "hard",
-                equipment: "pull-up bar",
-                type: "isolation"
+                name: "Leg Raise",
+                description: "Abdominal exercise performed lying down.",
+                targetMuscle: "Core",
+                difficulty: 6
             },
             {
-                name: "Russian Twists",
-                description: "Trains the obliques through a rotational movement, often with a weight plate or medicine ball.",
-                difficulty: "medium",
-                equipment: "bodyweight or weight",
-                type: "isolation"
+                name: "Crunch",
+                description: "Basic abdominal contraction exercise.",
+                targetMuscle: "Core",
+                difficulty: 3
             },
             {
-                name: "Cable Crunches",
-                description: "A resistance-based crunch performed on a cable machine while kneeling.",
-                difficulty: "medium",
-                equipment: "cable machine",
-                type: "isolation"
+                name: "V-Up",
+                description: "Advanced crunch where legs and torso meet.",
+                targetMuscle: "Core",
+                difficulty: 6
+            },
+            {
+                name: "Bicycle Crunch",
+                description: "Rotating movement involving obliques.",
+                targetMuscle: "Core",
+                difficulty: 4
+            },
+            {
+                name: "Hanging Leg Raise",
+                description: "Advanced movement from a bar.",
+                targetMuscle: "Core",
+                difficulty: 8
             },
             {
                 name: "Mountain Climbers",
-                description: "A dynamic movement to activate the core and get the heart rate up.",
-                difficulty: "medium",
-                equipment: "bodyweight",
-                type: "isolation"
+                description: "Core and cardio combination movement.",
+                targetMuscle: "Core",
+                difficulty: 5
             },
             {
-                name: "V-Ups",
-                description: "Combines a leg raise and crunch by lifting both the legs and torso simultaneously.",
-                difficulty: "hard",
-                equipment: "bodyweight",
-                type: "isolation"
+                name: "Ab Wheel Rollout",
+                description: "Challenging core stability movement.",
+                targetMuscle: "Core",
+                difficulty: 8
             },
             {
-                name: "Ab Wheel Rollouts",
-                description: "A challenging movement using a wheel to extend the body and activate the entire core.",
-                difficulty: "hard",
-                equipment: "ab wheel",
-                type: "isolation"
+                name: "Side Plank",
+                description: "Targets obliques and lateral core.",
+                targetMuscle: "Core",
+                difficulty: 4
             },
-            {
-                name: "Toe Touches",
-                description: "Targets upper and lower abs by reaching toward the toes with both hands.",
-                difficulty: "easy",
-                equipment: "bodyweight",
-                type: "isolation"
-            }
         ],
-
         [
+
+            // Quadriceps
             {
-                name: "Back Squat",
-                description: "A foundational strength exercise targeting the quads, glutes, and core.",
-                difficulty: "hard",
-                equipment: "barbell",
-                type: "compound"
-            },
-            {
-                name: "Front Squat",
-                description: "Shifts the load to emphasize the quads and requires greater core stability.",
-                difficulty: "hard",
-                equipment: "barbell",
-                type: "compound"
+                name: "Squat",
+                description: "Lower body compound exercise.",
+                targetMuscle: "Quadriceps",
+                difficulty: 7
             },
             {
                 name: "Leg Press",
-                description: "A machine-based compound movement that isolates the legs with heavy weight.",
-                difficulty: "medium",
-                equipment: "machine",
-                type: "compound"
+                description: "Machine-based leg exercise.",
+                targetMuscle: "Quadriceps",
+                difficulty: 5
             },
             {
-                name: "Lunges",
-                description: "A unilateral leg exercise that targets the quads and glutes.",
-                difficulty: "medium",
-                equipment: "bodyweight or dumbbells",
-                type: "compound"
+                name: "Lunge",
+                description: "Leg exercise with forward step.",
+                targetMuscle: "Quadriceps",
+                difficulty: 6
             },
             {
-                name: "Step-Ups",
-                description: "Performed on a box or bench, works the quads and balance.",
-                difficulty: "medium",
-                equipment: "bodyweight or dumbbells",
-                type: "compound"
-            },
-            {
-                name: "Bulgarian Split Squat",
-                description: "An advanced lunge variation with one foot elevated behind you.",
-                difficulty: "hard",
-                equipment: "dumbbells",
-                type: "compound"
-            },
-            {
-                name: "Sissy Squat",
-                description: "An old-school quad isolating movement that heavily stretches the front thigh.",
-                difficulty: "hard",
-                equipment: "bodyweight or machine",
-                type: "isolation"
-            },
-            {
-                name: "Goblet Squat",
-                description: "A squat variation holding a dumbbell at the chest for beginners or warmups.",
-                difficulty: "easy",
-                equipment: "dumbbell",
-                type: "compound"
+                name: "Step-Up",
+                description: "Step onto a platform to work quads and glutes.",
+                targetMuscle: "Quadriceps",
+                difficulty: 5
             },
             {
                 name: "Wall Sit",
-                description: "An isometric quad hold performed against a wall to build endurance.",
-                difficulty: "medium",
-                equipment: "bodyweight",
-                type: "isolation"
+                description: "Isometric hold to burn out quads.",
+                targetMuscle: "Quadriceps",
+                difficulty: 5
+            },
+            {
+                name: "Bulgarian Split Squat",
+                description: "Single-leg squat variation.",
+                targetMuscle: "Quadriceps",
+                difficulty: 7
+            },
+            {
+                name: "Front Squat",
+                description: "Barbell held in front rack to emphasize quads.",
+                targetMuscle: "Quadriceps",
+                difficulty: 8
+            },
+            {
+                name: "Sissy Squat",
+                description: "Bodyweight movement isolating the quads.",
+                targetMuscle: "Quadriceps",
+                difficulty: 7
             },
             {
                 name: "Leg Extension",
-                description: "A machine-based exercise that isolates and burns the quads directly.",
-                difficulty: "easy",
-                equipment: "machine",
-                type: "isolation"
-            }
+                description: "Machine-based quad isolation.",
+                targetMuscle: "Quadriceps",
+                difficulty: 4
+            },
+            {
+                name: "Cycling",
+                description: "Cardio exercise that activates quads heavily.",
+                targetMuscle: "Quadriceps",
+                difficulty: 3
+            },
         ],
-
         [
-            {
-                name: "Hip Thrust",
-                description: "A glute-focused compound movement performed by thrusting hips upward with shoulders supported.",
-                difficulty: "medium",
-                equipment: "barbell or dumbbell",
-                type: "compound"
-            },
-            {
-                name: "Glute Bridge",
-                description: "A bodyweight movement that activates the glutes by pushing hips upward while lying on the floor.",
-                difficulty: "easy",
-                equipment: "bodyweight",
-                type: "compound"
-            },
-            {
-                name: "Romanian Deadlift",
-                description: "Focuses on the hamstrings and glutes through a hip hinge motion.",
-                difficulty: "medium",
-                equipment: "barbell or dumbbells",
-                type: "compound"
-            },
-            {
-                name: "Step-Ups",
-                description: "Climbing onto a box or bench emphasizes the glutes and quads.",
-                difficulty: "medium",
-                equipment: "bodyweight or dumbbells",
-                type: "compound"
-            },
-            {
-                name: "Cable Kickbacks",
-                description: "An isolation movement for glutes using a cable machine and ankle strap.",
-                difficulty: "medium",
-                equipment: "cable machine",
-                type: "isolation"
-            },
-            {
-                name: "Kettlebell Swings",
-                description: "A dynamic exercise that works the hips, glutes, and core.",
-                difficulty: "medium",
-                equipment: "kettlebell",
-                type: "compound"
-            },
-            {
-                name: "Sumo Deadlift",
-                description: "A wide-stance deadlift that emphasizes glutes and inner thighs.",
-                difficulty: "hard",
-                equipment: "barbell",
-                type: "compound"
-            },
-            {
-                name: "Lateral Band Walks",
-                description: "Uses a resistance band around the legs to train glute medius.",
-                difficulty: "easy",
-                equipment: "resistance band",
-                type: "isolation"
-            },
-            {
-                name: "Donkey Kicks",
-                description: "A bodyweight movement on all fours to isolate the glutes.",
-                difficulty: "easy",
-                equipment: "bodyweight",
-                type: "isolation"
-            },
-            {
-                name: "Frog Pumps",
-                description: "A glute burnout exercise with feet together and knees out, thrusting hips upward.",
-                difficulty: "easy",
-                equipment: "bodyweight",
-                type: "isolation"
-            }
+        // Glutes
+        {
+            name: "Hip Thrust",
+            description: "Glute-focused movement using a bench.",
+            targetMuscle: "Glutes",
+            difficulty: 5
+        },
+        {
+            name: "Glute Bridge",
+            description: "Bodyweight glute exercise.",
+            targetMuscle: "Glutes",
+            difficulty: 4
+        },
+        {
+            name: "Bulgarian Split Squat",
+            description: "Single-leg squat variation.",
+            targetMuscle: "Glutes",
+            difficulty: 7
+        },
+        {
+            name: "Cable Kickback",
+            description: "Isolated glute activation using cables.",
+            targetMuscle: "Glutes",
+            difficulty: 5
+        },
+        {
+            name: "Kettlebell Swing",
+            description: "Explosive hip hinge movement.",
+            targetMuscle: "Glutes",
+            difficulty: 6
+        },
+        {
+            name: "Step-Up",
+            description: "Climbing movement activating glutes and quads.",
+            targetMuscle: "Glutes",
+            difficulty: 5
+        },
+        {
+            name: "Walking Lunge",
+            description: "Alternating lunges across distance.",
+            targetMuscle: "Glutes",
+            difficulty: 6
+        },
+        {
+            name: "Frog Pump",
+            description: "Short-range glute contraction exercise.",
+            targetMuscle: "Glutes",
+            difficulty: 4
+        },
+        {
+            name: "Reverse Lunge",
+            description: "Backward stepping lunge variation.",
+            targetMuscle: "Glutes",
+            difficulty: 5
+        },
+        {
+            name: "Sumo Deadlift",
+            description: "Deadlift variation targeting inner thighs and glutes.",
+            targetMuscle: "Glutes",
+            difficulty: 8
+        }
         ]
     ]
 }

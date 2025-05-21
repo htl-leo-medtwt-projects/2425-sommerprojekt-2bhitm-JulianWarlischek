@@ -50,7 +50,7 @@ body {
 }
 
 #muscles-body {
-    background-color:var(--main-color);
+    background-color: var(--main-color);
     overflow-y: hidden;
 }
 
@@ -438,6 +438,35 @@ svg {
     height: 100%;
     justify-content: center;
     font-size: .9rem;
+}
+
+#dashboard-item-weight {
+    color: white;
+}
+
+#outer-circle {
+    width: 25vw;
+    height: 25vw;
+    margin-top: -1.2em;
+    border-radius: 50%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#inner-circle{
+    width: 20vw;
+    height: 20vw;
+    background: var(--darkblue-small-gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#inner-circle>p{
+     font-size: 1.1em;
 }
 
 /* NAVIGATION */
@@ -2834,24 +2863,25 @@ svg {
 #logout-button {
     border-radius: 50px;
     border: 3px solid rgb(255, 113, 113);
-    color:rgb(255, 113, 113);
+    color: rgb(255, 113, 113);
     width: 80%;
     padding: 1em 0;
 }
 
 /* LEARN ABOUT YOUR MUSCLES */
-#muscle-navigation{
+#muscle-navigation {
     width: 100vw;
     margin-top: var(--margin-c-header);
     overflow-y: scroll;
     padding-bottom: 0.5em;
     border-bottom: 2px solid gray;
-} 
+}
 
-#muscle-navigation::-webkit-scrollbar{
+#muscle-navigation::-webkit-scrollbar {
     display: none;
 }
-#muscle-navigation-inner{
+
+#muscle-navigation-inner {
     display: flex;
     flex-direction: row;
     gap: 1em;
@@ -2863,7 +2893,7 @@ svg {
     height: 100%;
 }
 
-#muscle-navigation-inner>div{
+#muscle-navigation-inner>div {
     padding: 0.7em;
     display: flex;
     border-radius: 30px;
@@ -2875,10 +2905,10 @@ svg {
     cursor: pointer;
 
     transition: all 0.5s ease;
-    box-sizing:content-box;
+    box-sizing: content-box;
 }
 
-#data-box{
+#data-box {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2886,19 +2916,19 @@ svg {
     padding: 0 1em;
 }
 
-#option-box{
+#option-box {
     margin-top: 2em;
     color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     gap: 1em;
     width: 100%;
     text-align: center;
 }
 
-#option-box>div{
+#option-box>div {
     padding: 1em 0;
     width: 100%;
     border-radius: 10px;
@@ -2906,29 +2936,128 @@ svg {
     background-color: #2b3844;
 }
 
-#learn-about-box{
+#learn-about-box {
     color: white;
     font-family: 'calendar-font-black';
     text-align: center;
     margin-top: 2em;
 }
 
-#learn-about-box>h4{
+#learn-about-box>h4 {
     font-size: 1em;
     color: var(--light-blue);
     text-align: left;
     font-style: italic;
 }
 
-#learn-about-box>h2{
+#learn-about-box>h2 {
     margin-top: 2em;
 }
 
-#learn-about-box>p{
+#learn-about-box>p {
     margin-top: 1em;
     font-family: 'Tilt Neon', sans-serif;
 }
 
+#learn-about-box>h5 {
+    text-align: left;
+    font-family: 'calendar-font-black';
+    margin-top: 5em;
+    font-size: 1.2em;
+}
+
+#recommended-exercises {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: 'Tilt Neon', sans-serif;
+    margin-top: 2em;
+}
+
+#recommended-exercises>div {
+    background-color: #2b3844;
+    width: 100%;
+    border-radius: 10px;
+    padding: 1em 0;
+}
+
+#data-box>div {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-top: 2em;
+    color: white;
+    padding-bottom: 1em;
+}
+
+#data-box>#exercise-list-box>div {
+    width: 100%;
+    background-color: #2b3844;
+    padding: 1.3em 0;
+    border-radius: 10px;
+    font-family: 'calendar-font';
+}
+
+#data-box>div>h4 {
+    font-size: 1em;
+    color: var(--light-blue);
+    text-align: left;
+    font-style: italic;
+    align-self: flex-start;
+    font-family: 'calendar-font-black';
+}
+
+#data-box>#exercise-box>div>p {
+    color: rgb(146, 146, 146);
+    margin-top: 0.9em;
+}
+
+#exercise-box>h2 {
+    font-family: 'calendar-font-black';
+}
+
+#exercise-box {
+    font-family: 'Tilt Neon', sans-serif;
+}
+
+#exercise-difficulty-flex {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
+#exercise-difficulty-flex>div {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+#exercise-difficulty-flex>div>div {
+    width: 10px;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.exercise-img {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    overflow: hidden;
+}
 
 /* ANIMATIONS */
 @keyframes pulse {
