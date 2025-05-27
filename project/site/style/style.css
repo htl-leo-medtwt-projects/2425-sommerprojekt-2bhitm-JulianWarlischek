@@ -445,9 +445,9 @@ svg {
 }
 
 #outer-circle {
-    width: 25vw;
-    height: 25vw;
-    margin-top: -1.2em;
+    width: 21vw;
+    height: 21vw;
+    margin-top: -0.5em;
     border-radius: 50%;
     background-color: rgb(255, 255, 255);
     display: flex;
@@ -455,9 +455,9 @@ svg {
     align-items: center;
 }
 
-#inner-circle{
-    width: 20vw;
-    height: 20vw;
+#inner-circle {
+    width: 17vw;
+    height: 17vw;
     background: var(--darkblue-small-gradient);
     border-radius: 50%;
     display: flex;
@@ -465,8 +465,12 @@ svg {
     justify-content: center;
 }
 
-#inner-circle>p{
-     font-size: 1.1em;
+#inner-circle>p {
+    font-size: 0.9em;
+}
+
+#dashboard-item-level {
+    color: rgb(255, 217, 80);
 }
 
 /* NAVIGATION */
@@ -2868,6 +2872,32 @@ svg {
     padding: 1em 0;
 }
 
+#level-box {
+    width: 50%;
+    box-shadow: var(--box-shadow);
+    padding: 1em;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+
+#level-box-inner>i {
+    color: rgb(255, 217, 80);
+}
+
+#level-box-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#user-level {
+    color: var(--main-color);
+}
+
 /* LEARN ABOUT YOUR MUSCLES */
 #muscle-navigation {
     width: 100vw;
@@ -3049,7 +3079,8 @@ svg {
 }
 
 .exercise-img {
-    width: 50%;
+    min-width: 50%;
+    max-width: 80%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2em;
@@ -3057,6 +3088,14 @@ svg {
     align-items: center;
     border-radius: 20px;
     overflow: hidden;
+}
+
+#exercise-back-button{
+    background-color: rgba(54, 23, 255, 0.5);
+    width: 80%;
+    border-radius: 50px;
+    padding: 1em 0;
+    cursor: pointer;
 }
 
 /* ANIMATIONS */

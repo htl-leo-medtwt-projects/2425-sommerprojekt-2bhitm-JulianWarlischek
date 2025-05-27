@@ -326,7 +326,11 @@ let USER_ELEMENTS = {
         password: '',
         profileColor: '',
         token: 0,
-        activeOnDevice: false
+        activeOnDevice: false,
+        level: 1,
+        levelMaxPoints: 20,
+        points: 0,
+        sessionsTimeOut: undefined,
     },
     unsavedChanges: false,
     registerInput: [
@@ -458,49 +462,50 @@ let MUSCLE_ELEMENTS = {
                 name: "Incline Dumbbell Press",
                 description: "Chest press on an incline bench to target upper pectorals.",
                 targetMuscle: "Chest",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/incline-dumbbell-press.jpg"
             },
             {
                 name: "Decline Bench Press",
                 description: "Targets the lower part of the chest with a downward angle.",
                 targetMuscle: "Chest",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/decline-bench-press.jpg"
             },
             {
                 name: "Chest Fly",
                 description: "Isolates the pectorals using dumbbells or cables.",
                 targetMuscle: "Chest",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/chest-fly.jpg"
             },
             {
                 name: "Cable Crossover",
                 description: "Excellent isolation movement for full chest contraction.",
                 targetMuscle: "Chest",
-                difficulty: 5
-            },
-            {
-                name: "Pec Deck Machine",
-                description: "Machine-based isolation of the pectoral muscles.",
-                targetMuscle: "Chest",
-                difficulty: 3
+                difficulty: 5,
+                src: "../../images/exercises/cable-crossover.webp"
             },
             {
                 name: "Dumbbell Pullover",
                 description: "Stretches and works the chest and lats.",
                 targetMuscle: "Chest",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/dumbbell-pullover.gif"
             },
             {
                 name: "Svend Press",
                 description: "A plate press to target the inner chest.",
                 targetMuscle: "Chest",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/svend-press.webp"
             },
             {
                 name: "Landmine Press",
                 description: "Angled barbell press that targets the upper chest.",
                 targetMuscle: "Chest",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/landmine-press.jpg"
             },
         ],
         [
@@ -509,61 +514,71 @@ let MUSCLE_ELEMENTS = {
                 name: "Overhead Press",
                 description: "Shoulder pressing movement with a barbell.",
                 targetMuscle: "Shoulders",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/overhead-press.webp"
             },
             {
                 name: "Lateral Raise",
                 description: "Isolates the lateral deltoids.",
                 targetMuscle: "Shoulders",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/lateral-raises.jpg"
             },
             {
                 name: "Front Raise",
                 description: "Targets the anterior deltoid using dumbbells or cables.",
                 targetMuscle: "Shoulders",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/front-raises.gif"
             },
             {
                 name: "Arnold Press",
                 description: "Dumbbell press variation that engages all heads of the deltoid.",
                 targetMuscle: "Shoulders",
-                difficulty: 7
+                difficulty: 7,
+                src: "../../images/exercises/arnold-press.jpg"
             },
             {
                 name: "Face Pulls",
                 description: "Good for rear deltoid and posture.",
                 targetMuscle: "Shoulders",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/face-pulls.webp"
             },
             {
                 name: "Reverse Fly",
                 description: "Works the rear delts and upper back.",
                 targetMuscle: "Shoulders",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/reverse-fly.jpg"
             },
             {
                 name: "Cable Lateral Raise",
                 description: "Constant tension on the lateral deltoid.",
                 targetMuscle: "Shoulders",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/cable-lateral-raises.webp"
             },
             {
                 name: "Seated Dumbbell Press",
                 description: "Stabilized version of shoulder press.",
                 targetMuscle: "Shoulders",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/seated-dumbell-press.jpg"
             },
             {
                 name: "Z Press",
                 description: "Overhead press performed seated on the floor to target stability.",
                 targetMuscle: "Shoulders",
-                difficulty: 8
+                difficulty: 8,
+                src: "../../images/exercises/z-press.webp"
             },
             {
                 name: "Upright Row",
                 description: "Pulls weight to chest height to target shoulders and traps.",
                 targetMuscle: "Shoulders",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/upright-row.webp"
             },
         ],
         [
@@ -573,61 +588,64 @@ let MUSCLE_ELEMENTS = {
                 name: "Triceps Dips",
                 description: "Bodyweight triceps exercise.",
                 targetMuscle: "Triceps",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/triceps-dips.webp"
             },
             {
                 name: "Skull Crushers",
                 description: "Isolated triceps exercise with barbell or dumbbells.",
                 targetMuscle: "Triceps",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/skull-crushers.jpg"
             },
             {
                 name: "Close-Grip Bench Press",
                 description: "Bench press variation focusing on triceps.",
                 targetMuscle: "Triceps",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/close-grip-bench-press.webp"
             },
             {
                 name: "Triceps Kickback",
                 description: "Isolation exercise with dumbbells.",
                 targetMuscle: "Triceps",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/triceps-kickbacks.webp"
             },
             {
                 name: "Overhead Triceps Extension",
                 description: "Targets the long head of the triceps.",
                 targetMuscle: "Triceps",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/overhead-triceps-extensions.webp"
             },
             {
                 name: "Cable Pushdown",
                 description: "Popular isolation movement for the triceps.",
                 targetMuscle: "Triceps",
-                difficulty: 3
-            },
-            {
-                name: "Single Arm Cable Pushdown",
-                description: "Unilateral isolation movement.",
-                targetMuscle: "Triceps",
-                difficulty: 4
+                difficulty: 3,
+                src: "../../images/exercises/cable-pushdown.webp"
             },
             {
                 name: "Diamond Push-Up",
                 description: "Push-up variation focused on triceps.",
                 targetMuscle: "Triceps",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/diamond-push-up.webp"
             },
             {
                 name: "JM Press",
                 description: "Hybrid between skull crusher and press.",
                 targetMuscle: "Triceps",
-                difficulty: 7
+                difficulty: 7,
+                src: "../../images/exercises/jm-press.gif"
             },
             {
                 name: "Tate Press",
                 description: "Uncommon but effective triceps isolation.",
                 targetMuscle: "Triceps",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/tate-press.jpg"
             },
         ],
         [
@@ -636,61 +654,64 @@ let MUSCLE_ELEMENTS = {
                 name: "Pull-Up",
                 description: "Bodyweight exercise for back and biceps.",
                 targetMuscle: "Back",
-                difficulty: 7
+                difficulty: 7,
+                src: "../../images/exercises/pull-up.webp"
             },
             {
                 name: "Barbell Row",
                 description: "Back exercise pulling weight to torso.",
                 targetMuscle: "Back",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/barbell-row.jpg"
             },
             {
                 name: "Deadlift",
                 description: "Full-body compound lift with emphasis on back and legs.",
                 targetMuscle: "Back",
-                difficulty: 9
+                difficulty: 9,
+                src: "../../images/exercises/deadlift.webp"
             },
             {
                 name: "Lat Pulldown",
                 description: "Cable-based vertical pulling movement.",
                 targetMuscle: "Back",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/lat-pulldown.jpg"
             },
             {
                 name: "Seated Cable Row",
                 description: "Horizontal pulling movement for the back.",
                 targetMuscle: "Back",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/seated-cable-row.jpeg"
             },
             {
                 name: "T-Bar Row",
                 description: "Rowing movement with a landmine barbell setup.",
                 targetMuscle: "Back",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/t-bar-row.jpg"
             },
             {
                 name: "Face Pull",
                 description: "Great for upper traps and rear delts.",
                 targetMuscle: "Back",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/face-pull.webp"
             },
             {
                 name: "Dumbbell Row",
                 description: "Single-arm rowing movement.",
                 targetMuscle: "Back",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/dumbell-row.webp"
             },
             {
                 name: "Inverted Row",
                 description: "Bodyweight rowing movement using a bar.",
                 targetMuscle: "Back",
-                difficulty: 4
-            },
-            {
-                name: "Good Morning",
-                description: "Strengthens lower back and hamstrings.",
-                targetMuscle: "Back",
-                difficulty: 8
+                difficulty: 4,
+                src: "../../images/exercises/inverted-row.jpg"
             },
         ],
         [
@@ -700,61 +721,71 @@ let MUSCLE_ELEMENTS = {
                 name: "Barbell Curl",
                 description: "Basic biceps curling exercise.",
                 targetMuscle: "Biceps",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/barbell-curl.webp"
             },
             {
                 name: "Hammer Curl",
                 description: "Neutral grip curl for brachialis and biceps.",
                 targetMuscle: "Biceps",
-                difficulty: 3
+                difficulty: 3,
+                src: "../../images/exercises/hammer-curl.webp"
             },
             {
                 name: "Chin-Up",
                 description: "Pull-up variation using underhand grip.",
                 targetMuscle: "Biceps",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/chin-up.webp"
             },
             {
                 name: "Concentration Curl",
                 description: "Seated single-arm isolation curl.",
                 targetMuscle: "Biceps",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/concentration-curl.webp"
             },
             {
                 name: "Preacher Curl",
                 description: "Biceps curl supported by preacher bench.",
                 targetMuscle: "Biceps",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/preacher-curl.webp"
             },
             {
                 name: "Cable Curl",
                 description: "Constant tension throughout the movement.",
                 targetMuscle: "Biceps",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/cable-curl.webp"
             },
             {
                 name: "Zottman Curl",
                 description: "Combines regular and reverse curls.",
                 targetMuscle: "Biceps",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/zottman-curl.jpg"
             },
             {
                 name: "Incline Dumbbell Curl",
                 description: "Curl performed seated with arms hanging back.",
                 targetMuscle: "Biceps",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/incline-dumbbell-curl.webp"
             },
             {
                 name: "Drag Curl",
                 description: "Variation with minimal shoulder movement.",
                 targetMuscle: "Biceps",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/drag-curl.jpg"
             },
             {
                 name: "Reverse Curl",
                 description: "Targets brachialis and forearms.",
                 targetMuscle: "Biceps",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/reverse-curl.jpg"
             },
         ],
         [
@@ -763,61 +794,43 @@ let MUSCLE_ELEMENTS = {
                 name: "Plank",
                 description: "Core stability hold.",
                 targetMuscle: "Core",
-                difficulty: 4
+                difficulty: 4,
+                src: "../../images/exercises/plank.webp"
             },
             {
                 name: "Russian Twist",
                 description: "Rotational core exercise.",
                 targetMuscle: "Core",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/russian-twist.webp"
             },
             {
                 name: "Leg Raise",
                 description: "Abdominal exercise performed lying down.",
                 targetMuscle: "Core",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/leg-raise.jpg"
             },
             {
                 name: "Crunch",
                 description: "Basic abdominal contraction exercise.",
                 targetMuscle: "Core",
-                difficulty: 3
+                difficulty: 3,
+                src: "../../images/exercises/crunch.jpg"
             },
             {
                 name: "V-Up",
                 description: "Advanced crunch where legs and torso meet.",
                 targetMuscle: "Core",
-                difficulty: 6
-            },
-            {
-                name: "Bicycle Crunch",
-                description: "Rotating movement involving obliques.",
-                targetMuscle: "Core",
-                difficulty: 4
-            },
-            {
-                name: "Hanging Leg Raise",
-                description: "Advanced movement from a bar.",
-                targetMuscle: "Core",
-                difficulty: 8
-            },
-            {
-                name: "Mountain Climbers",
-                description: "Core and cardio combination movement.",
-                targetMuscle: "Core",
-                difficulty: 5
+                difficulty: 6,
+                src: "../../images/exercises/v-up.gif"
             },
             {
                 name: "Ab Wheel Rollout",
                 description: "Challenging core stability movement.",
                 targetMuscle: "Core",
-                difficulty: 8
-            },
-            {
-                name: "Side Plank",
-                description: "Targets obliques and lateral core.",
-                targetMuscle: "Core",
-                difficulty: 4
+                difficulty: 8,
+                src: "../../images/exercises/ab-wheel-rollouts.jpg"
             },
         ],
         [
@@ -827,125 +840,103 @@ let MUSCLE_ELEMENTS = {
                 name: "Squat",
                 description: "Lower body compound exercise.",
                 targetMuscle: "Quadriceps",
-                difficulty: 7
+                difficulty: 7,
+                src: "../../images/exercises/squat.jpg"
             },
             {
                 name: "Leg Press",
                 description: "Machine-based leg exercise.",
                 targetMuscle: "Quadriceps",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/leg-press.webp"
             },
             {
                 name: "Lunge",
                 description: "Leg exercise with forward step.",
                 targetMuscle: "Quadriceps",
-                difficulty: 6
+                difficulty: 6,
+                src: "../../images/exercises/lunge.jpg"
             },
             {
                 name: "Step-Up",
                 description: "Step onto a platform to work quads and glutes.",
                 targetMuscle: "Quadriceps",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/step-up.webp"
             },
             {
                 name: "Wall Sit",
                 description: "Isometric hold to burn out quads.",
                 targetMuscle: "Quadriceps",
-                difficulty: 5
+                difficulty: 5,
+                src: "../../images/exercises/wall-sit.gif"
             },
             {
                 name: "Bulgarian Split Squat",
                 description: "Single-leg squat variation.",
                 targetMuscle: "Quadriceps",
-                difficulty: 7
+                difficulty: 7,
+                src: "../../images/exercises/bulgarian-split-squat.jpg"
             },
             {
                 name: "Front Squat",
                 description: "Barbell held in front rack to emphasize quads.",
                 targetMuscle: "Quadriceps",
-                difficulty: 8
+                difficulty: 8,
+                src: "../../images/exercises/front-squat.jpg"
             },
             {
                 name: "Sissy Squat",
                 description: "Bodyweight movement isolating the quads.",
                 targetMuscle: "Quadriceps",
-                difficulty: 7
+                difficulty: 7,
+                src: "../../images/exercises/sissy-squat.webp"
             },
             {
                 name: "Leg Extension",
                 description: "Machine-based quad isolation.",
                 targetMuscle: "Quadriceps",
-                difficulty: 4
-            },
-            {
-                name: "Cycling",
-                description: "Cardio exercise that activates quads heavily.",
-                targetMuscle: "Quadriceps",
-                difficulty: 3
-            },
+                difficulty: 4,
+                src: "../../images/exercises/leg-extension.gif"
+            }
         ],
         [
-        // Glutes
-        {
-            name: "Hip Thrust",
-            description: "Glute-focused movement using a bench.",
-            targetMuscle: "Glutes",
-            difficulty: 5
-        },
-        {
-            name: "Glute Bridge",
-            description: "Bodyweight glute exercise.",
-            targetMuscle: "Glutes",
-            difficulty: 4
-        },
-        {
-            name: "Bulgarian Split Squat",
-            description: "Single-leg squat variation.",
-            targetMuscle: "Glutes",
-            difficulty: 7
-        },
-        {
-            name: "Cable Kickback",
-            description: "Isolated glute activation using cables.",
-            targetMuscle: "Glutes",
-            difficulty: 5
-        },
-        {
-            name: "Kettlebell Swing",
-            description: "Explosive hip hinge movement.",
-            targetMuscle: "Glutes",
-            difficulty: 6
-        },
-        {
-            name: "Step-Up",
-            description: "Climbing movement activating glutes and quads.",
-            targetMuscle: "Glutes",
-            difficulty: 5
-        },
-        {
-            name: "Walking Lunge",
-            description: "Alternating lunges across distance.",
-            targetMuscle: "Glutes",
-            difficulty: 6
-        },
-        {
-            name: "Frog Pump",
-            description: "Short-range glute contraction exercise.",
-            targetMuscle: "Glutes",
-            difficulty: 4
-        },
-        {
-            name: "Reverse Lunge",
-            description: "Backward stepping lunge variation.",
-            targetMuscle: "Glutes",
-            difficulty: 5
-        },
-        {
-            name: "Sumo Deadlift",
-            description: "Deadlift variation targeting inner thighs and glutes.",
-            targetMuscle: "Glutes",
-            difficulty: 8
-        }
+            // Glutes
+            {
+                name: "Hip Thrust",
+                description: "Glute-focused movement using a bench.",
+                targetMuscle: "Glutes",
+                difficulty: 5,
+                src: "../../images/exercises/hip-thrust.jpg"
+            },
+            {
+                name: "Glute Bridge",
+                description: "Bodyweight glute exercise.",
+                targetMuscle: "Glutes",
+                difficulty: 4,
+                src: "../../images/exercises/glute-bridge.jpg"
+            },
+            {
+                name: "Cable Kickback",
+                description: "Isolated glute activation using cables.",
+                targetMuscle: "Glutes",
+                difficulty: 5,
+                src: "../../images/exercises/cable-kickbacks.jpg"
+            },
+            {
+                name: "Kettlebell Swing",
+                description: "Explosive hip hinge movement.",
+                targetMuscle: "Glutes",
+                difficulty: 6,
+                src: "../../images/exercises/kettlebell-swings.gif"
+            },
+            {
+                name: "Sumo Deadlift",
+                description: "Deadlift variation targeting inner thighs and glutes.",
+                targetMuscle: "Glutes",
+                difficulty: 8,
+                src: "../../images/exercises/sumo-deadlift.jpg"
+            }
         ]
     ]
 }

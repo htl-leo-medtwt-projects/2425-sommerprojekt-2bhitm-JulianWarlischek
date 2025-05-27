@@ -223,9 +223,10 @@ function saveChanges() {
     moveWeightSlider(true)
 
     if (!val1 || !val2 || !val3 || !val4) {
-        return
+        return;
     }
     loadDataToProfile();
+    insertUser();
     closeEditor(true);
 }
 
@@ -255,13 +256,6 @@ function setInputValues() {
  * Function to check if there are unsaved changes
  */
 function checkForUnsavedChanges() {
-    console.log(document.getElementById('input-user-name').value != USER_ELEMENTS.thisUser.name);
-    console.log(document.getElementById('input-user-gender').value != USER_ELEMENTS.thisUser.gender);
-    console.log(document.getElementById('input-user-age').value != USER_ELEMENTS.thisUser.age);
-    console.log(document.getElementById('input-user-mail').value != USER_ELEMENTS.thisUser.mail);
-    console.log(document.getElementById('input-user-weight').value != USER_ELEMENTS.thisUser.weight);
-    console.log(document.getElementById('input-user-height').value != USER_ELEMENTS.thisUser.height);
-
     if (document.getElementById('input-user-name').value != USER_ELEMENTS.thisUser.name || document.getElementById('input-user-gender').value != USER_ELEMENTS.thisUser.gender || document.getElementById('input-user-age').value != USER_ELEMENTS.thisUser.age || document.getElementById('input-user-mail').value != USER_ELEMENTS.thisUser.mail || document.getElementById('input-user-weight').value != USER_ELEMENTS.thisUser.weight || document.getElementById('input-user-height').value != USER_ELEMENTS.thisUser.height) {
         USER_ELEMENTS.unsavedChanges = true;
     } else {
