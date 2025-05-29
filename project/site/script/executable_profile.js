@@ -20,19 +20,6 @@ function newColor() {
     insertUser()
 }
 
-function insertUser(setFalse) {
-    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
-        if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
-            USER_ELEMENTS.loggedUsers[i] = USER_ELEMENTS.thisUser;
-            if(setFalse){
-                USER_ELEMENTS.loggedUsers[i].activeOnDevice = false;
-            }
-            saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
-            break
-        }
-    }
-}
-
 /**
  * Function to open the color picker
  */

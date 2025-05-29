@@ -162,12 +162,10 @@ function sessionCompleted() {
     }
     CALENDAR_ELEMENTS.sessionsToday.splice(LIVE_SESSION_ELEMENTS.currentSessionIDSelected, 1);
     CALENDAR_ELEMENTS.lastSevDaysChartData[0].sessionsCompleted = CALENDAR_ELEMENTS.sessionsCompleted;
-    if (USER_ELEMENTS.thisUser.sessionsTimeOut === undefined) {
-        USER_ELEMENTS.thisUser.points += 2;
-        USER_ELEMENTS.thisUser.sessionsTimeOut = setTimeout(() => {
-            USER_ELEMENTS.thisUser.sessionsTimeOut = undefined;
-        }, 300_000);
-    }
+
+    USER_ELEMENTS.thisUser.points += 2;
+    checkNextLevel();
+    insertUser()
     
     saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday);
     saveDataOnLS('calendar-items-all', CALENDAR_ELEMENTS.allSessions);

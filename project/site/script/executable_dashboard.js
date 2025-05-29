@@ -170,6 +170,31 @@ function updateGUIWEIGHT() {
 }
 updateGUIWEIGHT()
 
+/**
+ * Function to style the GUI
+ * 
+ * LEVEL
+ */
+function updateGUILEVEL() {
+  const num = document.getElementById('dashboard-item-level-bar-points');
+  const progress = document.getElementById('dashboard-item-level-bar-inner-progress');
+
+  const percent = getPercentPoints(USER_ELEMENTS.thisUser.points, USER_ELEMENTS.thisUser.levelMaxPoints);
+
+  progress.style.transform = `translateX(${percent - 100}%)`;
+  
+  num.innerHTML = `${USER_ELEMENTS.thisUser.points} / ${USER_ELEMENTS.thisUser.levelMaxPoints} pt.`;
+  document.getElementById('dashboard-item-level-num').innerHTML = USER_ELEMENTS.thisUser.level;
+}
+
+updateGUILEVEL();
+
+function getPercentPoints(points, maxPoints) {
+  const previousLevelPoints = maxPoints - 20; 
+  const progress = points - previousLevelPoints;
+  const percent = (progress / 20) * 100;
+  return Math.max(0, Math.min(percent, 100));
+}
 
 /**
  * GSAP

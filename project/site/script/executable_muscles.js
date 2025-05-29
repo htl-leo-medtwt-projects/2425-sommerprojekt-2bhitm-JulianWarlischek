@@ -66,10 +66,14 @@ function setOption() {
     tempString =
         `<div id="option-box">
         <div class="option-box-item" onclick="loadExerciseList()">
+            <div class="option-overlay"></div>
             <h4>Exercises</h4>
+            <p>Exercises to train the muscle.</p>
         </div>
-        <div class="option-box-item" onclick="loadLearnAbout()">
+        <div class="option-box-item" onclick="loadLearnAbout()" style="background-image: url('${MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].previewImg}');">
+            <div class="option-overlay"></div>
             <h4>Learn about</h4>
+            <p>Learn about the muscle.</p>
         </div>
     </div>
     `
@@ -84,15 +88,21 @@ function loadLearnAbout() {
 
     tempString = `
     <div id="learn-about-box">
-        <h4>Learn about</h4>
+        <h4>Learn about - ${MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].name}</h4>
         <h2>${MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].name}</h2>
         <p>${MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].description}</p>
+        <hr class="seperator-line">
+        <div class="muscle-img">
+            <img src="${MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].src}" alt="${MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].name}">
+        </div>
+        <hr class="seperator-line">
+
         <h5>Recommended exercises: </h5>
         <div id="recommended-exercises">
         `
     for (let i = 0; i < MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].recommendedExercises.length; i++) {
         tempString += `
-        <div class="recommended-exercise-item">
+        <div class="recommended-exercise-item" onclick="loadExercise(${i})">
             <h3>${MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].recommendedExercises[i]}</h3>
         </div>
         `
@@ -109,7 +119,7 @@ function loadLearnAbout() {
 
 function loadExerciseList() {
     const databox = document.getElementById('data-box');
-    let tempString = "<div id='exercise-list-box'><h4>Exercises</h4>";
+    let tempString = `<div id='exercise-list-box'><h4>Exercises - ${MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].name}</h4>`;
 
     for (let i = 0; i < MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected].length; i++) {
         tempString += `
@@ -129,16 +139,16 @@ function loadExerciseList() {
 function loadExercise(index, fromAll = false) {
     let databox = document.getElementById('data-box');
 
-    let tempString = `<div id="exercise-box"><h4>Exercise</h4>`
+    let tempString = `<div id="exercise-box"><h4>Exercise - ${MUSCLE_ELEMENTS.muscles[MUSCLE_ELEMENTS.muscleSelected].name}</h4>`
 
-    tempString += 
-    `<div>
+    tempString +=
+        `<div>
     <h2>${MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].name}</h2>
     <p>${MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].description}</p>
     <div id="exercise-difficulty-flex">
     `
 
-    for(let i = 0; i < MUSCLE_ELEMENTS.diffColors.length; i++) {
+    for (let i = 0; i < MUSCLE_ELEMENTS.diffColors.length; i++) {
 
         tempString += `<div style="opacity: 0.5;" class="difficulty-box"><div style="background-color: ${MUSCLE_ELEMENTS.diffColors[i]}"></div><p>${i + 1}</p></div>`
     }
@@ -146,15 +156,15 @@ function loadExercise(index, fromAll = false) {
     tempString += `</div><div class="exercise-img"><img src="${MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].src ? MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].src : ""}"></div></div>${fromAll ? `<div id="exercise-back-button" onclick="loadAllExercises()">Back</div>` : ""}</div>`
 
     databox.innerHTML = tempString;
-    
+
     document.getElementsByClassName('difficulty-box')[MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].difficulty - 1].style.opacity = 1;
 }
 
-function loadAllExercises(){
+function loadAllExercises() {
     const databox = document.getElementById('data-box');
     let tempString = "<div id='exercise-list-box'><h4>Exercises</h4>";
 
-    for(let i = 0; i < MUSCLE_ELEMENTS.exercises.length; i++) {
+    for (let i = 0; i < MUSCLE_ELEMENTS.exercises.length; i++) {
         for (let j = 0; j < MUSCLE_ELEMENTS.exercises[i].length; j++) {
             tempString += `
             <div class="exercise-list-item" onclick="MUSCLE_ELEMENTS.muscleSelected = ${i}; loadExercise(${j}, true)">

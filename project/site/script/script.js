@@ -9,7 +9,7 @@ function loadIndex() {
     let update3 = updateCaloriesBurned()
     let update4 = updateHydration();
 
-    if (update1 || update2 || update3) {
+    if (update1 || update2 || update3 || update4) {
         update()
     }
 }
@@ -98,12 +98,25 @@ function setUser() {
             return
         }
     }
-    if(document.title == "Profile") {
+    if (document.title == "Profile") {
         closeProfile()
     }
 }
 if (document.title != "Profile") {
     setUser()
+}
+
+function insertUser(setFalse) {
+    for (let i = 0; i < USER_ELEMENTS.loggedUsers.length; i++) {
+        if (USER_ELEMENTS.loggedUsers[i].activeOnDevice) {
+            USER_ELEMENTS.loggedUsers[i] = USER_ELEMENTS.thisUser;
+            if (setFalse) {
+                USER_ELEMENTS.loggedUsers[i].activeOnDevice = false;
+            }
+            saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
+            break
+        }
+    }
 }
 
 /**
@@ -114,4 +127,15 @@ function checkValidToken() {
         USER_ELEMENTS.thisUser.activeOnDevice = false;
         USER_ELEMENTS.thisUser.token = 0;
     }
+}
+
+function checkNextLevel() {
+    if (USER_ELEMENTS.thisUser.points >= USER_ELEMENTS.thisUser.levelMaxPoints) {
+        riseLevel();
+    }
+}
+
+function riseLevel() {
+    USER_ELEMENTS.thisUser.level++;
+    USER_ELEMENTS.thisUser.levelMaxPoints = USER_ELEMENTS.thisUser.level * USER_ELEMENTS.thisUser.pointsPerLevel;
 }

@@ -330,6 +330,7 @@ let USER_ELEMENTS = {
         level: 1,
         levelMaxPoints: 20,
         points: 0,
+        pointsPerLevel: 20,
         sessionsTimeOut: undefined,
     },
     unsavedChanges: false,
@@ -376,56 +377,64 @@ let MUSCLE_ELEMENTS = {
             "src": "../../images/muscles/chest.png",
             "name": "Chest",
             "description": "The chest muscles, primarily the pectoralis major and minor, are responsible for pushing movements and play a crucial role in upper body strength. They are involved in exercises like bench presses and push-ups.",
-            "recommendedExercises": ["Bench Press", "Push-Up", "Incline Dumbbell Press"]
+            "recommendedExercises": ["Bench Press", "Push-Up", "Incline Dumbbell Press"],
+            'previewImg': "../../images/chest.webp"
         },
         {
             "id": 2,
             "src": "../../images/muscles/shoulders.png",
             "name": "Shoulders",
             "description": "The shoulders are a complex joint that allows for a wide range of motion. They are made up of several muscles, including the deltoids and rotator cuff muscles, which are essential for overhead movements and stability.",
-            "recommendedExercises": ["Overhead Press", "Lateral Raise", "Face Pulls"]
+            "recommendedExercises": ["Overhead Press", "Lateral Raise", "Face Pulls"],
+            'previewImg': "../../images/shoulders.webp"
         },
         {
             "id": 3,
             "src": "../../images/muscles/triceps.png",
             "name": "Triceps",
             "description": "The triceps are the muscles located at the back of the upper arm. They are responsible for extending the elbow joint and play a crucial role in pushing movements, such as bench presses and push-ups.",
-            "recommendedExercises": ["Triceps Dips", "Skull Crushers", "Close-Grip Bench Press"]
+            "recommendedExercises": ["Triceps Dips", "Skull Crushers", "Close-Grip Bench Press"],
+            'previewImg': "../../images/triceps.jpg"
         },
         {
             "id": 4,
             "src": "../../images/muscles/back.png",
             "name": "Back",
             "description": "The back muscles, including the latissimus dorsi and trapezius, are responsible for pulling movements and play a crucial role in maintaining good posture. They are involved in exercises like pull-ups and rows.",
-            "recommendedExercises": ["Pull-Up", "Barbell Row", "Deadlift"]
+            "recommendedExercises": ["Pull-Up", "Barbell Row", "Deadlift"],
+            'previewImg': "../../images/back.jpg"
         },
         {
             "id": 5,
             "src": "../../images/muscles/biceps.png",
             "name": "Biceps",
             "description": "The biceps are the muscles located at the front of the upper arm. They are responsible for flexing the elbow joint and play a crucial role in pulling movements, such as curls and pull-ups.",
-            "recommendedExercises": ["Barbell Curl", "Hammer Curl", "Chin-Up"]
+            "recommendedExercises": ["Barbell Curl", "Hammer Curl", "Chin-Up"],
+            'previewImg': "../../images/biceps.jpg"
         },
         {
             "id": 6,
             "src": "../../images/muscles/core.png",
             "name": "Core",
             "description": "The core muscles include the abdominal muscles, obliques, and lower back muscles. They are responsible for stabilizing the spine and pelvis and play a crucial role in maintaining good posture and balance.",
-            "recommendedExercises": ["Plank", "Russian Twist", "Leg Raise"]
+            "recommendedExercises": ["Plank", "Russian Twist", "Leg Raise"],
+            'previewImg': "../../images/abs.jpg"
         },
         {
             "id": 7,
             "src": "../../images/muscles/quads.png",
             "name": "Quadriceps",
             "description": "The quadriceps, or quads, are a group of muscles located at the front of the thigh. They are responsible for extending the knee and play a crucial role in activities like squatting and jumping.",
-            "recommendedExercises": ["Squat", "Leg Press", "Lunge"]
+            "recommendedExercises": ["Squat", "Leg Press", "Lunge"],
+            'previewImg': "../../images/legs.webp"
         },
         {
             "id": 8,
             "src": "../../images/muscles/glutes.png",
             "name": "Glutes",
             "description": "The glutes, or gluteal muscles, are located in the buttocks and are responsible for hip extension, abduction, and external rotation. They play a crucial role in movements like squats, lunges, and running.",
-            "recommendedExercises": ["Hip Thrust", "Glute Bridge", "Bulgarian Split Squat"]
+            "recommendedExercises": ["Hip Thrust", "Glute Bridge", "Bulgarian Split Squat"],
+            'previewImg': "../../images/glutes.webp"
         }
     ],
     muscleSelected: 0,

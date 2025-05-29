@@ -473,6 +473,56 @@ svg {
     color: rgb(255, 217, 80);
 }
 
+#dashboard-item-level-data-box {
+    width: 100%;
+}
+
+#dashboard-item-level-bar {
+    color: var(--main-color);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#dashboard-item-level-bar>h5:nth-child(1) {
+    text-align: left;
+}
+
+#dashboard-item-level-bar>h5:nth-child(3) {
+    text-align: right;
+}
+
+#dashboard-item-level-bar-inner {
+    width: 100%;
+    border: 2px solid var(--main-color);
+    height: 1em;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#dashboard-item-level-bar-inner-progress {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 217, 80);
+    transition: transform 0.5s ease;
+    transform: translateX(-100%);
+}
+
+#dashboard-item-level-data-box {
+    margin-top: -0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+}
+
+#dashboard-item-level-num {
+    font-size: 1.5em;
+    font-family: 'calendar-font-black';
+    text-align: center;
+}
+
 /* NAVIGATION */
 #navigation {
     border-radius: 10px;
@@ -2064,7 +2114,7 @@ svg {
 
 
 .fitbalance-explained-content:nth-child(2)>h2 {
-    text-align: right;
+    text-align: left;
     padding-right: 2em;
 }
 
@@ -2933,7 +2983,6 @@ svg {
     border-radius: 30px;
     font-size: 1.2em;
     cursor: pointer;
-
     transition: all 0.5s ease;
     box-sizing: content-box;
 }
@@ -2943,7 +2992,6 @@ svg {
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 0 1em;
 }
 
 #option-box {
@@ -2951,19 +2999,74 @@ svg {
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 1em;
     width: 100%;
     text-align: center;
+    height: 60vh;
 }
 
 #option-box>div {
     padding: 1em 0;
     width: 100%;
-    border-radius: 10px;
+    height: 100%;
     font-family: 'calendar-font';
-    background-color: #2b3844;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    color: white;
+    gap: 1em;
+}
+
+#option-box>div>p {
+    font-size: 0.9em;
+    color: rgb(179, 179, 179);
+}
+
+#option-box>div>h4 {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+#option-box>div>h4,
+#option-box>div>p {
+    position: relative;
+    z-index: 4;
+}
+
+#option-box>div:nth-child(1) {
+    border-bottom: 3px solid white;
+}
+
+#option-box>div:nth-child(2) {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#option-box>div:nth-child(1) {
+    background-image: url('../images/exercises-prev.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.option-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.776);
+    z-index: 1;
+}
+
+#data-box>#exercise-list-box {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    text-align: center;
+    margin-top: 2em;
+    color: white;
 }
 
 #learn-about-box {
@@ -2971,6 +3074,12 @@ svg {
     font-family: 'calendar-font-black';
     text-align: center;
     margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1em;
+    gap: 2em;
 }
 
 #learn-about-box>h4 {
@@ -2978,6 +3087,14 @@ svg {
     color: var(--light-blue);
     text-align: left;
     font-style: italic;
+}
+
+.muscle-img {
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #learn-about-box>h2 {
@@ -2992,7 +3109,6 @@ svg {
 #learn-about-box>h5 {
     text-align: left;
     font-family: 'calendar-font-black';
-    margin-top: 5em;
     font-size: 1.2em;
 }
 
@@ -3004,7 +3120,7 @@ svg {
     align-items: center;
     width: 100%;
     font-family: 'Tilt Neon', sans-serif;
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 #recommended-exercises>div {
@@ -3012,19 +3128,6 @@ svg {
     width: 100%;
     border-radius: 10px;
     padding: 1em 0;
-}
-
-#data-box>div {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5em;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    text-align: center;
-    margin-top: 2em;
-    color: white;
-    padding-bottom: 1em;
 }
 
 #data-box>#exercise-list-box>div {
@@ -3055,6 +3158,15 @@ svg {
 
 #exercise-box {
     font-family: 'Tilt Neon', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    margin-top: 2em;
+    padding: 0 2em;
+    gap: 2em;
 }
 
 #exercise-difficulty-flex {
@@ -3090,7 +3202,7 @@ svg {
     overflow: hidden;
 }
 
-#exercise-back-button{
+#exercise-back-button {
     background-color: rgba(54, 23, 255, 0.5);
     width: 80%;
     border-radius: 50px;
