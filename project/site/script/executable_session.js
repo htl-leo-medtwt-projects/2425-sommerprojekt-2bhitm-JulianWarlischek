@@ -55,16 +55,17 @@ function printPossibleSessions() {
 }
 printPossibleSessions()
 
+let openStarterMenuTimeOut = undefined;
+let closeStarterMenuTimeOut = undefined;
+
 /**
  * If a user selects a session the function checks if the session already has been clicked by the user, so the the user can start the session
  */
 function selectThisSessionToStart(sessionID) {
-    if (sessionID === LIVE_SESSION_ELEMENTS.currentSessionIDSelected) {
-        LIVE_SESSION_ELEMENTS.currentSession = getCopyOf(CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected]);
-        setStarterMenu(sessionID);
-    } else {
-        LIVE_SESSION_ELEMENTS.currentSessionIDSelected = sessionID;
+    if(closeStarterMenuTimeOut != undefined) {
+        return;
     }
+    setStarterMenu(sessionID);
 }
 
 /**
@@ -92,8 +93,12 @@ function openStarterMenu() {
     const trackingArea = document.getElementById('tracking-area');
 
     slider.style.transform = "translateX(0)";
-    setTimeout(() => {
+    if (openStarterMenuTimeOut != undefined) {
+        clearTimeout(openStarterMenuTimeOut);
+    }
+    openStarterMenuTimeOut = setTimeout(() => {
         trackingArea.style.transform = "translateY(0)";
+        openStarterMenuTimeOut = undefined;
     }, 500)
 
     setTrackingAreaValues()
@@ -142,10 +147,16 @@ function closeStarterMenu(start) {
     if (start) {
         fadeOut('session-selected', 500);
     } else {
+        if(openStarterMenuTimeOut != undefined) {
+            return;
+        }
         trackingArea.style.transform = "translateY(100%)";
         slider.style.transform = "translateX(100%)";
         LIVE_SESSION_ELEMENTS.currentSession = undefined;
         LIVE_SESSION_ELEMENTS.currentSessionIDSelected = -1;
+        closeStarterMenuTimeOut = setTimeout(() => {
+            closeStarterMenuTimeOut = undefined;
+        }, 500)
     }
 }
 
@@ -166,7 +177,7 @@ function sessionCompleted() {
     USER_ELEMENTS.thisUser.points += 2;
     checkNextLevel();
     insertUser()
-    
+
     saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday);
     saveDataOnLS('calendar-items-all', CALENDAR_ELEMENTS.allSessions);
     saveDataOnLS('completed-sessions', CALENDAR_ELEMENTS.sessionsCompleted)

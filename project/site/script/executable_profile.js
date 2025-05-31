@@ -227,6 +227,7 @@ function loadDataToProfile() {
     document.getElementById('user-weight').innerHTML = USER_ELEMENTS.thisUser.weight + " kg";
     document.getElementById('user-height').innerHTML = USER_ELEMENTS.thisUser.height + " cm";
     document.getElementById('upper-profile-section').style.backgroundColor = USER_ELEMENTS.thisUser.profileColor === '' ? '#5A9ECF' : USER_ELEMENTS.thisUser.profileColor;
+    document.getElementById('user-level').innerHTML = `Level ${USER_ELEMENTS.thisUser.level}`;
     setInputValues();
 }
 
@@ -486,6 +487,7 @@ function riseInputCounter() {
 
     if (USER_ELEMENTS.registerInputIndex > USER_ELEMENTS.registerInput.length - 1) {
         closeRegisterBodyData()
+        USER_ELEMENTS.thisUser = getCopyOf(USER_ELEMENTS.thisUser);
         USER_ELEMENTS.thisUser.name = USER_ELEMENTS.registerUser.name;
         USER_ELEMENTS.thisUser.age = USER_ELEMENTS.registerUser.age;
         USER_ELEMENTS.thisUser.gender = USER_ELEMENTS.registerUser.gender;
@@ -497,10 +499,10 @@ function riseInputCounter() {
         setToken();
         USER_ELEMENTS.loggedUsers.push(USER_ELEMENTS.thisUser);
         saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
+        console.log(getCopyOf(USER_ELEMENTS.loggedUsers));
 
         USER_ELEMENTS.registerInputIndex = 0;
         openProfile()
-        setToken()
     }
 
     setRegisterBodyData();
