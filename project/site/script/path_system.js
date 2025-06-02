@@ -18,7 +18,7 @@ let HEADER_ELEMENTS = {
                     <div id="user-stats-img">
                         <img src="${document.title === 'Dashboard' ? "" : "."}${SETTINGS.userImgPath}" alt="user-img"> <!-- profile image -->
                     </div>
-                    <h4 id="user-stats-level-name">Level 1</h4>
+                    <h4 id="user-stats-level-name">Level ${USER_ELEMENTS.thisUser.level}</h4>
                   </div>`,
 }
 

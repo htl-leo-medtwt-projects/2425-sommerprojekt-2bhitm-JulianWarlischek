@@ -62,6 +62,7 @@ let closeStarterMenuTimeOut = undefined;
  * If a user selects a session the function checks if the session already has been clicked by the user, so the the user can start the session
  */
 function selectThisSessionToStart(sessionID) {
+    LIVE_SESSION_ELEMENTS.currentSessionIDSelected = sessionID;
     if(closeStarterMenuTimeOut != undefined) {
         return;
     }
@@ -81,7 +82,7 @@ function setStarterMenu(id) {
 
     document.getElementById('session-selected-name').innerHTML = CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.sessionsToday[id].type].name
     document.getElementById('session-selected-duration-num').innerHTML = CALENDAR_ELEMENTS.sessionsToday[id].duration === 0 ? "0 min" : (Math.floor((CALENDAR_ELEMENTS.sessionsToday[id].duration / 60)) <= 0 ? "" : Math.floor((CALENDAR_ELEMENTS.sessionsToday[id].duration / 60)) + " h ") + ((CALENDAR_ELEMENTS.sessionsToday[id].duration % 60) <= 0 ? "" : (CALENDAR_ELEMENTS.sessionsToday[id].duration % 60) + " min")
-
+    LIVE_SESSION_ELEMENTS.currentSession = CALENDAR_ELEMENTS.sessionsToday[id];
     openStarterMenu()
 }
 
@@ -111,7 +112,8 @@ function setTrackingAreaValues() {
     const trackingAreaHeader = document.getElementById('tracking-area-header');
     const trackingAreaHeaderIcon = document.getElementById('tracking-area-header-icon');
     const trackingAreaHeaderName = document.getElementById('tracking-area-header-name');
-
+    console.log(CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].type);
+    
     trackingAreaHeader.style.color = `${CALENDAR_ELEMENTS.colorCodes[CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].type].darkMain}`
     trackingAreaHeaderIcon.innerHTML = `<img src="../.${CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].type].previewImg}">`
     trackingAreaHeaderName.innerHTML = `${CALENDAR_ELEMENTS.types[CALENDAR_ELEMENTS.sessionsToday[LIVE_SESSION_ELEMENTS.currentSessionIDSelected].type].name}`

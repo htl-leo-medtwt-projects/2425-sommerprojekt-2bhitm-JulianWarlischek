@@ -331,7 +331,8 @@ let USER_ELEMENTS = {
         levelMaxPoints: 20,
         points: 0,
         pointsPerLevel: 20,
-        sessionsTimeOut: undefined,
+        exerciseTimeOut: undefined,
+        exerciseOpen: false
     },
     unsavedChanges: false,
     registerInput: [

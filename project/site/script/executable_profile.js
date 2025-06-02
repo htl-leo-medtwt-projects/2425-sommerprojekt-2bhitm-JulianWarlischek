@@ -487,6 +487,8 @@ function riseInputCounter() {
 
     if (USER_ELEMENTS.registerInputIndex > USER_ELEMENTS.registerInput.length - 1) {
         closeRegisterBodyData()
+        console.log(getCopyOf(USER_ELEMENTS.thisUser));
+        
         USER_ELEMENTS.thisUser = getCopyOf(USER_ELEMENTS.thisUser);
         USER_ELEMENTS.thisUser.name = USER_ELEMENTS.registerUser.name;
         USER_ELEMENTS.thisUser.age = USER_ELEMENTS.registerUser.age;
@@ -496,11 +498,12 @@ function riseInputCounter() {
         USER_ELEMENTS.thisUser.height = USER_ELEMENTS.registerUser.height;
         USER_ELEMENTS.thisUser.password = USER_ELEMENTS.registerUser.password;
         USER_ELEMENTS.thisUser.profileColor = USER_ELEMENTS.registerUser.profileColor;
+        USER_ELEMENTS.thisUser.exerciseTimeOut = null;
         setToken();
+        console.log(getCopyOf(USER_ELEMENTS.thisUser));
+        
         USER_ELEMENTS.loggedUsers.push(USER_ELEMENTS.thisUser);
         saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
-        console.log(getCopyOf(USER_ELEMENTS.loggedUsers));
-
         USER_ELEMENTS.registerInputIndex = 0;
         openProfile()
     }

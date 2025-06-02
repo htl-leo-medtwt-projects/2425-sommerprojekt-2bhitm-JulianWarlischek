@@ -16,6 +16,7 @@ function checkWelcomeBox() {
     let currScroll = window.scrollY;
 
     if (currScroll > 50) {
+        FITBALANCE_ELEMENTS.welcomeBox = document.getElementById('welcome-box');
         FITBALANCE_ELEMENTS.welcomeBox.style.width = "97%";
         FITBALANCE_ELEMENTS.welcomeBox.style.height = "20vh";
         FITBALANCE_ELEMENTS.welcomeBox.style.backgroundPosition = 'center -50%';

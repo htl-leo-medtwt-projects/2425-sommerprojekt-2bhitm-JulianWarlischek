@@ -189,13 +189,6 @@ function updateGUILEVEL() {
 
 updateGUILEVEL();
 
-function getPercentPoints(points, maxPoints) {
-  const previousLevelPoints = maxPoints - 20; 
-  const progress = points - previousLevelPoints;
-  const percent = (progress / 20) * 100;
-  return Math.max(0, Math.min(percent, 100));
-}
-
 /**
  * GSAP
  */

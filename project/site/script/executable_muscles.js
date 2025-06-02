@@ -115,6 +115,7 @@ function loadLearnAbout() {
 
 
     databox.innerHTML = tempString;
+    USER_ELEMENTS.thisUser.exerciseOpen = false;
 }
 
 function loadExerciseList() {
@@ -134,6 +135,7 @@ function loadExerciseList() {
     `
 
     databox.innerHTML = tempString;
+    USER_ELEMENTS.thisUser.exerciseOpen = false;
 }
 
 function loadExercise(index, fromAll = false) {
@@ -153,11 +155,16 @@ function loadExercise(index, fromAll = false) {
         tempString += `<div style="opacity: 0.5;" class="difficulty-box"><div style="background-color: ${MUSCLE_ELEMENTS.diffColors[i]}"></div><p>${i + 1}</p></div>`
     }
 
-    tempString += `</div><div class="exercise-img"><img src="${MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].src ? MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].src : ""}"></div></div>${fromAll ? `<div id="exercise-back-button" onclick="loadAllExercises()">Back</div>` : ""}</div>`
-
+    tempString += `</div><div class="exercise-img"><img src="${MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].src ? MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].src : ""}"></div></div><div id="complete-exercise" onclick="completeExercise()">Exercise completed</div>${fromAll ? `<div id="exercise-back-button" onclick="loadAllExercises()">Back</div>` : ""}</div>`
     databox.innerHTML = tempString;
-
     document.getElementsByClassName('difficulty-box')[MUSCLE_ELEMENTS.exercises[MUSCLE_ELEMENTS.muscleSelected][index].difficulty - 1].style.opacity = 1;
+    USER_ELEMENTS.thisUser.exerciseOpen = true;
+
+    if (USER_ELEMENTS.thisUser.exerciseTimeOut != undefined || USER_ELEMENTS.thisUser.exerciseTimeOut != null) {
+        USER_ELEMENTS.thisUser.exerciseTimeOut = new Date(USER_ELEMENTS.thisUser.exerciseTimeOut);
+        exerciseTimeOutTemp = setExerciseTimeOut()
+        setInterval(setExerciseTimeOut, 1000);
+    }
 }
 
 function loadAllExercises() {
@@ -175,5 +182,42 @@ function loadAllExercises() {
     }
     tempString += `</div>`;
     databox.innerHTML = tempString;
+    USER_ELEMENTS.thisUser.exerciseOpen = false;
 }
 loadAllExercises()
+
+let exerciseTimeOutTemp = undefined;
+function completeExercise() {
+    if (USER_ELEMENTS.thisUser.exerciseTimeOut != undefined || USER_ELEMENTS.thisUser.exerciseTimeOut != null) {
+        return
+    }
+    USER_ELEMENTS.thisUser.exerciseTimeOut = new Date();
+    USER_ELEMENTS.thisUser.exerciseTimeOut.setMinutes(USER_ELEMENTS.thisUser.exerciseTimeOut.getMinutes() + 3);
+    setExerciseTimeOut();
+    USER_ELEMENTS.thisUser.points += 5;
+    checkNextLevel()
+    exerciseTimeOutTemp = setInterval(setExerciseTimeOut, 1000);
+}
+
+function setExerciseTimeOut() {
+    const now = Date.now();
+    const diff = USER_ELEMENTS.thisUser.exerciseTimeOut - now;
+
+    document.getElementById('complete-exercise').style.opacity = 1;
+    console.log(diff);
+    insertUser(false);
+
+    if (diff <= 0 || isNaN(diff)) {
+        document.getElementById('complete-exercise').innerHTML = "Exercise completed";
+        clearInterval(exerciseTimeOutTemp);
+        USER_ELEMENTS.thisUser.exerciseTimeOut = undefined;
+        return;
+    }
+
+    document.getElementById('complete-exercise').style.opacity = 0.5;
+
+    let m = Math.floor(diff / 60000);
+    let s = Math.floor((diff % 60000) / 1000);
+
+    document.getElementById('complete-exercise').innerHTML = `${m} min ${s} sec`;
+}
