@@ -14,8 +14,8 @@ function loadIndex() {
     }
     if (document.title != 'FitBalance') {
         document.body.innerHTML += `<div id="level-up-box" onclick="hideLevelUp()" ${document.title === 'Muscles' || document.title === 'Fluid intake' ? 'style="background-color: white; color: black; border: 2px solid var(--main-color)"' : ""}></div>`
-
     }
+    document.body.innerHTML += `<div id="status-box"><i class="fa-solid fa-info"></i><p id="status-message"></p></div>`
 }
 loadIndex()
 
@@ -162,7 +162,7 @@ function playLevelUpAnimation() {
 
     levelUpBox.innerHTML = `
     <div id="level-up-content-inner">
-    <div id="new-level" ${document.title === 'Muscles' || document.title === 'Fluid intake' ? 'style="box-shadow: var(--box-shadow); color: white;"' :""}>
+    <div id="new-level" ${document.title === 'Muscles' || document.title === 'Fluid intake' ? 'style="box-shadow: var(--box-shadow); color: white;"' : ""}>
         <h2>${USER_ELEMENTS.thisUser.level}</h2>
     </div>
     <h1>LEVEL UP</h1>
@@ -193,7 +193,7 @@ function playLevelUpAnimation() {
                 </div>
             </div>
         `
-        fadeIn('level-up-content-inner', 'flex');
+            fadeIn('level-up-content-inner', 'flex');
             const levelBarFill = document.getElementById('level-bar-fill');
             levelBarFill.style.transform = `translateX(${percent - 100}%)`;
 
@@ -213,4 +213,55 @@ function hideLevelUp() {
     setTimeout(() => {
         fadeOut('level-up-box', 500);
     }, 500);
+}
+
+function throwSuccess(message) {
+    throwStatus(message, 'success-status');
+}
+
+function throwError(message) {
+    throwStatus(message, 'error-status');
+}
+
+function clearStatus() {
+    const statusBox = document.getElementById('status-box');
+
+    statusBox.classList.remove('error-status');
+    statusBox.classList.remove('success-status');
+
+    statusBox.style.transition = "none";
+
+    
+    statusBox.style.transform = "translateX(-200%)";
+
+    statusBox.style.transition = "transform 0.5s ease";
+    document.getElementById('status-message').innerHTML = "";
+}
+
+let statusTimeout = undefined;
+function throwStatus(message, statusClass) {
+    const statusBox = document.getElementById('status-box');
+
+    if (statusTimeout != undefined) {
+        clearTimeout(statusTimeout);
+        statusTimeout = undefined;
+        statusBox.style.transform = "translateX(-200%)";
+        setTimeout(() => {
+            throwStatus(message, statusClass);
+        }, 500);
+        return
+    }
+    clearStatus();
+
+    statusBox.classList.add(statusClass);
+    document.getElementById('status-message').innerHTML = message;
+    statusBox.style.transform = "translateX(0)";
+
+    statusTimeout = setTimeout(() => {
+        statusBox.style.transform = "translateX(-200%)";
+        setTimeout(() => {
+            clearStatus();
+        }, 500);
+        statusTimeout = undefined;
+    }, 5000);
 }

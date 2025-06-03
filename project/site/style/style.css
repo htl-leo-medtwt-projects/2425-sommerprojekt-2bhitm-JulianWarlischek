@@ -3243,7 +3243,7 @@ svg {
     transform: translateX(-50%) translateY(-50vh);
 }
 
-#level-up-box>div{
+#level-up-box>div {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -3251,7 +3251,7 @@ svg {
     gap: 1em;
 }
 
-#level-up-box>div>h1{
+#level-up-box>div>h1 {
     font-size: 1.2em;
 }
 
@@ -3268,15 +3268,16 @@ svg {
     box-shadow: 0px 4px 100px 40px rgba(255, 255, 255, 0.105);
 }
 
-#points-bar{
+#points-bar {
     display: flex;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;
     width: 80%;
     gap: 1em;
 }
 
-#curr-level, #next-level {
+#curr-level,
+#next-level {
     width: 7vw;
     height: 7vw;
     display: flex;
@@ -3288,7 +3289,7 @@ svg {
     color: rgb(213, 213, 213);
 }
 
-#level-up-content{
+#level-up-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -3296,14 +3297,15 @@ svg {
     gap: 0.5em;
 }
 
-#level-up-content>h3{
+#level-up-content>h3 {
     font-size: 0.7em;
 }
-#level-up-content-inner{
+
+#level-up-content-inner {
     width: 100%;
 }
 
-#level-bar{
+#level-bar {
     height: 1.5em;
     width: 70%;
     border-radius: 5px;
@@ -3311,7 +3313,7 @@ svg {
     background-color: rgba(255, 255, 255, 0.286);
 }
 
-#level-bar-fill{
+#level-bar-fill {
     height: 100%;
     background-color: var(--light-blue);
 }
@@ -3323,8 +3325,63 @@ svg {
     text-align: center;
 }
 
-#level-up-content-inner{
+#level-up-content-inner {
     transition: all 0.5s ease;
+}
+
+/* STATUS CODES */
+#status-box {
+    width: 60vw;
+    border-radius: 13px;
+    padding: 0.5em;
+    display: flex;
+    flex-direction: row;
+    font-family: 'calendar-font';
+    position: fixed;
+    left: 4%;
+    top: 15%;
+    z-index: 100000;
+    color: white;
+    font-size: 1.3em;
+    align-items: center;
+    gap: 1em;
+    padding-left: 1em;
+    transform: translateX(-200%);
+    transition: transform 0.5s ease;
+}
+
+#status-box>p {
+    font-size: 0.8em;
+}
+
+#status-box>i {
+    font-size: 0.9em;
+}
+
+.success-status {
+    background-color: #27512F;
+    border-left: 7px solid #397D41;
+}
+
+.success-status>p {
+    color: #D6FBE8;
+}
+
+.success-status>i {
+    color: #49A04F;
+}
+
+.error-status{
+    background-color: #ca3328;
+    border-left: 7px solid #ff604f;
+}
+
+.error-status>p {
+    color: #fbe6e6;
+}
+
+.error-status>i {
+    color: #ff604f;
 }
 
 /* ANIMATIONS */

@@ -1196,6 +1196,7 @@ function indexOf(session) {
         }
     }
 }
+
 /**
  * Hash algorithm for the password
  * @param {string} str String to hash
