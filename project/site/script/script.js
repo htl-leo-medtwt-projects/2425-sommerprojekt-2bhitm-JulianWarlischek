@@ -216,11 +216,11 @@ function hideLevelUp() {
 }
 
 function throwSuccess(message) {
-    throwStatus(message, 'success-status');
+    throwStatus("Success - " + message, 'success-status');
 }
 
 function throwError(message) {
-    throwStatus(message, 'error-status');
+    throwStatus("Error - " + message, 'error-status');
 }
 
 function clearStatus() {

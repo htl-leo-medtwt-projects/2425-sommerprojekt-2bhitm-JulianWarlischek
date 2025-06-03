@@ -179,7 +179,7 @@ function sessionCompleted() {
     USER_ELEMENTS.thisUser.points += 2;
     checkNextLevel();
     insertUser()
-
+    throwSuccess("Session completed successfully!");
     saveDataOnLS('calendar-items-today', CALENDAR_ELEMENTS.sessionsToday);
     saveDataOnLS('calendar-items-all', CALENDAR_ELEMENTS.allSessions);
     saveDataOnLS('completed-sessions', CALENDAR_ELEMENTS.sessionsCompleted)

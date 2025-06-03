@@ -139,6 +139,7 @@ function readName(saveToJSON) {
     } else {
         document.getElementById('input-user-name').value = "";
         //Throw an error here
+        throwError("Name cannot be empty")
     }
 }
 
@@ -158,6 +159,7 @@ function readGender(saveToJSON) {
     } else {
         document.getElementById('input-user-gender').value = "";
         //Throw an error here
+        throwError("Invalid gender")
     }
 }
 
@@ -176,6 +178,7 @@ function readAge(saveToJSON) {
     } else {
         document.getElementById('input-user-age').value = "";
         //Throw an error here
+        throwError("Invalid age")
     }
 }
 
@@ -194,6 +197,7 @@ function readMail(saveToJSON) {
     } else {
         document.getElementById('input-user-mail').value = "";
         //Throw an error here
+        throwError("Invalid mail address")
     }
 }
 
@@ -293,12 +297,14 @@ function checkGenderRegister() {
         document.getElementById('register-gender').value = "";
         if (input != "") {
             document.getElementById('register-input-group-label-gender').style.color = 'red';
+            throwError("Invalid gender");
             return false;
         }
     }
 
     if (input == "") {
         document.getElementById('register-input-group-label-gender').style.color = 'red';
+        throwError("Gender cannot be empty");
         return false;
     }
     USER_ELEMENTS.registerUser.gender = input;
@@ -314,12 +320,14 @@ function checkAgeRegister() {
 
         if (input != "") {
             document.getElementById('register-input-group-label-age').style.color = 'red';
+            throwError("Invalid age");
             return false;
         }
     }
 
     if (input == "") {
         document.getElementById('register-input-group-label-age').style.color = 'red';
+        throwError("Age cannot be empty");
         return false;
     }
     USER_ELEMENTS.registerUser.age = input;
@@ -334,12 +342,14 @@ function checkMailRegister() {
         document.getElementById('register-email').value = "";
         if (input != "") {
             document.getElementById('register-input-group-label-email').style.color = 'red';
+            throwError("Invalid mail address");
             return false;
         }
     }
 
     if (input == "") {
         document.getElementById('register-input-group-label-email').style.color = 'red';
+        throwError("Mail cannot be empty");
         return false;
     }
     USER_ELEMENTS.registerUser.mail = input;
@@ -363,6 +373,7 @@ function checkPasswordConfirmRegister() {
 
     if (pw_confirm == "") {
         document.getElementById('register-input-group-label-password-confirm').style.color = 'red';
+        throwError("Password confirmation cannot be empty");
         return false;
     }
     return true;
@@ -378,6 +389,7 @@ function checkPasswordRegister() {
 
     if (pw == "") {
         document.getElementById('register-input-group-label-password').style.color = 'red';
+        throwError("Password cannot be empty");
         return false;
     }
     getHas(pw)
@@ -395,6 +407,7 @@ function checkNameRegister() {
     document.getElementById('register-input-group-label-name').style.color = 'black';
     if (input == "") {
         document.getElementById('register-input-group-label-name').style.color = 'red';
+        throwError("Name cannot be empty");
         return false;
     }
     USER_ELEMENTS.registerUser.name = input;
@@ -506,6 +519,7 @@ function riseInputCounter() {
         saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
         USER_ELEMENTS.registerInputIndex = 0;
         openProfile()
+        throwSuccess("Registration successful");
     }
 
     setRegisterBodyData();
@@ -540,12 +554,14 @@ function checkMailLogin() {
         document.getElementById('login-email').value = "";
         if (input != "") {
             document.getElementById('login-input-group-label-email').style.color = 'red';
+            throwError("Invalid mail address");
             return false;
         }
     }
 
     if (input == "") {
         document.getElementById('login-input-group-label-email').style.color = 'red';
+        throwError("Mail cannot be empty");
         return false;
     }
     return true;
@@ -556,6 +572,7 @@ async function login() {
     let val2 = checkPasswordLogin();
 
     if (!val1 || !val2) {
+        throwError("Please check your input");
         return
     }
     let email = document.getElementById('login-email').value;
@@ -571,6 +588,7 @@ async function login() {
             saveDataOnLS('logged-users', USER_ELEMENTS.loggedUsers);
             openProfile()
             closeLogin()
+            throwSuccess("Login successful");
             return
         }
     }
@@ -582,6 +600,7 @@ function checkPasswordLogin() {
 
     if (pw == "") {
         document.getElementById('login-input-group-label-password').style.color = 'red';
+        throwError("Password cannot be empty");
         return false;
     }
     return true
@@ -613,6 +632,7 @@ function logout() {
     USER_ELEMENTS.thisUser.token = 0;
     insertUser(true);
     closeProfile()
+    throwSuccess("Logout successful");
 }
 
 function closeProfile() {

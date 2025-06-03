@@ -189,6 +189,7 @@ loadAllExercises()
 let exerciseTimeOutTemp = undefined;
 function completeExercise() {
     if (USER_ELEMENTS.thisUser.exerciseTimeOut != undefined || USER_ELEMENTS.thisUser.exerciseTimeOut != null) {
+        throwError("Please wait until the timeout is over before starting a new exercise.");
         return
     }
     USER_ELEMENTS.thisUser.exerciseTimeOut = new Date();

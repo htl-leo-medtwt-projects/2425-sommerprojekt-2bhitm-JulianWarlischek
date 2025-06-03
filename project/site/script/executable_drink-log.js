@@ -86,6 +86,7 @@ function saveHydrationGoal() {
 
     DRINK_LOG_ELEMENTS.goal = parseFloat(value);
     changeHydrationReachedUI()
+    throwSuccess('Hydration goal set');
     saveDataOnLS('hydration-goal', parseFloat(value));
 }
 

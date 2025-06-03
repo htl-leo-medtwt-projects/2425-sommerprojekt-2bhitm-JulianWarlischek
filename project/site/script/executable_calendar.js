@@ -291,7 +291,7 @@ function nextInputStep() {
         return
     }
     if (CALENDAR_ELEMENTS.currentInput === 5) {
-        closeCatInput()
+        closeCatInput(true)
         return
     }
 
@@ -322,8 +322,16 @@ function checkState() {
         case 2:
             CALENDAR_ELEMENTS.newSession.endTime = `${hours < 10 ? "0" + hours : hours}:${minutes < 10 ? "0" + minutes : minutes} ${hours > 12 ? 'pm' : 'am'}`;
             CALENDAR_ELEMENTS.newSession.duration = calcDuration(parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(0, 2)), parseInt(CALENDAR_ELEMENTS.newSession.startTime.substring(3, 5)), parseInt(CALENDAR_ELEMENTS.newSession.endTime.substring(3, 5)));
+            if (CALENDAR_ELEMENTS.newSession.duration <= 0) {
+                throwError("The duration cannot be 0 or negative.");
+                closeCatInput(false);
+            }
             break;
         case 3:
+            if(month > 12 || month < 1 || isNaN(month) || numOfMonth < 1 || numOfMonth > 31 || isNaN(numOfMonth)) {
+                throwError("Please enter a valid month and day of month.");
+                closeCatInput(false);
+            }
             const date = new Date();
 
             date.setDate(numOfMonth);
@@ -378,8 +386,11 @@ function showInputSummary() {
 /**
  * Closes the input menu
  */
-function closeCatInput() {
-    safeVariables();
+function closeCatInput(safe = true) {
+    if (safe) {
+        safeVariables();
+        throwSuccess("Your training session has been saved successfully.");
+    }
     document.getElementById('next-input-step').removeEventListener('click', nextInputStep)
     changeCalendarUI()
     resetCalendarVariables()
@@ -509,7 +520,7 @@ function printAllSessions(items) {
             temp_string += `
                     <div class="month-session" style="background-color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].main}">
                         <div class="month-session-date">
-                            <h3 class="month-session-weekday" style="color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}">${CALENDAR_ELEMENTS.weekday[(new Date(new Date().getFullYear() + "-" + (CALENDAR_ELEMENTS.currentMonth + 1) + '-' + items[i].date.dayOfMonth).getDay() + 6) % 7]}</h3>
+                            <h3 class="month-session-weekday" style="color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}">${CALENDAR_ELEMENTS.weekday[(new Date(items[i].date.year, items[i].date.month - 1, items[i].date.dayOfMonth).getDay() + 6) % 7]}</h3>
                             <div class="month-session-date-information" style="color: ${CALENDAR_ELEMENTS.colorCodes[items[i].type].darkMain}">
                                 <h3 class="month-session-day-of-month">${items[i].date.dayOfMonth < 10 ? "0" + items[i].date.dayOfMonth : items[i].date.dayOfMonth}</h3>
                                 <h3 class="month-session-month">${CALENDAR_ELEMENTS.month[items[i].date.month - 1]}</h3>
@@ -534,7 +545,7 @@ function printAllSessions(items) {
 function loadSessionsFromLS() {
     let allSessions = JSON.parse(localStorage['calendar-items-all']);
     CALENDAR_ELEMENTS.sessionsToday = []
-    
+
     loadSessionsToday();
 
     printTodaysSessions(CALENDAR_ELEMENTS.sessionsToday);
